@@ -1,41 +1,42 @@
+<?php require('controller.php'); ?>
 <?php
 	$username = "al089314";
 	$password = "F21FB18857B24B33B5A06409FC6C043E";
-		
+
 		$con = new mysqli("localhost",$username,$password,"al089314");
-	    
+
 	    if($con->error) {
 	        print("Error connecting!  Message: ".$con->error);
 	    } else {
 	        //print("Connection Successful! \n \r <br/>");
 	    }
-	
+
 		$selectA = "SELECT * FROM products LIMIT 6,1";
 		$selectB = "SELECT * FROM products LIMIT 7,1";
 		$selectC = "SELECT * FROM products LIMIT 8,1";
-		
+
 		$resultA = $con->query($selectA);
 		$resultB = $con->query($selectB);
 		$resultC = $con->query($selectC);
-		
+
 		$dataA = $resultA->fetch_object();
 		$dataB = $resultB->fetch_object();
 		$dataC = $resultC->fetch_object();
 ?>
 <!DOCTYPE html>
 <html>
-	<?php include("inc/head.php"); ?>
+	<?php echo rwp_head('Home'); ?>
 	<body>
 		<?php include("inc/header.php"); ?>
 		<div class="userbar">
-			<div class="container">	
+			<div class="container">
 				<p class="pull-left">Slogan goes here</p>
 				<ul class="pull-right">
 					<li><a href="client.php">Client</a></li>
 				</ul>
 			</div>
 		</div>
-		
+
 		<div class="container">
 			<div id="feat-slider" class="carousel slide" data-ride="carousel">
 			  <!-- Indicators -->
@@ -44,7 +45,7 @@
 			    <li data-target="#feat-slider" data-slide-to="1"></li>
 			    <li data-target="#feat-slider" data-slide-to="2"></li>
 			  </ol>
-			
+
 			  <!-- Wrapper for slides -->
 			  <div class="carousel-inner" role="listbox">
 			    <div class="item active">
@@ -72,7 +73,7 @@
 			      	</div>
 			    </div>
 			  </div>
-			
+
 			  <!-- Controls -->
 			  <a class="left carousel-control" href="#feat-slider" role="button" data-slide="prev">
 			    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
