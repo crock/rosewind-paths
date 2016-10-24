@@ -1,28 +1,4 @@
 <?php require('controller.php'); ?>
-<?php
-	$username = "al089314";
-	$password = "F21FB18857B24B33B5A06409FC6C043E";
-
-		$con = new mysqli("localhost",$username,$password,"al089314");
-
-	    if($con->error) {
-	        print("Error connecting!  Message: ".$con->error);
-	    } else {
-	        //print("Connection Successful! \n \r <br/>");
-	    }
-
-		$selectA = "SELECT * FROM products LIMIT 6,1";
-		$selectB = "SELECT * FROM products LIMIT 7,1";
-		$selectC = "SELECT * FROM products LIMIT 8,1";
-
-		$resultA = $con->query($selectA);
-		$resultB = $con->query($selectB);
-		$resultC = $con->query($selectC);
-
-		$dataA = $resultA->fetch_object();
-		$dataB = $resultB->fetch_object();
-		$dataC = $resultC->fetch_object();
-?>
 <!DOCTYPE html>
 <html>
 	<?php echo rwp_head('Home'); ?>
@@ -48,30 +24,16 @@
 
 			  <!-- Wrapper for slides -->
 			  <div class="carousel-inner" role="listbox">
-			    <div class="item active">
-			    	<img src="<?php echo $dataA->image; ?>" alt="...">
-					<div class="carousel-caption">
-			        	<h3><?php echo $dataA->product_name; ?></h3>
-						<p><?php echo $dataA->description; ?></p>
-						<span class="label label-success">$<?php echo $dataA->price ?></span>
-			      	</div>
-			    </div>
-			    <div class="item">
-			      	<img src="<?php echo $dataB->image; ?>" alt="...">
-					<div class="carousel-caption">
-			        	<h3><?php echo $dataB->product_name; ?></h3>
-						<p><?php echo $dataB->description; ?></p>
-						<span class="label label-success">$<?php echo $dataB->price ?></span>
-			      	</div>
-			    </div>
-			    <div class="item">
-			      	<img src="<?php echo $dataC->image; ?>" alt="...">
-					<div class="carousel-caption">
-			        	<h3><?php echo $dataC->product_name; ?></h3>
-						<p><?php echo $dataC->description; ?></p>
-						<span class="label label-success">$<?php echo $dataC->price ?></span>
-			      	</div>
-			    </div>
+				<?php foreach (get_products(3) as $product) { ?>
+					<div class="item">
+				    	<img src="<?php echo $product->image; ?>" alt="...">
+						<div class="carousel-caption">
+				        	<h3><?php echo $product->product_name; ?></h3>
+							<p><?php echo $product->description; ?></p>
+							<span class="label label-success">$<?php echo $product->price; ?></span>
+				      	</div>
+				    </div>
+  				<?php } ?>
 			  </div>
 
 			  <!-- Controls -->

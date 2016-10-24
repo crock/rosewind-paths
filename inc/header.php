@@ -18,8 +18,8 @@
 		  <li><a href="catalog.php">Trips</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="cart.php">Cart</a></li>
 			<li><a href="admin.php">Admin</a></li>
+			<li><a href="cart.php">Cart</a></li>
 		</ul>
 		<form class="navbar-form navbar-left">
 	        <div class="form-group">
