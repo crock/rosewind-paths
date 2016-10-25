@@ -28,14 +28,6 @@
 	<?php echo rwp_head('Home'); ?>
 	<body>
 		<?php include("inc/header.php"); ?>
-		<div class="userbar">
-			<div class="container">
-				<p class="pull-left">Slogan goes here</p>
-				<ul class="pull-right">
-					<li><a href="client.php">Client</a></li>
-				</ul>
-			</div>
-		</div>
 
 		<div class="container">
 			<div id="feat-slider" class="carousel slide" data-ride="carousel">
