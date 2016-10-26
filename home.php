@@ -25,15 +25,14 @@
 			  <!-- Wrapper for slides -->
 			  <div class="carousel-inner" role="listbox">
 				<?php foreach (get_products(3) as $product) { ?>
-					<div class="item">
-				    	<img src="<?php echo $product->image; ?>" alt="...">
-						<div class="carousel-caption">
-				        	<h3><?php echo $product->product_name; ?></h3>
-							<p><?php echo $product->description; ?></p>
-							<span class="label label-success">$<?php echo $product->price; ?></span>
-				      	</div>
-				    </div>
-  				<?php } ?>
+				<div class="item">
+					<img src="<?php echo $product['img']; ?>" alt="<?php echo $product['product_name']; ?>">
+					<div class="carousel-caption">
+						<h3><?php echo $product['product_name']; ?></h3>
+						<span class="label label-success">$<?php echo $product['price']; ?></span>
+					</div>
+				</div>
+				<?php } ?>
 			  </div>
 
 			  <!-- Controls -->
