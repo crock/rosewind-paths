@@ -1,28 +1,4 @@
 <?php require('controller.php'); ?>
-<?php
-	$username = "al089314";
-	$password = "F21FB18857B24B33B5A06409FC6C043E";
-
-		$con = new mysqli("localhost",$username,$password,"al089314");
-
-	    if($con->error) {
-	        print("Error connecting!  Message: ".$con->error);
-	    } else {
-	        //print("Connection Successful! \n \r <br/>");
-	    }
-
-		$selectA = "SELECT * FROM products LIMIT 6,1";
-		$selectB = "SELECT * FROM products LIMIT 7,1";
-		$selectC = "SELECT * FROM products LIMIT 8,1";
-
-		$resultA = $con->query($selectA);
-		$resultB = $con->query($selectB);
-		$resultC = $con->query($selectC);
-
-		$dataA = $resultA->fetch_object();
-		$dataB = $resultB->fetch_object();
-		$dataC = $resultC->fetch_object();
-?>
 <!DOCTYPE html>
 <html>
 	<?php echo rwp_head('Home'); ?>
