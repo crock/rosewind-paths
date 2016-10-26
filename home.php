@@ -16,30 +16,15 @@
 
 			  <!-- Wrapper for slides -->
 			  <div class="carousel-inner" role="listbox">
-			    <div class="item active">
-			    	<img src="<?php echo $dataA->image; ?>" alt="...">
+				<?php foreach (get_products(3) as $product) { ?>
+				<div class="item">
+					<img src="<?php echo $product['img']; ?>" alt="<?php echo $product['product_name']; ?>">
 					<div class="carousel-caption">
-			        	<h3><?php echo $dataA->product_name; ?></h3>
-						<p><?php echo $dataA->description; ?></p>
-						<span class="label label-success">$<?php echo $dataA->price ?></span>
-			      	</div>
-			    </div>
-			    <div class="item">
-			      	<img src="<?php echo $dataB->image; ?>" alt="...">
-					<div class="carousel-caption">
-			        	<h3><?php echo $dataB->product_name; ?></h3>
-						<p><?php echo $dataB->description; ?></p>
-						<span class="label label-success">$<?php echo $dataB->price ?></span>
-			      	</div>
-			    </div>
-			    <div class="item">
-			      	<img src="<?php echo $dataC->image; ?>" alt="...">
-					<div class="carousel-caption">
-			        	<h3><?php echo $dataC->product_name; ?></h3>
-						<p><?php echo $dataC->description; ?></p>
-						<span class="label label-success">$<?php echo $dataC->price ?></span>
-			      	</div>
-			    </div>
+						<h3><?php echo $product['product_name']; ?></h3>
+						<span class="label label-success">$<?php echo $product['price']; ?></span>
+					</div>
+				</div>
+				<?php } ?>
 			  </div>
 
 			  <!-- Controls -->
@@ -57,6 +42,7 @@
 			  <div class="col-md-6"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut amet praesentium voluptatem tempora ex assumenda reprehenderit, ratione maxime laborum deleniti cumque aspernatur quisquam ipsa beatae. Inventore earum, tenetur voluptatum veniam velit quo soluta sequi esse in cumque repellat reiciendis culpa, dolorum. Rerum ipsam quisquam autem, ad delectus vel earum magnam.</p></div>
 			</div>
 		</div><!-- end .container -->
+		
 		<?php include("inc/footer.php"); ?>
 	</body>
 </html>
