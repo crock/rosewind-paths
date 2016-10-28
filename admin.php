@@ -1,7 +1,12 @@
-<?php require('controller.php'); ?>
+<?php
+	define('PAGE_TITLE', 'Admin');
+	require('controller.php');
+?>
+
 <!DOCTYPE html>
 <html>
 	<?php echo rwp_head('Admin'); ?>
+	
 	<body>
 		<?php include("inc/header.php"); ?>
 

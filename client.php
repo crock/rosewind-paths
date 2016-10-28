@@ -1,7 +1,12 @@
-<?php require('controller.php'); ?>
+<?php
+	define('PAGE_TITLE', 'Client');
+	require('controller.php');
+?>
+
 <!DOCTYPE html>
 <html>
-	<?php echo rwp_head('Client'); ?>
+	<?php echo rwp_head(PAGE_TITLE); ?>
+	
 	<body>
 		<?php include("inc/header.php"); ?>
 
