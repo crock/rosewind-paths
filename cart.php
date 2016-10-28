@@ -1,7 +1,12 @@
-<?php require('controller.php'); ?>
+<?php
+	define('PAGE_TITLE', 'Cart');
+	require('controller.php');
+?>
+
 <!DOCTYPE html>
 <html>
-	<?php echo rwp_head('Cart'); ?>
+	<?php echo rwp_head(PAGE_TITLE); ?>
+	
 	<body>
 		<?php include("inc/header.php"); ?>
 
