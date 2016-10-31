@@ -76,6 +76,12 @@
 #feat-slider .label {
 	margin-left: 15px;
 }
+
+/* Authentication Error */
+.help-block {
+	color: red;
+}
+
 /*.accent {
 	background: #37bc92;
 }

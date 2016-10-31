@@ -27,11 +27,11 @@
 		$errors = array();
 
 		if ($data["username"] != $default_user) {
-			$errors[] = "User Not Found";
+			$errors[0] = "User Not Found";
 		}
 
 		if ($data["password"] != $default_pass) {
-			$errors[] = "Incorrect Password";
+			$errors[1] = "Incorrect Password";
 		}
 
 		if (empty($errors)) {
@@ -48,6 +48,16 @@
     if ($_POST != NULL) {
 	    authenticate_user($_POST);
 	}
+	
+	function register() {
+		
+	}
+	
+	function logout() {
+		session_destroy();
+		header("Location: home.php");
+	}
+	
 
     function get_products($flags = "") {
         return safe_query("SELECT * FROM products2" . ($flags ? " " . $flags : ""));

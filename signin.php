@@ -15,7 +15,7 @@
 				<div class="form-group">
 					<label for="username">Username</label>
 					<input class="form-control" type="text" id="username" name="username" placeholder="Username">
-					<? if ($_GET && $_GET["error1"]) { ?>
+					<? if ($_GET["error1"]) { ?>
 						<span class="help-block">
 							<strong><? echo $_GET["error1"]; ?></strong>
 						</span>
@@ -25,7 +25,7 @@
 				<div class="form-group">
 					<label for="password">Password</label>
 					<input class="form-control" type="password" id="password" name="password" placeholder="Password">
-					<? if ($_GET && $_GET["error2"]) { ?>
+					<? if ($_GET["error2"]) { ?>
 						<span class="help-block">
 							<strong><? echo $_GET["error2"]; ?></strong>
 						</span>
