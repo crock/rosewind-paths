@@ -10,7 +10,7 @@
 
     // DEBUG FLAGS
     define("IS_ADMIN", true);
-    define("NO_DB", true);
+    define("NO_DB", false);
 
     // PAGE SETUP
     define("FEATURE_NUM", 3);
@@ -51,6 +51,14 @@
 
     function get_products($flags = "") {
         return safe_query("SELECT * FROM products2" . ($flags ? " " . $flags : ""));
+    }
+
+    function get_paginated_products($flags, $per_page) {
+        if (key_exists('type', $flags)) {
+            $categories = "WHERE category = '" . implode("' WHERE category = '", explode($flags['type'])) . "' ";
+        } else {
+            $categories = "";
+        }
     }
 
     function get_orders($limit) {

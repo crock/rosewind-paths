@@ -26,13 +26,13 @@
 					</div>
 					<div class="row">
 						<div class="col-xs-4">
-							<i class="fa fa-youtube"></i>
+							<a href="https://www.youtube.com"><i class="fa fa-youtube"></i></a>
 						</div>
 						<div class="col-xs-4">
-							<i class="fa fa-instagram"></i>
+							<a href="https://www.instagram.com"><i class="fa fa-instagram"></i></a>
 						</div>
 						<div class="col-xs-4">
-							<i class="fa fa-facebook"></i>
+							<a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a>
 						</div>
 					</div>
 				</div>
@@ -40,7 +40,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-8">
-				<p>This site is not official and is an assignment for a UCF Digital Media course.</p>
+				<p>This site is not official and is an assignment for a UCF Digital Media course. Designed by Media for eCommerce Group 4</p>
 			</div>
 		</div>
 		<!--<div class="row">
