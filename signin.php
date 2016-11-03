@@ -11,6 +11,10 @@
 		<?php include("inc/header.php"); ?>
 
 		<div class="container">
+			<? if ($_GET["alert"] != NULL) { ?>
+				<div class="alert alert-success" role="alert"><? echo $_GET["alert"]; ?></div>
+			<? } ?>
+			
 			<form id="login-form" method="post" action="signin.php">
 				<div class="form-group">
 					<label for="username">Username</label>
@@ -31,6 +35,7 @@
 						</span>
 					<? } ?>
 				</div>
+				<input type="hidden" name="signin">
 				<button class="btn btn-success" type="submit">Sign In <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
 			</form>
 		</div>

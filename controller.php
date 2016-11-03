@@ -45,13 +45,51 @@
 		}
     }
 
-    if ($_POST != NULL) {
-	    authenticate_user($_POST);
-	}
+	    if ($_POST['signin'] != NULL) {
+		    authenticate_user($_POST);
+		}
 	
-	function register() {
+	function register($data) {
+		$errors = array();
+		$username = $data["username"];
+		$email = $data["email"];
+		$password = $data["password"];
+
+		// Error Checking
+		$result = safe_query("SELECT $email FROM customer_info");		
+		if ($result == NULL) {
+			$errors[0] = "Email already exists";
+		}
+		$result = safe_query("SELECT $username FROM customer_info");
+		if ($result == NULL) {
+			$errors[1] = "Username already exists";
+		}
+		if ($password == NULL) {
+			$errors[2] = "Password cannot be blank";
+		}
+		if ($password != $data["confirm-password"]) {
+			$errors[3] = "Passwords do not match";
+		}
+		
+		$password = md5($data["password"]);
+		
+		if(empty($errors)) {
+			$result = safe_query("INSERT INTO customer_info (username, email, password) VALUES ($username, $email, $password)");
+			if ($result) {
+				header("Location: signin.php?alert='Thanks for registering! Please sign in.'");
+			} else {
+				header("Location: register.php?alert='Error registering. Please try again!'");
+			}
+			
+		} else {
+			header("Location: register.php?error1={$errors[0]}&error2={$errors[1]}&error3={$errors[2]}&error4={$errors[3]}");
+		}
 		
 	}
+	
+		if ($_POST['register'] != NULL) {
+		    register($_POST);
+		}
 	
 	function logout() {
 		session_destroy();

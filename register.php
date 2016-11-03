@@ -11,12 +11,16 @@
 		<?php include("inc/header.php"); ?>
 
 		<div class="container">
+			<? if ($_GET["alert"] != NULL) { ?>
+				<div class="alert alert-danger" role="alert"><? echo $_GET["alert"]; ?></div>
+			<? } ?>
+			
 			<form id="login-form" method="post" action="register.php">
 				
 				<div class="form-group">
 					<label for="email">Email</label>
 					<input class="form-control" type="email" id="email" name="email" placeholder="Email">
-					<? if ($_GET["error3"]) { ?>
+					<? if ($_GET["error1"]) { ?>
 						<span class="help-block">
 							<strong><? echo $_GET["error1"]; ?></strong>
 						</span>
@@ -26,7 +30,7 @@
 				<div class="form-group">
 					<label for="username">Username</label>
 					<input class="form-control" type="text" id="username" name="username" placeholder="Username">
-					<? if ($_GET["error1"]) { ?>
+					<? if ($_GET["error2"]) { ?>
 						<span class="help-block">
 							<strong><? echo $_GET["error2"]; ?></strong>
 						</span>
@@ -36,7 +40,7 @@
 				<div class="form-group">
 					<label for="password">Password</label>
 					<input class="form-control" type="password" id="password" name="password" placeholder="Password">
-					<? if ($_GET["error2"]) { ?>
+					<? if ($_GET["error3"]) { ?>
 						<span class="help-block">
 							<strong><? echo $_GET["error3"]; ?></strong>
 						</span>
@@ -52,7 +56,8 @@
 						</span>
 					<? } ?>
 				</div>
-				<button class="btn btn-success" type="submit">Sign In <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
+				<input type="hidden" name="register">
+				<button class="btn btn-success" type="submit">Register <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
 			</form>
 		</div>
 	</body>
