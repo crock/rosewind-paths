@@ -149,6 +149,60 @@ footer {
 	background-color: #333;
 	color: #f6f6f6;
 }
+
+/* Form Markup */
+#login-form{	
+	/* background-color: gray;*/
+	padding: 3%;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+label{
+	font-size: 1.2em;
+}
+
+#sign_in_button{
+	background-color: #9be13e;
+	font-size: 1.1em;
+}
+
+#sign_in_button:hover{
+	background-color: #578cof; /* can be changed later */
+}
+
+/* Product Card Markup */
+.card_container{
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	
+}
+
+.card{
+	display: inline-block;
+	width: 30%; 
+	
+	padding: 2%;
+	
+	/*
+	border-color: gray;
+	border-width: 3px;
+	border-style: solid;
+	border-radius: 15px;
+	*/
+}
+
+.card-title{
+	font-size: 1.6em;
+}
+
+.add-to-cart, .checkout, .list_button{
+	font-size: 1.2em;
+}
+
 /*.accent {
 	background: #37bc92;
 }

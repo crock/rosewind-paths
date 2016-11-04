@@ -40,7 +40,41 @@
 					<a class="<?php ?>" href="<?php echo $page_tag['url']; ?>"><?php echo $page_num; ?></a>
 				<?php } ?>
 			</div>
+			
+			<!-- Product Cards -->
+			<!-- Products can be put into these cards in a loop from what returns from the search -->
+			<div class="card_container">
+				<div class="card">
+				  <img class="card-img-top" src="http://www.placecage.com/300/150" alt="Card image cap" />
+				  <div class="card-block">
+					<h4 class="card-title">Product title</h4>
+					<p class="card-text">Product description.</p>
+					<h4 class="card-price">$Price</h4>
+					<a href="#" class="btn btn-primary add-to-cart">Add to Cart</a>
+				  </div>
+				</div>
+				<div class="card">
+				  <img class="card-img-top" src="http://www.placecage.com/300/150" alt="Card image cap" />
+				  <div class="card-block">
+					<h4 class="card-title">Product title</h4>
+					<p class="card-text">Product description.</p>
+					<h4 class="card-price">$Price</h4>
+					<a href="#" class="btn btn-primary add-to-cart">Add to Cart</a>
+				  </div>
+				</div>
+				<div class="card">
+				  <img class="card-img-top" src="http://www.placecage.com/300/150" alt="Card image cap" />
+				  <div class="card-block">
+					<h4 class="card-title">Product title</h4>
+					<p class="card-text">Product description.</p>
+					<h4 class="card-price">$Price</h4>
+					<a href="#" class="btn btn-primary add-to-cart">Add to Cart</a>
+				  </div>
+				</div>
+			</div>
 		</div><!-- end .container -->
+		
+		
 		<?php include("inc/footer.php"); ?>
 	</body>
 </html>

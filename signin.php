@@ -31,7 +31,7 @@
 						</span>
 					<? } ?>
 				</div>
-				<button class="btn btn-success" type="submit">Sign In <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
+				<button class="btn btn-success" id="sign_in_button" type="submit">Sign In <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
 			</form>
 		</div>
 	</body>

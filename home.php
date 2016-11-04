@@ -61,7 +61,7 @@
 					<div class="card-block">
 						<h4 class="card-title">Packing Lists</h4>
 						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero quisquam consequatur ea magnam incidunt vel, omnis, ipsa atque illo aliquam quis, at in praesentium excepturi enim maxime voluptatem nisi reiciendis ipsum doloremque distinctio. Reprehenderit id, repellat cumque nihil veritatis vel! Laborum, totam unde, sint minima inventore repellat pariatur perferendis dolores!</p>
-						<a href="#" class="btn btn-primary">More Lists</a>
+						<a href="#" class="btn btn-primary list_button">More Lists</a>
 					</div>
 					<?php if ($lists = get_products("WHERE category = 'food' LIMIT 3")) { ?>
 					<div class="row">

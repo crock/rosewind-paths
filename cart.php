@@ -26,7 +26,7 @@
 					</div>
 					<div class="col-md-4">
 						<h4 class="subtotal">Subtotal: $100.00</h4>
-						<button type="button" class="btn btn-primary">Checkout</button>
+						<button type="button" class="btn btn-primary checkout">Checkout</button>
 					</div>
 				</div>
 			</div>
