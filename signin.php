@@ -11,7 +11,7 @@
 		<?php include("inc/header.php"); ?>
 
 		<div class="container">
-			<? if ($_GET["alert"] != NULL) { ?>
+			<? if ( isset($_GET["alert"]) ) { ?>
 				<div class="alert alert-success" role="alert"><? echo $_GET["alert"]; ?></div>
 			<? } ?>
 			
@@ -19,7 +19,7 @@
 				<div class="form-group">
 					<label for="username">Username</label>
 					<input class="form-control" type="text" id="username" name="username" placeholder="Username">
-					<? if ($_GET["error1"]) { ?>
+					<? if ( isset($_GET["error1"]) ) { ?>
 						<span class="help-block">
 							<strong><? echo $_GET["error1"]; ?></strong>
 						</span>
@@ -29,7 +29,7 @@
 				<div class="form-group">
 					<label for="password">Password</label>
 					<input class="form-control" type="password" id="password" name="password" placeholder="Password">
-					<? if ($_GET["error2"]) { ?>
+					<? if ( isset($_GET["error2"]) ) { ?>
 						<span class="help-block">
 							<strong><? echo $_GET["error2"]; ?></strong>
 						</span>

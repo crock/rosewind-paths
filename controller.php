@@ -10,7 +10,7 @@
 
     // DEBUG FLAGS
     define("IS_ADMIN", true);
-    define("NO_DB", true);
+    define("NO_DB", false);
 
     // PAGE SETUP
     define("FEATURE_NUM", 3);
@@ -20,82 +20,6 @@
 
         return str_replace('%TITLE%', $title, $head);
     }
-
-    function authenticate_user($data) {
-		$default_user = "admin";
-		$default_pass = "test123";
-		$errors = array();
-
-		if ($data["username"] != $default_user) {
-			$errors[0] = "User Not Found";
-		}
-
-		if ($data["password"] != $default_pass) {
-			$errors[1] = "Incorrect Password";
-		}
-
-		if (empty($errors)) {
-			session_start();
-
-			$_SESSION["loggedIn"] = true;
-
-			header("Location: home.php");
-		} else {
-			header("Location: signin.php?error1={$errors[0]}&error2={$errors[1]}");
-		}
-    }
-
-	    if ($_POST['signin'] != NULL) {
-		    authenticate_user($_POST);
-		}
-	
-	function register($data) {
-		$errors = array();
-		$username = $data["username"];
-		$email = $data["email"];
-		$password = $data["password"];
-
-		// Error Checking
-		$result = safe_query("SELECT $email FROM customer_info");		
-		if ($result == NULL) {
-			$errors[0] = "Email already exists";
-		}
-		$result = safe_query("SELECT $username FROM customer_info");
-		if ($result == NULL) {
-			$errors[1] = "Username already exists";
-		}
-		if ($password == NULL) {
-			$errors[2] = "Password cannot be blank";
-		}
-		if ($password != $data["confirm-password"]) {
-			$errors[3] = "Passwords do not match";
-		}
-		
-		$password = md5($data["password"]);
-		
-		if(empty($errors)) {
-			$result = safe_query("INSERT INTO customer_info (username, email, password) VALUES ($username, $email, $password)");
-			if ($result) {
-				header("Location: signin.php?alert='Thanks for registering! Please sign in.'");
-			} else {
-				header("Location: register.php?alert='Error registering. Please try again!'");
-			}
-			
-		} else {
-			header("Location: register.php?error1={$errors[0]}&error2={$errors[1]}&error3={$errors[2]}&error4={$errors[3]}");
-		}
-		
-	}
-	
-		if ($_POST['register'] != NULL) {
-		    register($_POST);
-		}
-	
-	function logout() {
-		session_destroy();
-		header("Location: home.php");
-	}
-	
 
     function get_products($flags = "") {
         return safe_query("SELECT * FROM products2" . ($flags ? " " . $flags : ""));
@@ -123,7 +47,7 @@
 
         $connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-        if ($connection->connect_errno) {
+        if ($connection->connect_error) {
             return admin_error("Connection error: " . $connection->connect_error);
         }
 
@@ -148,4 +72,80 @@
 
         return false;
     }
+    
+    function authenticate_user($data) {
+		$default_user = "admin";
+		$default_pass = "test123";
+		$errors = array();
+
+		if ($data["username"] != $default_user) {
+			$errors[0] = "User Not Found";
+		}
+
+		if ($data["password"] != $default_pass) {
+			$errors[1] = "Incorrect Password";
+		}
+
+		if (empty($errors)) {
+			session_start();
+
+			$_SESSION["loggedIn"] = true;
+
+			header("Location: home.php");
+		} else {
+			header("Location: signin.php?error1={$errors[0]}&error2={$errors[1]}");
+		}
+    }
+
+	    if ( isset($_POST['signin']) ) {
+		    authenticate_user($_POST);
+		}
+	
+	function register($data) {
+		$errors = array();
+		$result = array();
+		$username = $data["username"];
+		$email = $data["email"];
+		$password = $data["password"];
+
+		// Error Checking
+		$dbemail = safe_query("SELECT * FROM customer_info WHERE email='$email'");		
+		if ($dbemail != NULL) {
+			$errors[0] = "Email already exists";
+		}
+		$dbuser = safe_query("SELECT * FROM customer_info WHERE username='$username'");
+		if ($dbuser != NULL) {
+			$errors[1] = "Username already exists";
+		}
+		if ($password == NULL) {
+			$errors[2] = "Password cannot be blank";
+		}
+		if ($password != $data["confirm-password"]) {
+			$errors[3] = "Passwords do not match";
+		}
+		
+		$password = sha1($data["password"]);
+		
+		if(empty($errors)) {
+			$result = safe_query("INSERT INTO customer_info (username, email, password) VALUES ('{$username}', '{$email}', '{$password}');");
+			if (!empty($result)) {
+				header("Location: signin.php?alert=Thanks for registering! Please sign in.");
+			} else {
+				header("Location: register.php?alert=Error registering. Please try again!");
+			}
+			
+		} else {
+			header("Location: register.php?error1={$errors[0]}&error2={$errors[1]}&error3={$errors[2]}&error4={$errors[3]}");
+		}
+		
+	}
+	
+		if ( isset($_POST['register']) ) {
+		    register($_POST);
+		}
+	
+	function logout() {
+		session_destroy();
+		header("Location: home.php");
+	}
 ?>
