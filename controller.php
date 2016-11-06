@@ -10,16 +10,16 @@
 
     // DEBUG FLAGS
     define("IS_ADMIN", true);
-    define("NO_DB", true);
+    define("NO_DB", false);
 
     // PAGE SETUP
     define("FEATURE_NUM", 3);
-    define("RESULT_NUM", 16);
+    define("RESULT_NUM", 12);
 
     // Global pagination variables
-    $RESULT_COUNT = 0;
     $RESULT_START = 1;
-    $RESULT_END = 16;
+    $RESULT_END = RESULT_NUM;
+    $RESULT_COUNT = 0;
 
     function rwp_head($title) {
         $head = file_get_contents(DOC_ROOT . 'inc/head.php');
@@ -56,24 +56,33 @@
 	}
 
     function get_products($query = "") {
-        $query = "SELECT * FROM products2" . ($query = " " . $query ?: "");
+        $query = "SELECT * FROM products" . ($query = " " . $query ?: "");
 
         return safe_query($query);
     }
 
     function get_paginated_products() {
-        $query = "SELECT SQL_CALC_FOUND_ROWS * FROM products2";
+        $query = "SELECT SQL_CALC_FOUND_ROWS * FROM products ";
         $conditions = array();
 
         if (isset($_REQUEST['search'])) {
-            $conditions[] = "product_name LIKE '%" . $_REQUEST['search'] . "%' OR description LIKE '%" . $_REQUEST['search'] . "%'";
+            $conditions[] = "product_name LIKE '%" . $_REQUEST['search'] . "%' OR description LIKE '%" . $_REQUEST['search'] . "%' OR category LIKE '%" . $_REQUEST['search'] . "%'";
         }
 
         if (isset($_REQUEST['type'])) {
-            $conditions[] = "category = '" . implode("' OR category = '", $_REQUEST['type']) . "'";
+            $query .= " INNER JOIN categories ON products.category = categories.category_id";
+            $conditions[] = "categories.category_slug = '" . $_REQUEST['type'] . "'";
         }
 
         $query .= (!empty($conditions)) ? " WHERE " . implode(" OR ", $conditions) : "";
+
+        if (isset($_REQUEST['minpr'])) {
+            $query .= " AND price >= '" . $_REQUEST['minpr'] . "'";
+        }
+
+        if (isset($_REQUEST['maxpr'])) {
+            $query .= " AND price <= '" . $_REQUEST['maxpr'] . "'";
+        }
 
         if (isset($_REQUEST['sort'])) {
             $query .= " ORDER BY " . $_REQUEST['sort'];
@@ -87,18 +96,19 @@
         }
 
         $results = array(
-            'products' => safe_query($query),
-            'pages' => page_pagination('catalog.php'),
+            'products' => safe_query($query, true),
+            'pagination' => page_pagination('catalog.php'),
         );
 
         return $results;
     }
 
     function page_pagination($page) {
-        global $RESULT_COUNT, $RESULT_START, $RESULT_END;
+        global $RESULT_START, $RESULT_END, $RESULT_COUNT;
         $pagination = array();
         $current_page = 1;
-        $page_num = 1;
+
+        $total_pages = ceil($RESULT_COUNT / RESULT_NUM);
 
         if (isset($_REQUEST['page'])) {
             $current_page = $_REQUEST['page'];
@@ -106,25 +116,15 @@
 
             unset($_REQUEST['page']);
         }
-        $RESULT_END = min($RESULT_START + 15, $RESULT_COUNT);
+
+        $RESULT_END = min($RESULT_START + RESULT_NUM - 1, $RESULT_COUNT);
 
         $page_url = basename($page) . "?" . http_build_query($_REQUEST);
 
-        if ($RESULT_COUNT > RESULT_NUM) {
-            $page_num = ceil($RESULT_COUNT / RESULT_NUM);
-
-            for ($i = 1; $i < $page_num + 1; $i++) {
-                $pagination[$i] = array(
-                    'current' => ($i === $current_page) ? true : false,
-                    'url' => $page_url . "&page=" . $i
-                );
-            }
-        } else {
-            $RESULT_END = $RESULT_COUNT;
-
-            $pagination[1] = array(
-                'current' => true,
-                'url' => $page_url
+        for ($i = 1; $i < $total_pages + 1; $i++) {
+            $pagination[$i] = array(
+                'current' => ($i == $current_page) ? true : false,
+                'url' => $page_url . "&page=" . $i
             );
         }
 
@@ -137,8 +137,8 @@
         return safe_query($query);
     }
 
-    function get_categories() {
-        $query = "SELECT * FROM categories";
+    function get_categories($query = "") {
+        $query = "SELECT * FROM categories" . ($query = " " . $query ?: "");
 
         return safe_query($query);
     }
@@ -147,7 +147,7 @@
         return safe_query("SELECT * FROM reviews WHERE product_id = " . $product_id . " LIMIT " . $limit);
     }
 
-    function safe_query($query) {
+    function safe_query($query, $count_results = false) {
         global $RESULT_COUNT;
         $statement = false;
         $results = array();
@@ -163,11 +163,13 @@
         }
 
         if (!($statement = $connection->query($query))) {
-            return admin_error("Query error: " . $connection->error);
+            return false;
         }
 
-        $RESULT_COUNT = $connection->query("SELECT FOUND_ROWS()")->fetch_assoc();
-        $RESULT_COUNT = $RESULT_COUNT['FOUND_ROWS()'];
+        if ($count_results) {
+            $RESULT_COUNT = $connection->query("SELECT FOUND_ROWS()")->fetch_assoc();
+            $RESULT_COUNT = $RESULT_COUNT['FOUND_ROWS()'];
+        }
 
         while ($row = $statement->fetch_assoc()) {
             $results[] = $row;

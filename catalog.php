@@ -1,6 +1,8 @@
 <?php
 	define('PAGE_TITLE', 'Catalog');
 	require('controller.php');
+
+	$search_results = get_paginated_products();
 ?>
 
 <!DOCTYPE html>
@@ -11,36 +13,55 @@
 		<?php include("inc/header.php"); ?>
 
 		<div class="container">
-			<div class="products">
-				<div><?php
-				$search_results = get_paginated_products();
-
-				if (empty($search_results['products'])) { ?>
-					<span>No products found.</span>
-				</div>
-				<?php } else { ?>
-					<span>Showing <?php echo $RESULT_START; ?>-<?php echo $RESULT_END; ?> of <?php echo $RESULT_COUNT; ?> products.</span>
-				</div>
-				<?php foreach ($search_results['products'] as $product) { ?>
-						<div class="col col-sm-6 col-md-4 col-lg-3">
-							<a href="#" target="_blank">
-	                            <div class="workItem" style="background: url(http://placehold.it/250x250);">
-									<img class="img-responsive" src="<?php echo $product['img']; ?>" alt="<?php echo $product['product_name']; ?>">
-	                                <div class="workItemOverlay">
-	                                    <span class="workItemOverlayText"><span class="workItemOverlayTextName"><?php echo $product['product_name']; ?></span><br><span class="workItemOverlayTextCategory"><?php echo $product['category']; ?></span></span>
-	                                </div>
-	                            </div>
-	                        </a>
-						</div>
-				<?php }} ?>
-			</div>
-
-			<div>
-				<?php foreach ($search_results['pages'] as $page_num => $page_tag) { ?>
-					<a class="<?php ?>" href="<?php echo $page_tag['url']; ?>"><?php echo $page_num; ?></a>
+			<div class="col col-sm-3">
+				<?php if (isset($_REQUEST['search'])) { ?>
+					<span>Search results for "<?php echo $_REQUEST['search']; ?>"</span>
 				<?php } ?>
 			</div>
-			
+			<div class="col col-sm-4">
+				<?php if (empty($search_results['products'])) { ?>
+					<span>No results found.</span>
+				<?php } else { ?>
+					<span>Showing <?php echo $RESULT_START; ?>-<?php echo $RESULT_END; ?> of <?php echo $RESULT_COUNT; ?> results.</span>
+				<?php } ?>
+			</div>
+			<div class="col col-sm-5">
+				<a href="catalog.php">Catalog ></a>
+				<?php
+					/*if (isset($_REQUEST['type'])) {
+						if ($category = category_meta($_REQUEST['type'])['parent'] !== 0) {
+							$parent = get_category() ?>
+				<a href=""
+						}
+					}*/
+				?>
+			</div>
+			<div class="col col-sm-2">
+				<form>
+					<div class="form-group">
+					</div>
+				</form>
+			</div>
+			<div class="col col-sm-10">
+					<?php foreach ($search_results['products'] as $product) { ?>
+							<div class="col col-sm-6 col-md-4 col-lg-3">
+								<a href="#" target="_blank">
+		                            <div class="workItem" style="background: url(http://placehold.it/250x250);">
+										<img class="img-responsive" src="<?php echo $product['img']; ?>" alt="<?php echo $product['product_name']; ?>">
+		                                <div class="workItemOverlay">
+		                                    <span class="workItemOverlayText"><span class="workItemOverlayTextName"><?php echo $product['product_name']; ?></span><br><span class="workItemOverlayTextCategory"><?php echo $product['category']; ?></span></span>
+		                                </div>
+		                            </div>
+		                        </a>
+							</div>
+					<?php } ?>
+					<?php foreach ($search_results['pagination'] as $page_num => $page_tag) { ?>
+						<a class="<?php echo ($page_tag['current']) ? 'current' : ''; ?>" href="<?php echo $page_tag['url']; ?>"><?php echo $page_num; ?></a>
+					<?php } ?>
+				</div>
+			</div>
+
+
 			<!-- Product Cards -->
 			<!-- Products can be put into these cards in a loop from what returns from the search -->
 			<div class="card_container">
@@ -73,8 +94,8 @@
 				</div>
 			</div>
 		</div><!-- end .container -->
-		
-		
+
+
 		<?php include("inc/footer.php"); ?>
 	</body>
 </html>
