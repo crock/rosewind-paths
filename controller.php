@@ -28,7 +28,7 @@
     }
 
     function get_products($query = "") {
-        $query = "SELECT * FROM products2" . ($query = " " . $query ?: "");
+        $query = "SELECT * FROM products" . ($query = " " . $query ?: "");
 
         return safe_query($query);
     }
