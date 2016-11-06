@@ -11,4 +11,11 @@ $(document).ready(function() {
 
         window.location = dir;
     });
+
+    $('.cat-select').change(function() {
+        var loc = window.location.pathname;
+        var dir = loc.substring(0, loc.lastIndexOf('/')) + "/catalog.php?type=" + $(this).val();
+
+        window.location = dir;
+    });
 });
