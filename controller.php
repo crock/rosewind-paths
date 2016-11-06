@@ -160,16 +160,19 @@
     }
 
     function authenticate_user($data) {
-		$default_user = "admin";
-		$default_pass = "test123";
+	    $user = $data['username'];
+	    $pass = sha1($data['password']);
+	    
+		$query = safe_query("SELECT username,password FROM customer_info WHERE username='$user'");
+
 		$errors = array();
 
-		if ($data["username"] != $default_user) {
-			$errors[0] = "User Not Found";
+		if ($query[0]["username"] != $user) {
+			$errors[0] = "Invalid username";
 		}
 
-		if ($data["password"] != $default_pass) {
-			$errors[1] = "Incorrect Password";
+		if ($query[0]["password"] != $pass) {
+			$errors[1] = "Invalid password";
 		}
 
 		if (empty($errors)) {
