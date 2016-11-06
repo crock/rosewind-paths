@@ -10,7 +10,7 @@
 
     // DEBUG FLAGS
     define("IS_ADMIN", true);
-    define("NO_DB", true);
+    define("NO_DB", false);
 
     // PAGE SETUP
     define("FEATURE_NUM", 3);
