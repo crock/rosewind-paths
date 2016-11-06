@@ -14,35 +14,47 @@
 
 		<div class="container">
 			<div class="col col-sm-3">
-				<?php if (isset($_REQUEST['search'])) { ?>
-					<span>Search results for "<?php echo $_REQUEST['search']; ?>"</span>
-				<?php } ?>
+
 			</div>
-			<div class="col col-sm-4">
-				<?php if (empty($search_results['products'])) { ?>
-					<span>No results found.</span>
-				<?php } else { ?>
-					<span>Showing <?php echo $RESULT_START; ?>-<?php echo $RESULT_END; ?> of <?php echo $RESULT_COUNT; ?> results.</span>
-				<?php } ?>
+			<div class="col col-sm-6">
+
 			</div>
-			<div class="col col-sm-5">
-				<a href="catalog.php">Catalog ></a>
-				<?php
-					/*if (isset($_REQUEST['type'])) {
-						if ($category = category_meta($_REQUEST['type'])['parent'] !== 0) {
-							$parent = get_category() ?>
-				<a href=""
-						}
-					}*/
-				?>
+			<div class="col col-sm-3">
+				<div class="form-group">
+					<label for="sel2">Sort by:</label>
+					<select class="form-control order-select" id="sel2">
+						<option value="avg_rating-desc">Average rating</option>
+						<option value="price-desc">Price (high to low)</option>
+						<option value="price-asc">Price (low to high)</option>
+					</select>
+				</div>
 			</div>
-			<div class="col col-sm-2">
-				<form>
-					<div class="form-group">
-					</div>
+			<div class="col col-md-3 col-lg-2">
+				<form class="search-filters">
+					<ul>
+					<?php foreach (get_categories("ORDER BY category_parent") as $category) { ?>
+						<li><input id="<?php echo $category['category_slug']; ?>" type="checkbox" name="type[]" value="<?php echo $category['category_slug']; ?>"/><label for="<?php echo $category['category_slug']; ?>"><?php echo $category['category_name']; ?></label></li>
+					<?php } ?>
+					</ul>
+					<input type="text" name="minpr" placeholder="0.00">
+					<input type="text" name="maxpr" placeholder="1000.00">
+					<button type="submit" class="btn btn-primary">Search</button>
 				</form>
 			</div>
-			<div class="col col-sm-10">
+			<div class="col col-md-9 col-lg-10">
+				<div class="col col-sm-6">
+					<?php if (isset($_REQUEST['search'])) { ?>
+						<span>Search results for "<?php echo $_REQUEST['search']; ?>"</span><a href="catalog.php">Reset search</a>
+					<?php } ?>
+				</div>
+				<div class="col col-sm-6 text-right">
+					<?php if (empty($search_results['products'])) { ?>
+						<span>No results found.</span>
+					<?php } else { ?>
+						<span>Showing <?php echo $RESULT_START; ?>-<?php echo $RESULT_END; ?> of <?php echo $RESULT_COUNT; ?> results.</span>
+					<?php } ?>
+				</div>
+
 					<?php foreach ($search_results['products'] as $product) { ?>
 							<div class="col col-sm-6 col-md-4 col-lg-3">
 								<a href="#" target="_blank">
@@ -55,9 +67,11 @@
 		                        </a>
 							</div>
 					<?php } ?>
+					<div class="col col-sm-12">
 					<?php foreach ($search_results['pagination'] as $page_num => $page_tag) { ?>
 						<a class="<?php echo ($page_tag['current']) ? 'current' : ''; ?>" href="<?php echo $page_tag['url']; ?>"><?php echo $page_num; ?></a>
 					<?php } ?>
+					</div>
 				</div>
 			</div>
 

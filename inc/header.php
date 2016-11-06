@@ -32,7 +32,7 @@
           <button type="submit" class="btn btn-primary btn-search">Go</button>
         </form>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="catalog.php">Featured</a></li>
+			<li><a href="catalog.php?type=featured">Featured</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
                 <ul class="dropdown-menu">

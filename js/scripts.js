@@ -18,4 +18,19 @@ $(document).ready(function() {
 
         window.location = dir;
     });
+
+    $('.searchtest').click(function() {
+        var dataArray = new Array('sort=' + $('.order-select').val());
+
+        $.ajax({
+            url: 'inc/ajaxsearch.php',
+            data: dataArray.join('&'),
+            success: function(result) {
+                console.log(result);
+                //console.log($('[name="categories[]"]').val());
+                //window.location = result;
+            }
+        });
+        //window.location = window.location.href + "&sort=" + $('.order-select').val();
+    });
 });

@@ -63,29 +63,45 @@
 
     function get_paginated_products() {
         $query = "SELECT SQL_CALC_FOUND_ROWS * FROM products ";
-        $conditions = array();
+        $wheres = array();
+        $ands = array();
 
         if (isset($_REQUEST['search'])) {
-            $conditions[] = "product_name LIKE '%" . $_REQUEST['search'] . "%' OR description LIKE '%" . $_REQUEST['search'] . "%' OR category LIKE '%" . $_REQUEST['search'] . "%'";
+            $wheres[] = "product_name LIKE '%" . $_REQUEST['search'] . "%' OR description LIKE '%" . $_REQUEST['search'] . "%' OR category LIKE '%" . $_REQUEST['search'] . "%'";
         }
 
         if (isset($_REQUEST['type'])) {
             $query .= " INNER JOIN categories ON products.category = categories.category_id";
-            $conditions[] = "categories.category_slug = '" . $_REQUEST['type'] . "'";
+            $wheres[] = "categories.category_slug = '" . $_REQUEST['type'] . "'";
         }
 
-        $query .= (!empty($conditions)) ? " WHERE " . implode(" OR ", $conditions) : "";
+        $query .= (!empty($wheres)) ? " WHERE " . implode(" OR ", $wheres) : "";
 
         if (isset($_REQUEST['minpr'])) {
-            $query .= " AND price >= '" . $_REQUEST['minpr'] . "'";
+            $ands[] = "price >= '" . $_REQUEST['minpr'] . "'";
         }
 
         if (isset($_REQUEST['maxpr'])) {
-            $query .= " AND price <= '" . $_REQUEST['maxpr'] . "'";
+            $ands[] = "price <= '" . $_REQUEST['maxpr'] . "'";
+        }
+
+        if (!empty($ands)) {
+            if (empty($wheres)) {
+                $query .= " WHERE ";
+            }
+
+            $query .= implode(" AND ", $ands);
         }
 
         if (isset($_REQUEST['sort'])) {
-            $query .= " ORDER BY " . $_REQUEST['sort'];
+            $sort_parts = explode('-', $_REQUEST['sort']);
+
+            $query .= " ORDER BY " . $sort_parts[0];
+
+            if ($sort_parts[1] === 'desc') {
+                $query .= " DESC";
+            }
+
         }
 
         $query .= " LIMIT " . RESULT_NUM;
@@ -99,6 +115,10 @@
             'products' => safe_query($query, true),
             'pagination' => page_pagination('catalog.php'),
         );
+
+        if ($results['products'] === false) {
+            $results['products'] = array();
+        }
 
         return $results;
     }
