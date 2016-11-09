@@ -15,19 +15,19 @@
 				if (isset($_GET['page'])) {
 					switch($_GET['page']) {
 						case "orders":
-					        include("inc/acp/acp-orders.php");
+					        include("models/acp/acp-orders.php");
 					        break;
 					    case "catalog":
-					        include("inc/acp/acp-catalog.php");
+					        include("models/acp/acp-catalog.php");
 					        break;
 					    case "analytics":
-					        include("inc/acp/acp-analytics.php");
+					        include("models/acp/acp-analytics.php");
 					        break;
 					    case "support":
-					    	include("inc/acp/acp-support.php");
+					    	include("models/acp/acp-support.php");
 					    	break;
 					    case "settings":
-					    	include("inc/acp/acp-settings.php");
+					    	include("models/acp/acp-settings.php");
 					    	break;
 					}
 				}
