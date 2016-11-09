@@ -1,2 +1,13 @@
-User-agent: *
-Disallow: /
+User-agent: MSNBot
+Disallow: /inc/
+Disallow: /img/
+Disallow: /js/
+Disallow: /css
+Disallow: /wireframes/
+
+User-agent: Googlebot
+Disallow: /inc/
+Disallow: /img/
+Disallow: /js/
+Disallow: /css
+Disallow: /wireframes/
