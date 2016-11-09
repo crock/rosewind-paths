@@ -9,6 +9,7 @@
 	<?php echo rwp_head('Admin'); ?>
 
 	<body>
+		<?php include_once("analyticstracking.php") ?>
 		<?php include("models/acp/acp-header.php"); ?>
 
 		<div class="container">
