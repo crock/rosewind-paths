@@ -26,6 +26,10 @@ a {
 	color: #b90d3b;
 }
 
+ul.pagination {
+	margin: 0 auto;
+}
+
 .btn-primary {
 	background-color: #9be13e;
 }

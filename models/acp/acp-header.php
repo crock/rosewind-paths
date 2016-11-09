@@ -32,11 +32,11 @@
           <button type="submit" class="btn btn-primary btn-search">Go</button>
         </form>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="admin.php?page=orders">Recent Orders</a></li>
-			<li><a href="admin.php?page=catalog">Catalog</a></li>
-			<li><a href="admin.php?page=analytics">Analytics</a></li>
-			<li><a href="admin.php?page=support">Support</a></li>
-			<li><a href="admin.php?page=settings">Settings</a></li>
+			<li><a href="admin.php?view=orders">Recent Orders</a></li>
+			<li><a href="admin.php?view=catalog">Catalog</a></li>
+			<li><a href="admin.php?view=analytics">Analytics</a></li>
+			<li><a href="admin.php?view=support">Support</a></li>
+			<li><a href="admin.php?view=settings">Settings</a></li>
 		</ul>
     </div>
   </div>

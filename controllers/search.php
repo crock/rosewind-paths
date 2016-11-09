@@ -10,7 +10,7 @@
         'avg-rating'    => 'Average rating'
     );
 
-    function get_product_results() {
+    function get_product_results($page) {
         $query = "SELECT SQL_CALC_FOUND_ROWS * FROM products";
         $wheres = array();
         $ands = array();
@@ -64,7 +64,7 @@
 
         $results = array(
             'products' => safe_query($query, true),
-            'pagination' => result_pagination(),
+            'pagination' => result_pagination($page),
         );
 
         if ($results['products'] === false) {
@@ -74,7 +74,7 @@
         return $results;
     }
 
-    function result_pagination() {
+    function result_pagination($page) {
         global $RESULT_START, $RESULT_END, $RESULT_COUNT;
         $pagination = array();
         $current_page = 1;
@@ -89,7 +89,7 @@
         }
 
         $RESULT_END = min($RESULT_START + RESULT_NUM - 1, $RESULT_COUNT);
-        $page_url = "catalog.php?" . http_build_query($_GET);
+        $page_url = basename($page) . "?" . http_build_query($_GET);
 
         if ($current_page > 1) {
             $pagination[] = '<li title="Previous page"><a href="' . $page_url . '&page=' . ($current_page - 1)  . '"><</a></li>';

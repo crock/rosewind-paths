@@ -3,7 +3,7 @@
 	require('controllers/controller.php');
 	require('controllers/search.php');
 
-	$search_results = get_product_results();
+	$search_results = get_product_results('catalog.php');
 ?>
 
 <!DOCTYPE html>

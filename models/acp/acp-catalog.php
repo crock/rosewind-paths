@@ -1,3 +1,4 @@
+<?php $search_results = get_product_results('admin.php'); ?>
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -15,7 +16,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<? foreach (get_products() as $product) { ?>
+		<? foreach ($search_results['products'] as $product) { ?>
 			<tr>
 				<td><? echo $product["product_id"]; ?></td>
 				<td><? echo $product["supplier_id"]; ?></td>
@@ -35,3 +36,11 @@
 		<? } ?>
 	</tbody>
 </table>
+
+<div class="col-md-12">
+	<ul class="pagination">
+		<?php foreach ($search_results['pagination'] as $page_tag) { ?>
+			<?php echo $page_tag; ?>
+		<?php } ?>
+	</ul>
+</div>
