@@ -1,6 +1,6 @@
 <?php
 	define('PAGE_TITLE', 'Register');
-	require('controller.php');
+	require('controllers/controller.php');
 ?>
 
 <!DOCTYPE html>
@@ -8,15 +8,15 @@
 	<?php echo rwp_head(PAGE_TITLE); ?>
 
 	<body>
-		<?php include("inc/header.php"); ?>
+		<?php include("models/header.php"); ?>
 
 		<div class="container">
 			<? if ( isset($_GET["alert"]) ) { ?>
 				<div class="alert alert-danger" role="alert"><? echo $_GET["alert"]; ?></div>
 			<? } ?>
-			
+
 			<form id="login-form" method="post" action="register.php">
-				
+
 				<div class="form-group">
 					<label for="email">Email</label>
 					<input class="form-control" type="email" id="email" name="email" placeholder="Email">
@@ -26,7 +26,7 @@
 						</span>
 					<? } ?>
 				</div>
-				
+
 				<div class="form-group">
 					<label for="username">Username</label>
 					<input class="form-control" type="text" id="username" name="username" placeholder="Username">
@@ -46,7 +46,7 @@
 						</span>
 					<? } ?>
 				</div>
-				
+
 				<div class="form-group">
 					<label for="password">Confirm Password</label>
 					<input class="form-control" type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password">

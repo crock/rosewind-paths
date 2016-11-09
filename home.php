@@ -1,6 +1,6 @@
 <?php
 	define('PAGE_TITLE', 'Home');
-	require('controller.php');
+	require('controllers/controller.php');
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,7 @@
 	<?php echo rwp_head(PAGE_TITLE); ?>
 
 	<body>
-		<?php include("inc/header.php"); ?>
+		<?php include("models/header.php"); ?>
 
 		<div class="container">
 
@@ -96,6 +96,6 @@
 			</div>
 		</div><!-- end .container -->
 
-		<?php include("inc/footer.php"); ?>
+		<?php include("models/footer.php"); ?>
 	</body>
 </html>

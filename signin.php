@@ -1,6 +1,6 @@
 <?php
 	define('PAGE_TITLE', 'Sign In');
-	require('controller.php');
+	require('controllers/controller.php');
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,7 @@
 	<?php echo rwp_head(PAGE_TITLE); ?>
 
 	<body>
-		<?php include("inc/header.php"); ?>
+		<?php include("models/header.php"); ?>
 
 		<div class="container">
 			<? if ( isset($_GET["alert"]) ) { ?>

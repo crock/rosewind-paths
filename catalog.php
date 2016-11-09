@@ -1,8 +1,9 @@
 <?php
 	define('PAGE_TITLE', 'Catalog');
-	require('controller.php');
+	require('controllers/controller.php');
+	require('controllers/search.php');
 
-	$search_results = get_paginated_products();
+	$search_results = get_product_results();
 ?>
 
 <!DOCTYPE html>
@@ -10,106 +11,92 @@
 	<?php echo rwp_head(PAGE_TITLE); ?>
 
 	<body>
-		<?php include("inc/header.php"); ?>
+		<?php include("models/header.php"); ?>
 
 		<div class="container">
-			<div class="col col-sm-3">
-
-			</div>
-			<div class="col col-sm-6">
-
-			</div>
-			<div class="col col-sm-3">
-				<div class="form-group">
-					<label for="sel2">Sort by:</label>
-					<select class="form-control order-select" id="sel2">
-						<option value="avg_rating-desc">Average rating</option>
-						<option value="price-desc">Price (high to low)</option>
-						<option value="price-asc">Price (low to high)</option>
-					</select>
-				</div>
-			</div>
-			<div class="col col-md-3 col-lg-2">
-				<form class="search-filters">
-					<ul>
-					<?php foreach (get_categories("ORDER BY category_parent") as $category) { ?>
-						<li><input id="<?php echo $category['category_slug']; ?>" type="checkbox" name="type[]" value="<?php echo $category['category_slug']; ?>"/><label for="<?php echo $category['category_slug']; ?>"><?php echo $category['category_name']; ?></label></li>
-					<?php } ?>
-					</ul>
-					<input type="text" name="minpr" placeholder="0.00">
-					<input type="text" name="maxpr" placeholder="1000.00">
-					<button type="submit" class="btn btn-primary">Search</button>
-				</form>
-			</div>
-			<div class="col col-md-9 col-lg-10">
-				<div class="col col-sm-6">
-					<?php if (isset($_REQUEST['search'])) { ?>
-						<span>Search results for "<?php echo $_REQUEST['search']; ?>"</span><a href="catalog.php">Reset search</a>
-					<?php } ?>
-				</div>
-				<div class="col col-sm-6 text-right">
-					<?php if (empty($search_results['products'])) { ?>
-						<span>No results found.</span>
-					<?php } else { ?>
-						<span>Showing <?php echo $RESULT_START; ?>-<?php echo $RESULT_END; ?> of <?php echo $RESULT_COUNT; ?> results.</span>
-					<?php } ?>
-				</div>
-
-					<?php foreach ($search_results['products'] as $product) { ?>
-							<div class="col col-sm-6 col-md-4 col-lg-3">
-								<a href="#" target="_blank">
-		                            <div class="workItem" style="background: url(http://placehold.it/250x250);">
-										<img class="img-responsive" src="<?php echo $product['img']; ?>" alt="<?php echo $product['product_name']; ?>">
-		                                <div class="workItemOverlay">
-		                                    <span class="workItemOverlayText"><span class="workItemOverlayTextName"><?php echo $product['product_name']; ?></span><br><span class="workItemOverlayTextCategory"><?php echo $product['category']; ?></span></span>
-		                                </div>
-		                            </div>
-		                        </a>
+			<div class="row">
+				<div class="product-filters col-lg-3 col-md-4">
+  					<div class="well">
+						<h3 align="center">Filter Results</h3>
+						<form class="form-horizontal">
+							<div class="form-group">
+								<label for="type1" class="control-label">Category</label>
+								<select class="form-control" name="type" id="type1">
+									<option value="all">All</option>
+									<option value="">1</option>
+									<option value="">2</option>
+								</select>
 							</div>
+							<div class="form-group">
+								<label for="location1" class="control-label">Sort by</label>
+								<select class="form-control" name="sort" id="location1">
+									<?php foreach ($SORT_MODES as $value => $name) { ?>
+									<option value="<?php echo $value; ?>"<?php echo (isset($_GET['sort']) && $_GET['sort'] == $value) ? ' selected' : ''; ?>><?php echo $name; ?></option>
+									<?php } ?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="pricefrom" class="control-label">Min Price</label>
+								<div class="input-group">
+									<div class="input-group-addon">$</div>
+									<input type="text" class="form-control" name="minpr"<?php if ($_GET['minpr'] && $_GET['minpr']) { echo ' value="' . $_GET['minpr'] . '"'; } ?>>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="priceto" class="control-label">Max Price</label>
+								<div class="input-group">
+									<div class="input-group-addon">$</div>
+									<input type="text" class="form-control" name="maxpr"<?php if ($_GET['maxpr'] && $_GET['maxpr']) { echo ' value="' . $_GET['maxpr'] . '"'; } ?>>
+								</div>
+							</div>
+							<button type="submit" class="btn btn-danger">Apply filters</button>
+							<a href="catalog.php" class="btn btn-danger">Clear filters</a>
+						</form>
+					</div>
+				</div>
+				<div class="col-lg-9 col-md-8">
+					<div class="col-lg-12 product-count">
+					<?php if ($RESULT_COUNT == 0) { ?>
+						<span>No results found</span>
+					<?php } else { ?>
+						<span>Showing results <?php echo $RESULT_START; ?>-<?php echo $RESULT_END; ?> of <?php echo $RESULT_COUNT; ?></span>
 					<?php } ?>
-					<div class="col col-sm-12">
-					<?php foreach ($search_results['pagination'] as $page_num => $page_tag) { ?>
-						<a class="<?php echo ($page_tag['current']) ? 'current' : ''; ?>" href="<?php echo $page_tag['url']; ?>"><?php echo $page_num; ?></a>
+					</div>
+					<?php foreach ($search_results['products'] as $product) { ?>
+					<div class="col-lg-4 col-sm-6 product-result">
+			        	<div class="thumbnail">
+			                <img src="<?php echo $product['img']; ?>" alt="<?php echo $product['product_name']; ?>">
+							<div class="product-info">
+				                <div class="caption">
+									<h4 class="pull-right">$<?php echo $product['price']; ?></h4>
+									<h4><a href="#"><?php echo $product['product_name']; ?></a></h4>
+									<p><?php echo $product['description']; ?></p>
+				                </div>
+				                <div class="ratings">
+									<p class="pull-left">
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+									</p>
+									<p class="pull-right">15 reviews</p>
+				                </div>
+							</div>
+			        	</div>
+			        </div>
 					<?php } ?>
+					<div class="col-md-12">
+						<ul class="pagination">
+							<?php foreach ($search_results['pagination'] as $page_tag) { ?>
+								<?php echo $page_tag; ?>
+							<?php } ?>
+						</ul>
 					</div>
 				</div>
 			</div>
+		</div>
 
-
-			<!-- Product Cards -->
-			<!-- Products can be put into these cards in a loop from what returns from the search -->
-			<div class="card_container">
-				<div class="card">
-				  <img class="card-img-top" src="http://www.placecage.com/300/150" alt="Card image cap" />
-				  <div class="card-block">
-					<h4 class="card-title">Product title</h4>
-					<p class="card-text">Product description.</p>
-					<h4 class="card-price">$Price</h4>
-					<a href="#" class="btn btn-primary add-to-cart">Add to Cart</a>
-				  </div>
-				</div>
-				<div class="card">
-				  <img class="card-img-top" src="http://www.placecage.com/300/150" alt="Card image cap" />
-				  <div class="card-block">
-					<h4 class="card-title">Product title</h4>
-					<p class="card-text">Product description.</p>
-					<h4 class="card-price">$Price</h4>
-					<a href="#" class="btn btn-primary add-to-cart">Add to Cart</a>
-				  </div>
-				</div>
-				<div class="card">
-				  <img class="card-img-top" src="http://www.placecage.com/300/150" alt="Card image cap" />
-				  <div class="card-block">
-					<h4 class="card-title">Product title</h4>
-					<p class="card-text">Product description.</p>
-					<h4 class="card-price">$Price</h4>
-					<a href="#" class="btn btn-primary add-to-cart">Add to Cart</a>
-				  </div>
-				</div>
-			</div>
-		</div><!-- end .container -->
-
-
-		<?php include("inc/footer.php"); ?>
+		<?php include("models/footer.php"); ?>
 	</body>
 </html>

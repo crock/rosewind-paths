@@ -1,36 +1,36 @@
 <?php
 	define('PAGE_TITLE', 'Admin');
-	require('controller.php');
+	require('controllers/controller.php');
 ?>
 
 <!DOCTYPE html>
 <html>
 	<?php echo rwp_head('Admin'); ?>
-	
+
 	<body>
-		<?php include("inc/acp-header.php"); ?>
+		<?php include("models/acp/acp-header.php"); ?>
 
 		<div class="container">
-			<?  
-				if (isset($_GET['page'])) {	
+			<?
+				if (isset($_GET['page'])) {
 					switch($_GET['page']) {
 						case "orders":
-					        include("inc/acp-orders.php");
+					        include("inc/acp/acp-orders.php");
 					        break;
 					    case "catalog":
-					        include("inc/acp-catalog.php");
+					        include("inc/acp/acp-catalog.php");
 					        break;
 					    case "analytics":
-					        include("inc/acp-analytics.php");
+					        include("inc/acp/acp-analytics.php");
 					        break;
 					    case "support":
-					    	include("inc/acp-support.php");
+					    	include("inc/acp/acp-support.php");
 					    	break;
 					    case "settings":
-					    	include("inc/acp-settings.php");
+					    	include("inc/acp/acp-settings.php");
 					    	break;
 					}
-				}	
+				}
 			?>
 		</div><!-- end .container -->
 	</body>

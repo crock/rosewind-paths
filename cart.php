@@ -1,14 +1,14 @@
 <?php
 	define('PAGE_TITLE', 'Cart');
-	require('controller.php');
+	require('controllers/controller.php');
 ?>
 
 <!DOCTYPE html>
 <html>
 	<?php echo rwp_head(PAGE_TITLE); ?>
-	
+
 	<body>
-		<?php include("inc/header.php"); ?>
+		<?php include("models/header.php"); ?>
 
 		<div class="container">
 			<div class="cart">
@@ -31,6 +31,6 @@
 				</div>
 			</div>
 		</div><!-- end .container -->
-		<?php include("inc/footer.php"); ?>
+		<?php include("models/footer.php"); ?>
 	</body>
 </html>
