@@ -15,6 +15,10 @@
         return safe_query($query);
     }
 
+    function single_product($product_id) {
+        return get_products("WHERE product_id = '{$product_id}'");
+    }
+
     function get_orders($query = "") {
         $query = "SELECT * FROM orders" . ($query = " " . $query ?: "");
 
