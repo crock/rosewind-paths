@@ -69,7 +69,7 @@
 							<div class="product-info">
 				                <div class="caption">
 									<h4 class="pull-right">$<?php echo $product['price']; ?></h4>
-									<h4><a href="#"><?php echo $product['product_name']; ?></a></h4>
+									<h4><a href="product.php?view=<?php echo $product['product_id']; ?>"><?php echo $product['product_name']; ?></a></h4>
 									<p><?php echo $product['description']; ?></p>
 				                </div>
 				                <div class="ratings">

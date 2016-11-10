@@ -15,7 +15,7 @@
         $wheres = array();
         $ands = array();
 
-        if (isset($_GET['search'])) {
+        if (isset($_GET['search']) && $_GET['search']) {
             $wheres[] = "product_name LIKE '%{$_GET['search']}%' OR description LIKE '%{$_GET['search']}%' OR category LIKE '%{$_GET['search']}%'";
         }
 
@@ -81,26 +81,28 @@
 
         $result_pages = ceil($RESULT_COUNT / RESULT_NUM);
 
-        if (isset($_GET['page'])) {
-            $current_page = $_GET['page'];
-            unset($_GET['page']);
+        if ($result_pages > 1) {
+            if (isset($_GET['page'])) {
+                $current_page = $_GET['page'];
+                unset($_GET['page']);
 
-            $RESULT_START = ($current_page - 1) * RESULT_NUM + 1;
-        }
+                $RESULT_START = ($current_page - 1) * RESULT_NUM + 1;
+            }
 
-        $RESULT_END = min($RESULT_START + RESULT_NUM - 1, $RESULT_COUNT);
-        $page_url = "catalog.php?" . http_build_query($_GET);
+            $RESULT_END = min($RESULT_START + RESULT_NUM - 1, $RESULT_COUNT);
+            $page_url = "catalog.php?" . http_build_query($_GET);
 
-        if ($current_page > 1) {
-            $pagination[] = '<li title="Previous page"><a href="' . $page_url . '&page=' . ($current_page - 1)  . '"><</a></li>';
-        }
+            if ($current_page > 1) {
+                $pagination[] = '<li title="Previous page"><a href="' . $page_url . '&page=' . ($current_page - 1)  . '"><</a></li>';
+            }
 
-        for ($i = 1; $i < $result_pages + 1; $i++) {
-            $pagination[] = '<li title="Page ' . $i . '"' . (($i == $current_page) ? ' class="active"' : '') . '><a href="' . $page_url . '&page=' . $i . '">' . $i . '</a></li>';
-        }
+            for ($i = 1; $i < $result_pages + 1; $i++) {
+                $pagination[] = '<li title="Page ' . $i . '"' . (($i == $current_page) ? ' class="active"' : '') . '><a href="' . $page_url . '&page=' . $i . '">' . $i . '</a></li>';
+            }
 
-        if ($current_page < $result_pages) {
-            $pagination[] = '<li title="Next page"><a href="' . $page_url . '&page=' . ($current_page + 1) . '">></a></li>';
+            if ($current_page < $result_pages) {
+                $pagination[] = '<li title="Next page"><a href="' . $page_url . '&page=' . ($current_page + 1) . '">></a></li>';
+            }
         }
 
         return $pagination;

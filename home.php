@@ -25,7 +25,7 @@
 				<div class="carousel-inner" role="listbox">
 				<?php foreach (get_products("ORDER BY RAND() LIMIT " . FEATURE_NUM) as $product) { ?>
 					<div class="item">
-						<a href="catalog.php?item=<?php echo $product['product_id']; ?>">
+						<a href="product.php?view=<?php echo $product['product_id']; ?>">
 							<img class="img-responsive" src="<?php echo $product['img']; ?>" alt="<?php echo $product['product_name']; ?>">
 							<div class="carousel-caption">
 								<h3><?php echo $product['product_name']; ?><span class="label label-success">$<?php echo $product['price']; ?></span></h3>
