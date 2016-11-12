@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	define('PAGE_TITLE', 'Home');
 	require('controllers/controller.php');
 	$cookie = $_COOKIE['user'];

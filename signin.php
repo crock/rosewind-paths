@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	define('PAGE_TITLE', 'Sign In');
 	require('controllers/controller.php');
 ?>

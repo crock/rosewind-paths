@@ -1,6 +1,7 @@
 <?php
+	session_start();
     // Get required files
-    require('config.php');
+    require('config.php'); 
     require('authenticate.php');
 
     function rwp_head($title) {
@@ -80,4 +81,5 @@
 
         return false;
     }
+
 ?>
