@@ -79,4 +79,39 @@
 
         header("Location: home.php");
     }
+
+    if (isset($_GET['add'])) {
+        $product_id = $_GET['add'];
+        $cart_id = $_SESSION['cart_id'];
+        $date_created = date('Y-m-d H:i:s');
+
+        if (isset($_SESSION['cart'][$product_id])) {
+            $_SESSION['cart'][$product_id]++;
+        } else {
+            $_SESSION['cart'][$product_id] = 1;
+        }
+
+        if ($cart_id == 0) {
+            safe_query("INSERT INTO carts (products, date_created) VALUES ('" . json_encode($_SESSION['cart']) . "', '{$date_created}')");
+
+            $cart_id = $_SESSION['cart_id'] = $LAST_INSERT_ID;
+
+            safe_query("UPDATE session_log SET cart_id = '{$cart_id}' WHERE session_log_id = '{$_SESSION['id']}'");
+
+            if ($_SESSION['logged_in']) {
+                safe_query("UPDATE customer_info SET cart_id = '{$cart_id}' WHERE username = '{$_SESSION['username']}'");
+            }
+        } else {
+            safe_query("UPDATE carts SET products = '" . json_encode($_SESSION['cart']) . "' WHERE cart_id = '{$cart_id}'");
+        }
+    }
+
+    if (isset($_GET['remove'])) {
+        $product_id = $_GET['remove'];
+        $cart_id = $_SESSION['cart_id'];
+
+        unset($_SESSION['cart'][$product_id]);
+
+        safe_query("UPDATE carts SET products = '" . json_encode($_SESSION['cart']) . "' WHERE cart_id = '{$cart_id}'");
+    }
 ?>

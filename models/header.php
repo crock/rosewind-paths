@@ -58,7 +58,7 @@
                         <?php } else { ?>
             			<li><a href="signin.php">Sign In</a></li>
                         <?php } ?>
-                        <li><a href="cart.php">Cart <span class="badge progress-bar-danger">5</span></a></li>
+                        <li><a href="cart.php">Cart <?php echo (isset($_SESSION['cart'])) ? '<span class="badge progress-bar-danger">' . array_sum($_SESSION['cart']) . '</span>' : ''; ?></a></li>
             		</ul>
                 </div>
             </div>

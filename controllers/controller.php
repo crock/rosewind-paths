@@ -36,6 +36,14 @@
         return safe_query($query);
     }
 
+    function get_cart($query = "") {
+        if (isset($_SESSION['cart'])) {
+            $query = "WHERE product_id = '" . implode("' OR product_id = '", array_keys($_SESSION['cart'])) . "'" . ($query = " " . $query ?: "");
+
+            return get_products($query);
+        }
+    }
+
     function get_categories($query = "") {
         $query = "SELECT * FROM categories" . ($query = " " . $query ?: "");
 

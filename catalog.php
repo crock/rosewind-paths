@@ -99,7 +99,7 @@
 					</div>
 				</div>
 			</div>
-			<form id="addtocart" action="cart.php"></form>
+			<form id="addtocart"></form>
 		</div>
 
 		<?php include("models/footer.php"); ?>
