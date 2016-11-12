@@ -59,6 +59,9 @@
 				</div>
 				<input type="hidden" name="register">
 				<button class="btn btn-success" type="submit">Register <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
+				
+				<h3>Already registered? Click the button below to sign in!</h3>
+				<a href="signin.php" class="btn btn-primary">Sign In</a>
 			</form>
 		</div>
 	</body>

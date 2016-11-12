@@ -16,9 +16,10 @@
         }
 
         if (empty($errors)) {
-            session_start();
-
-            $_SESSION["loggedIn"] = true;
+	        
+			setcookie("user", $user, time() + 300, "/");
+            $date_created = date('Y-m-d H:i:s');
+            safe_query("INSERT INTO session_log (username, date_created) VALUES('{$user}', '{$date_created}')", false, false);
 
             header("Location: home.php");
         } else {
@@ -74,6 +75,7 @@
         }
 
     function logout() {
+	    session_unset();
         session_destroy();
         header("Location: home.php");
     }

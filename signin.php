@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	define('PAGE_TITLE', 'Sign In');
 	require('controllers/controller.php');
 ?>
@@ -38,6 +39,9 @@
 				</div>
 				<input type="hidden" name="signin">
 				<button class="btn btn-success" type="submit">Sign In <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
+				
+				<h3>New user? Click the button below to register&mdash;it's free!</h3>
+				<a href="register.php" class="btn btn-primary">Register</a>
 			</form>
 		</div>
 	</body>

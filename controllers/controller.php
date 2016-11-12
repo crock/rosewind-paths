@@ -38,10 +38,10 @@
     function safe_query($query, $count_results = false) {
         global $RESULT_COUNT;
         $statement = false;
-        $results = array();
+        $result_rows = array();
 
         if (NO_DB) {
-            return $results;
+            return $result_rows;
         }
 
         $connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -50,8 +50,12 @@
             return admin_error("Connection error: " . $connection->connect_error);
         }
 
-        if (!($statement = $connection->query($query))) {
+        if (!($results = $connection->query($query))) {
             return false;
+        } else if ($results === true) {
+	        $connection->close();
+	        
+	        return true;
         }
 
         if ($count_results) {
@@ -59,14 +63,14 @@
             $RESULT_COUNT = $RESULT_COUNT['FOUND_ROWS()'];
         }
 
-        while ($row = $statement->fetch_assoc()) {
-            $results[] = $row;
+        while ($row = $results->fetch_assoc()) {
+            $result_rows[] = $row;
         }
 
-        $statement->close();
+        $results->close();
         $connection->close();
 
-        return $results;
+        return $result_rows;
     }
 
     function admin_error($error = "Unknown error") {
