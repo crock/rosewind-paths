@@ -56,7 +56,7 @@
 				<div class="col-md-3 form-group">
 					<label for="sel1">Find by category:</label>
 					<select class="form-control cat-select" id="sel1">
-						<?php foreach (get_categories() as $category) { ?>
+						<?php foreach ($all_categories as $category) { ?>
 							<option value="<?php echo $category['category_slug']; ?>"><?php echo $category['category_name']; ?></option>
 						<?php } ?>
 					</select>

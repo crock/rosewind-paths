@@ -1,45 +1,25 @@
-* {
+body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-}
-
-body {
-	background-color: #f6f6f6;
+	background-color: #f9f9f9;
 }
 
 h1, h2, h3, h4, h5, h6, label {
 	font-family: 'Noto Serif', 'Palatino Linotype', 'Times', serif;
 }
 
-p, div {
+p, div, a {
 	font-family: 'Lato', 'Helvetica', 'Verdana', sans-serif;
 }
 
 a {
 	text-decoration: none;
+	cursor: pointer;
 }
 
-.social .fa {
-	font-size: 2em;
+.btn-primary {
+	background-color: #54697e;
 }
-.social .fa:hover {
-	color: #b90d3b;
-}
-
-ul.pagination {
-	margin: 0 auto;
-}
-
-.bg-brand-1 { background-color: #41201f; }
-.tx-brand-1 { color: #41201f; }
-.bg-brand-2 { background-color: #d2d8d8; }
-.tx-brand-2 { color: #d2d8d8; }
-.bg-brand-3 { background-color: #a1a56c; }
-.tx-brand-3 { color: #a1a56c; }
-.bg-brand-4 { background-color: #926625; }
-.tx-brand-4 { color: #926625; }
-.bg-brand-5 { background-color: #6b0f1a; }
-.tx-brand-5 { color: #6b0f1a; }
 
 .navbar {
 	margin-bottom: 0;
@@ -47,10 +27,19 @@ ul.pagination {
 }
 
 .navbar-default {
-	border-color: #f6f6f6;
+	border-color: #f9f9f9;
 }
+
+.navbar-brand {
+	margin-top: -5px;
+}
+
+.form-search {
+	margin-top: 7px;
+}
+
 .navbar-default .navbar-nav > li > a {
-    color: #9be13e;
+    color: #54697e;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
@@ -64,17 +53,31 @@ ul.pagination {
     color: #f6f6f6;
 }
 
+.navbar-custom ul {
+	list-style: none;
+}
+.navbar-custom .social i {
+	color: #54697e !important;
+}
+.navbar-custom .social li {
+	margin: 15px 0 0 15px;
+}
+
 .navbar-form {
 	padding-left: 0;
 }
 
+.custom-nav {
+	height: auto;
+	padding: 0;
+}
 .navbar-brand {
 	padding: 0;
 }
-
 .navbar-brand > img {
-	width: 250px;
-	height: 52px;
+	//margin: -10px 0;
+	//width: 250px;
+	//height: 52px;
 }
 
 .nav-icon a {
@@ -214,7 +217,6 @@ label{
 	display: block;
 }
 .footer {
-	//background: #EDEFF1;
 	height: auto;
 	padding-bottom: 30px;
 	position: relative;
@@ -243,7 +245,7 @@ label{
 	margin-left: 0;
 	padding-left: 0;
 	margin-top: 15px;
-	color: #7F8C8D;
+	//color: #7F8C8D;
 }
 .footer ul li a {
 	padding: 0 0 5px 0;
@@ -252,83 +254,32 @@ label{
 .footer a {
 	color: #78828D
 }
-.supportLi h4 {
-	font-size: 20px;
-	font-weight: lighter;
-	line-height: normal;
-	margin-bottom: 0 !important;
-	padding-bottom: 0;
-}
-.newsletter-box input#appendedInputButton {
-	background: #FFFFFF;
-	display: inline-block;
-	float: left;
-	height: 30px;
-	clear: both;
-	width: 100%;
-}
-.newsletter-box .btn {
-	border: medium none;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-o-border-radius: 3px;
-	-ms-border-radius: 3px;
-	border-radius: 3px;
-	display: inline-block;
-	height: 40px;
-	padding: 0;
-	width: 100%;
-	color: #fff;
-}
-.newsletter-box {
-	overflow: hidden;
-}
-.bg-gray {
-	background-image: -moz-linear-gradient(center bottom, #BBBBBB 0%, #F0F0F0 100%);
-	box-shadow: 0 1px 0 #B4B3B3;
+.social {
+	margin-top: 0 !important;
 }
 .social li {
-	background: none repeat scroll 0 0 #B5B5B5;
-	border: 2px solid #B5B5B5;
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	-o-border-radius: 50%;
-	-ms-border-radius: 50%;
-	border-radius: 50%;
+	width: 40px;
+	height: 40px;
 	float: left;
-	height: 36px;
-	line-height: 36px;
-	margin: 0 8px 0 0;
-	padding: 0;
+	line-height: 40px;
+	margin-right: 15px;
+	margin-bottom: 15px;
+	border-radius: 50%;
 	text-align: center;
-	width: 36px;
-	transition: all 0.5s ease 0s;
-	-moz-transition: all 0.5s ease 0s;
-	-webkit-transition: all 0.5s ease 0s;
-	-ms-transition: all 0.5s ease 0s;
-	-o-transition: all 0.5s ease 0s;
-}
-.social li:hover {
-	transform: scale(1.15) rotate(360deg);
-	-webkit-transform: scale(1.1) rotate(360deg);
-	-moz-transform: scale(1.1) rotate(360deg);
-	-ms-transform: scale(1.1) rotate(360deg);
-	-o-transform: scale(1.1) rotate(360deg);
 }
 .social li a {
 	color: #EDEFF1;
+	cursor: pointer;
 }
 .social li:hover {
-	border: 2px solid #2c3e50;
 	background: #2c3e50;
 }
 .social li a i {
-	font-size: 16px;
-	margin: 0 0 0 5px;
-	color: #EDEFF1 !important;
+	font-size: 2em;
+	margin-top: 7px;
+	color: #edeff1 !important;
 }
 .footer-bottom {
-	//background: #E3E3E3;
 	border-top: 1px solid #DDDDDD;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -338,6 +289,11 @@ label{
 }
 .payments {
 	font-size: 1.8em;
+}
+.newsletter p {
+	color: #333;
+	font-weight: 600;
+	margin-bottom: 5px;
 }
 
 

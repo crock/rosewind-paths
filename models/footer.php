@@ -3,59 +3,51 @@
     <div class="footer" id="footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <h3> Lorem Ipsum </h3>
+                <div class="col-xs-12 col-sm-6 col-md-2">
+                    <h3>Products</h3>
                     <ul>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                    <?php for ($i = 0; $i < min(5, sizeof($parent_categories)); $i++) { ?>
+                        <li><a href="catalog.php?type=<?php echo $parent_categories[$i]['category_slug']; ?>"><?php echo $parent_categories[$i]['category_name'] ?></a></li>
+                    <?php } ?>
                     </ul>
                 </div>
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <h3> Lorem Ipsum </h3>
+                <div class="col-xs-12 col-sm-6 col-md-2 col-md-offset-1">
+                    <h3>Information</h3>
                     <ul>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Shipping & Refunds</a></li>
+                        <li><a href="#">Security Statement</a></li>
                     </ul>
                 </div>
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <h3> Lorem Ipsum </h3>
-                    <ul>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                    </ul>
-                </div>
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <h3> Lorem Ipsum </h3>
-                    <ul>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                    </ul>
-                </div>
-                <div class="col-md-4 col-sm-8 col-xs-12 ">
+                <div class="col-xs-12 col-md-6 col-md-offset-1 col-lg-6 col-lg-offset-1">
                     <h3>Follow Us</h3>
-                    <ul>
-                        <li>
-                            <div class="input-append newsletter-box text-center">
-                                <input type="text" class="full text-center" placeholder="Email ">
-                                <button class="btn  bg-gray" type="button"> Lorem ipsum <i class="fa fa-long-arrow-right"> </i> </button>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-9 col-md-12 col-lg-9">
+                            <div class="panel newsletter">
+                                <div class="panel-body">
+                                    <p>Subscribe for the latest products and deals.</p>
+                                    <form>
+                                        <div class="input-group input-group-lg input-group-full">
+                                            <input type="text" name="newsletter" class="form-control" placeholder="your@email.com">
+                                            <div class="input-group-btn">
+                                                <button type="submit" class="btn btn-default btn-search"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                        </li>
-                    </ul>
-                    <ul class="social">
-                        <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
-                    </ul>
+                        </div>
+                        <div class="col-sm-3 col-md-12 col-lg-3">
+                            <ul class="social">
+                                <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://twitter.com/?lang=en"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="https://plus.google.com/"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="https://www.youtube.com/"><i class="fa fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

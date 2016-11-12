@@ -3,6 +3,15 @@
     require('config.php');
     require('authenticate.php');
 
+    // Global vars
+    $all_categories = get_categories();
+
+    $parent_categories = array_values(array_filter($all_categories, function($category) {
+        if ($category['category_parent'] == 0) {
+            return true;
+        }
+    }));
+
     function rwp_head($title) {
         $head = file_get_contents(DOC_ROOT . 'models/head.php');
 
