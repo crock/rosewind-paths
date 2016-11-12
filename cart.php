@@ -14,6 +14,7 @@
 		<div class="container">
 			<div class="cart">
 				<h1>Your Shopping Cart</h1>
+				<? get_cart(); ?>
 				<div class="row">
 					<div class="col-md-8">
 						<div class="row">
