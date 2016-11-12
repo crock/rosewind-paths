@@ -15,8 +15,8 @@
         $wheres = array();
         $ands = array();
 
-        if (isset($_GET['search']) && $_GET['search']) {
-            $wheres[] = "product_name LIKE '%{$_GET['search']}%' OR description LIKE '%{$_GET['search']}%' OR category LIKE '%{$_GET['search']}%'";
+        if (isset($_GET['q']) && $_GET['q']) {
+            $wheres[] = "product_name LIKE '%{$_GET['q']}%' OR description LIKE '%{$_GET['q']}%' OR category LIKE '%{$_GET['q']}%'";
         }
 
         if (isset($_GET['type']) && $_GET['type'] != 'all') {

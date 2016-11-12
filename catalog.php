@@ -87,7 +87,7 @@
 			        	</div>
 			        </div>
 					<?php } ?>
-					<div class="col-md-12">
+					<div class="col-xs-12 text-center">
 						<ul class="pagination">
 							<?php foreach ($search_results['pagination'] as $page_tag) { ?>
 								<?php echo $page_tag; ?>
