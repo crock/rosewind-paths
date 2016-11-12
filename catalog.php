@@ -51,7 +51,7 @@
 								</div>
 							</div>
 							<button type="submit" class="btn btn-danger">Apply filters</button>
-							<a href="catalog.php" class="btn btn-danger">Clear filters</a>
+							<a href="catalog.php" class="btn">Clear filters</a>
 						</form>
 					</div>
 				</div>
@@ -66,7 +66,10 @@
 					<?php foreach ($search_results['products'] as $product) { ?>
 					<div class="col-lg-4 col-sm-6 product-result">
 			        	<div class="thumbnail">
-			                <img src="<?php echo $product['img']; ?>" alt="<?php echo $product['product_name']; ?>">
+							<div class="product-img">
+				                <img src="<?php echo $product['img']; ?>" alt="<?php echo $product['product_name']; ?>">
+								<button type="submit" class="btn btn-success" name="add" value="<?php echo $product['product_id']; ?>" form="addtocart">Add to cart</button>
+							</div>
 							<div class="product-info">
 				                <div class="caption">
 									<h4 class="pull-right">$<?php echo $product['price']; ?></h4>
@@ -96,6 +99,7 @@
 					</div>
 				</div>
 			</div>
+			<form id="addtocart" action="cart.php"></form>
 		</div>
 
 		<?php include("models/footer.php"); ?>

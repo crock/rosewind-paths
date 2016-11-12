@@ -58,7 +58,7 @@
                         <?php } else { ?>
             			<li><a href="signin.php">Sign In</a></li>
                         <?php } ?>
-                        <li><a href="cart.php">Cart <span class="badge">5</span></a></li>
+                        <li><a href="cart.php">Cart <span class="badge progress-bar-danger">5</span></a></li>
             		</ul>
                 </div>
             </div>

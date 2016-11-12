@@ -75,63 +75,8 @@
         $_SESSION['id'] = 0;
         $_SESSION['username'] = 'guest';
         $_SESSION['logged_in'] = false;
+        $_SESSION['cart_id'] = 0;
 
         header("Location: home.php");
     }
-    
-    function get_cart() {
-	    $items = safe_query("SELECT * FROM carts");
-	    
-	    if (!empty($items)) {
-		    return $items;
-	    } else {
-			admin_error("No items in cart.");
-	    }
-    }
-    
-    function add_to_cart($data) {
-	    $product_id = $data["id"];
-	    $quantity = 1;
-	    $cart_id = 1;
-	    $json = "";
-	    
-	    $q = safe_query("SELECT products FROM carts WHERE cart_id='$cart_id'");
-		
-		if (!empty($q)) {
-			$json = json_decode($q[0]['products'], true);
-			$json[$product_id] = "$quantity";
-		} else {
-			$products = array("$product_id" => "$quantity");
-			$products = json_encode($products);
-			
-			safe_query("INSERT INTO carts (products) VALUES ('{$products}') WHERE cart_id='$cart_id'");	
-		}
-		
-		return true;
-	    
-    }
-    
-    function remove_from_cart($data) {
-	    
-    }
-    
-     	
-    
-    function clear_cart() {
-	    
-    }
-    	if (isset($_GET['action'])) {
-	    	if ($_GET["action"] == "add") {
-		    	add_to_cart($_GET);
-	    	}
-	    
-	    	if ($_GET["action"] == "remove") {
-		    	remove_from_cart($_GET);
-	    	}
-	    
-	    	if ($_GET["action"] == "clear") {
-		    	clear_cart($_GET);
-	    	}
-    	}
-	    	
 ?>
