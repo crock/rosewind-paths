@@ -79,8 +79,13 @@
         header("Location: home.php");
     }
     
+    function create_cart() {
+	    
+    }
+    
+    
     function get_cart() {
-	    $items = safe_query("SELECT * FROM carts");
+	    $items = safe_query("SELECT products FROM carts WHERE cart_id=");
 	    
 	    if (!empty($items)) {
 		    return $items;
@@ -95,11 +100,19 @@
 	    $cart_id = 1;
 	    $json = "";
 	    
-	    $q = safe_query("SELECT products FROM carts WHERE cart_id='$cart_id'");
+	    // if cart Does exist
+	    if (isset($_SESSION['cart_id']) && $_SESSION['cart_id'] != 0) {
+		    $json = json_decode($_SESSION['cart'], true);
+		    
+		    if (isset($json[$product_id])) {
+			    $json[$product_id] += $quantity;
+		    } else {
+				$json[$product_id] = $quantity;
+			}
+	    }
 		
 		if (!empty($q)) {
-			$json = json_decode($q[0]['products'], true);
-			$json[$product_id] = "$quantity";
+			
 		} else {
 			$products = array("$product_id" => "$quantity");
 			$products = json_encode($products);
