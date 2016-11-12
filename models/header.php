@@ -45,7 +45,19 @@
                 </div>
                 <div class="col-sm-6">
                     <ul class="nav navbar-nav navbar-right">
+                        <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) { ?>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome, <?php echo $_SESSION['username']; ?> <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="client.php">Your profile</a></li>
+                                <li><a href="client.php">Your orders</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="home.php?signout=1">Sign out</a></li>
+                            </ul>
+                        </li>
+                        <?php } else { ?>
             			<li><a href="signin.php">Sign In</a></li>
+                        <?php } ?>
                         <li><a href="cart.php">Cart <span class="badge">5</span></a></li>
             		</ul>
                 </div>

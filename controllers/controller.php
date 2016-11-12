@@ -1,7 +1,7 @@
 <?php
     // Get required files
     require('config.php');
-    require('authenticate.php');
+    require('sessions.php');
 
     // Global vars
     $all_categories = get_categories();
@@ -11,6 +11,8 @@
             return true;
         }
     }));
+
+    $LAST_INSERT_ID = 0;
 
     function rwp_head($title) {
         $head = file_get_contents(DOC_ROOT . 'models/head.php');
@@ -45,7 +47,7 @@
     }
 
     function safe_query($query, $count_results = false) {
-        global $RESULT_COUNT;
+        global $RESULT_COUNT, $LAST_INSERT_ID;
         $statement = false;
         $result_rows = array();
 
@@ -59,11 +61,14 @@
             return admin_error("Connection error: " . $connection->connect_error);
         }
 
+        $query = stripslashes($connection->escape_string($query));
+
         if (!($results = $connection->query($query))) {
             return false;
         } else if ($results === true) {
+            $LAST_INSERT_ID = $connection->insert_id;
 	        $connection->close();
-	        
+
 	        return true;
         }
 

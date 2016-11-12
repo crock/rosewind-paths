@@ -8,7 +8,7 @@
 	<?php echo rwp_head(PAGE_TITLE); ?>
 
 	<body>
-		<?php include_once("analyticstracking.php") ?>
+		<?php include_once("controllers/tracking.php") ?>
 		<?php include("models/header.php"); ?>
 
 		<div class="container">

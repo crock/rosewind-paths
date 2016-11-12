@@ -1,12 +1,6 @@
 <?php
-	session_start();
 	define('PAGE_TITLE', 'Home');
 	require('controllers/controller.php');
-	$cookie = $_COOKIE['user'];
-	$q = safe_query("SELECT * FROM session_log WHERE username='$cookie' LIMIT 1");
-	if (!empty($q)) {
-		$_SESSION["loggedIn"] = true;
-	}
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +8,7 @@
 	<?php echo rwp_head(PAGE_TITLE); ?>
 
 	<body>
-		<?php include_once("analyticstracking.php") ?>
+		<?php include_once("controllers/tracking.php") ?>
 		<?php include("models/header.php"); ?>
 
 		<div class="container">

@@ -14,6 +14,7 @@
 	<?php echo rwp_head('Admin'); ?>
 
 	<body>
+        <?php include_once("controllers/tracking.php") ?>
 		<?php include("models/header.php"); ?>
 
         <?php include("models/footer.php"); ?>
