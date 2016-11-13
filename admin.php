@@ -1,7 +1,6 @@
 <?php
 	define('PAGE_TITLE', 'Admin');
-	require('controllers/controller.php');
-	require('controllers/search.php');
+	require('controllers/AdminController.php');
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +11,7 @@
 		<?php include("models/acp/acp-header.php"); ?>
 
 		<div class="container">
-			<?
+			<?		
 				if (isset($_GET['view'])) {
 					switch($_GET['view']) {
 						case "orders":
@@ -21,15 +20,9 @@
 					    case "catalog":
 					        include("models/acp/acp-catalog.php");
 					        break;
-					    case "analytics":
-					        include("models/acp/acp-analytics.php");
+					    case "customers":
+					        include("models/acp/acp-customers.php");
 					        break;
-					    case "support":
-					    	include("models/acp/acp-support.php");
-					    	break;
-					    case "settings":
-					    	include("models/acp/acp-settings.php");
-					    	break;
 					}
 				}
 			?>

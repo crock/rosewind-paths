@@ -328,3 +328,11 @@ label{
 .navbar-collapse {
 	padding: 8px 15px;
 }
+
+#add-product-btn {
+	margin-top: 25px;
+}
+
+.alert {
+	margin-top: 25px;
+}
