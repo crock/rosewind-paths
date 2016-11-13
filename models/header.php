@@ -2,13 +2,13 @@
     <div class="container">
         <div class="navbar-custom">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-xs-12 col-sm-6">
                     <a class="navbar-brand" href="home.php">
                         <img src="img/full_logo.svg" alt="Rosewind Paths Compass Logo" width="300" height="75">
                     </a>
                 </div>
-                <div class="col-sm-6">
-                    <ul class="social pull-right">
+                <div class="col-xs-12 col-sm-6">
+                    <ul class="social pull-right hidden-xs">
                         <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
                         <li><a href="https://twitter.com/?lang=en"><i class="fa fa-twitter"></i></a></li>
                         <li><a href="https://plus.google.com/"><i class="fa fa-google-plus"></i></a></li>
@@ -21,15 +21,14 @@
 </nav>
 <nav id="navbar-lower" class="navbar navbar-inverse" role="navigation">
     <div class="container">
-
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-8 col-md-6">
                     <form class="form-search" role="search" action="catalog.php">
                         <div class="input-group input-group-lg input-group-full">
                             <input type="text" name="q" class="form-control" aria-label="Search">
                             <div class="input-group-btn">
                                 <?php if (sizeof($parent_categories) > 1) { ?>
-                                <div class="btn btn-default">
+                                <div class="btn btn-default hidden-xs">
                                     <select class="form-control" name="type" style="width:10em">
                                         <option value="all">All categories</option>
                                         <?php foreach ($parent_categories as $category) { ?>
@@ -43,7 +42,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4 col-md-6">
                     <ul class="nav navbar-nav navbar-right">
                         <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) { ?>
                         <li class="dropdown">
@@ -52,13 +51,13 @@
                                 <li><a href="client.php">Your profile</a></li>
                                 <li><a href="client.php">Your orders</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="home.php?signout=1">Sign out</a></li>
+                                <li><a href="home.php?sign_out=1">Sign out</a></li>
                             </ul>
                         </li>
                         <?php } else { ?>
             			<li><a href="signin.php">Sign In</a></li>
                         <?php } ?>
-                        <li><a href="cart.php">Cart <?php echo (isset($_SESSION['cart'])) ? '<span class="badge progress-bar-danger">' . array_sum($_SESSION['cart']) . '</span>' : ''; ?></a></li>
+                        <li<?php echo (PAGE_TITLE == 'Cart') ? ' class="active"' : ''; ?>><a href="cart.php">Cart <?php echo (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) ? '<span class="badge progress-bar-danger">' . array_sum($_SESSION['cart']) . '</span>' : ''; ?></a></li>
             		</ul>
                 </div>
             </div>

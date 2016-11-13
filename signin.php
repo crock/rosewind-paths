@@ -26,12 +26,12 @@
 					<label for="password">Password</label>
 					<input class="form-control" type="password" id="password" name="password" placeholder="Password">
 				</div>
-				
+
 				<? if (isset($_GET['error'])) { ?>
 					<span class="help-block"><strong>The username or password you entered is invalid.</strong></span>
 				<? } ?>
 
-				<input type="hidden" name="signin">
+				<input type="hidden" name="sign_in">
 				<button class="btn btn-success" type="submit">Sign In <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
 
 				<h3>New user? Click the button below to register&mdash;it's free!</h3>

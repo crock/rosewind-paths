@@ -22,8 +22,9 @@
 
     function get_products($query = "") {
         $query = "SELECT * FROM products" . ($query = " " . $query ?: "");
+        $products = safe_query($query);
 
-        return safe_query($query);
+        return $products;
     }
 
     function single_product($product_id) {
@@ -36,14 +37,6 @@
         return safe_query($query);
     }
 
-    function get_cart($query = "") {
-        if (isset($_SESSION['cart'])) {
-            $query = "WHERE product_id = '" . implode("' OR product_id = '", array_keys($_SESSION['cart'])) . "'" . ($query = " " . $query ?: "");
-
-            return get_products($query);
-        }
-    }
-
     function get_categories($query = "") {
         $query = "SELECT * FROM categories" . ($query = " " . $query ?: "");
 
@@ -52,6 +45,14 @@
 
     function get_reviews($product_id, $limit) {
         return safe_query("SELECT * FROM reviews WHERE product_id = " . $product_id . " LIMIT " . $limit);
+    }
+
+    function get_shopping_cart() {
+        if (isset($_SESSION['cart'])) {
+            $query = "WHERE product_id = '" . implode("' OR product_id = '", array_keys($_SESSION['cart'])) . "'" . ($query = " " . $query ?: "");
+
+            return get_products($query);
+        }
     }
 
     function safe_query($query, $count_results = false) {
