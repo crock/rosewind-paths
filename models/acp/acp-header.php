@@ -9,7 +9,7 @@
 			<span class="icon-bar"></span>
 		</button>
 		<a class="navbar-brand" href="home.php">
-			<img src="img/full_logo.svg" alt="Rosewind Paths Compass Logo">
+			<img src="img/full_logo.svg" alt="Rosewind Paths Compass Logo" width="300" height="75">
 		</a>
     </div>
 
