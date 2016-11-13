@@ -53,6 +53,10 @@ a {
     color: #f6f6f6;
 }
 
+.navbar-custom {
+	height: 65px;
+}
+
 .navbar-custom ul {
 	list-style: none;
 }
@@ -116,6 +120,7 @@ a {
 }
 
 footer {
+	margin-top: 40px;
 	background-color: #333;
 	color: #f6f6f6;
 }

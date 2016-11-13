@@ -11,7 +11,7 @@
 		<?php include_once("controllers/tracking.php") ?>
 		<?php include("models/header.php"); ?>
 
-		<div class="container">
+		<div class="container-fluid">
 
 			<div id="feat-slider" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->
@@ -42,11 +42,11 @@
 				<a class="right carousel-control" href="#feat-slider" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 				<span class="sr-only">Next</span></a>
 			</div><!-- end #feat-slider -->
+		</div>
+		<div class="container">
 
 			<div class="row">
-				<h1 class="col-md-8">Lorem Ipsum and other such things</h1>
-				<div class="col-md-1">
-				</div>
+				<h1 class="col-md-9">Find your comfort zone in the outdoors</h1>
 				<div class="col-md-3 form-group">
 					<label for="sel1">Find by category:</label>
 					<select class="form-control cat-select" id="sel1">
