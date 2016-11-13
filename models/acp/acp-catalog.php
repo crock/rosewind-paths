@@ -29,8 +29,8 @@
 				<td><? echo $product["cost"]; ?></td>
 				<td><? echo $product["price"]; ?></td>
 				<td>
-					<button class="btn btn-primary">Order</button>
-					<button class="btn btn-danger">Delete</button>
+					<a href="" class="btn btn-primary">Order</a>
+					<a href="" class="btn btn-danger">Delete</a>
 				</td>
 			</tr>
 		<? } ?>
