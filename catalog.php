@@ -21,14 +21,6 @@
 						<h3 align="center">Filter Results</h3>
 						<form class="form-horizontal">
 							<div class="form-group">
-								<label for="type1" class="control-label">Category</label>
-								<select class="form-control" name="type" id="type1">
-									<option value="all">All</option>
-									<option value="">1</option>
-									<option value="">2</option>
-								</select>
-							</div>
-							<div class="form-group">
 								<label for="location1" class="control-label">Sort by</label>
 								<select class="form-control" name="sort" id="location1">
 									<?php foreach ($SORT_MODES as $value => $name) { ?>
@@ -77,14 +69,14 @@
 									<p><?php echo $product['description']; ?></p>
 				                </div>
 				                <div class="ratings">
+									<?php if ($product['review_count'] > 0) { ?>
 									<p class="pull-left">
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
+										<?php for ($i = 0; $i < 5; $i++) { ?>
+										<span class="glyphicon glyphicon-star<?php echo (($product['avg_rating'] < $i) ? '-empty' : ''); ?>"></span>
+										<?php } ?>
 									</p>
-									<p class="pull-right">15 reviews</p>
+									<?php } ?>
+									<a class="pull-right" href="product.php?view=<?php echo $product['product_id']; ?>#reviews"><?php echo $product['review_count']; ?> reviews</a>
 				                </div>
 							</div>
 			        	</div>

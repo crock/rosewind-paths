@@ -31,8 +31,8 @@
         return get_products("WHERE product_id = '{$product_id}'")[0];
     }
 
-    function get_orders($query = "") {
-        $query = "SELECT * FROM orders" . ($query = " " . $query ?: "");
+    function get_orders($customer_id) {
+        $query = "SELECT * FROM orders WHERE customer_info_id = '{$customer_id}'";
 
         return safe_query($query);
     }
@@ -43,8 +43,8 @@
         return safe_query($query);
     }
 
-    function get_reviews($product_id, $limit) {
-        return safe_query("SELECT * FROM reviews WHERE product_id = " . $product_id . " LIMIT " . $limit);
+    function get_reviews($product_id) {
+        return safe_query("SELECT * FROM reviews WHERE product_id = '{$product_id}' LIMIT 10");
     }
 
     function get_shopping_cart() {

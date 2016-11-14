@@ -7,6 +7,7 @@
                         <img src="img/full_logo.svg" alt="Rosewind Paths Compass Logo" width="300" height="75">
                     </a>
                 </div>
+                <?php if (PAGE_TITLE != 'Admin') { ?>
                 <div class="col-xs-12 col-sm-6">
                     <ul class="social pull-right hidden-xs">
                         <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
@@ -15,6 +16,7 @@
                         <li><a href="https://www.youtube.com/"><i class="fa fa-youtube"></i></a></li>
                     </ul>
                 </div>
+                <?php } ?>
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -28,7 +30,7 @@
                             <input type="text" name="q" class="form-control" aria-label="Search">
                             <div class="input-group-btn">
                                 <?php if (sizeof($parent_categories) > 1) { ?>
-                                <div class="btn btn-default hidden-xs">
+                                <div class="btn btn-default">
                                     <select class="form-control" name="type" style="width:10em">
                                         <option value="all">All categories</option>
                                         <?php foreach ($parent_categories as $category) { ?>

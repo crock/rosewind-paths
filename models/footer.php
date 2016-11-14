@@ -27,7 +27,7 @@
                         <div class="col-xs-12 col-sm-9 col-md-12 col-lg-9">
                             <div class="panel newsletter">
                                 <div class="panel-body">
-                                    <p>Subscribe for the latest products and deals.</p>
+                                    <p>Subscribe for our latest products and deals.</p>
                                     <form>
                                         <div class="input-group input-group-lg input-group-full">
                                             <input type="text" name="newsletter" class="form-control" placeholder="your@email.com">
