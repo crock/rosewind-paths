@@ -60,5 +60,7 @@
 				<a href="signin.php" class="btn btn-primary">Sign In</a>
 			</form>
 		</div>
+
+		<?php include("models/footer.php"); ?>
 	</body>
 </html>

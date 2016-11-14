@@ -42,6 +42,7 @@
 
         $_SESSION['session_id'] = $LAST_INSERT_ID;
         $_SESSION['username'] = 'guest';
+        $_SESSION['customer_id'] = 0;
         $_SESSION['logged_in'] = false;
         $_SESSION['cart_id'] = 0;
         $_SESSION['cart'] = array();
@@ -62,6 +63,7 @@
             $_SESSION['username'] = $username;
             $_SESSION['logged_in'] = true;
             $_SESSION['cart_id'] = $user_data['cart_id'];
+            $_SESSION['customer_id'] = $user_data['customer_info_id'];
 
             if (empty($_SESSION['cart'])) {
                 $_SESSION['cart'] = array();
@@ -117,6 +119,7 @@
         $_SESSION['logged_in'] = false;
         $_SESSION['cart_id'] = 0;
         $_SESSION['cart'] = array();
+        $_SESSION['customer_info_id'];
 
         header("Location: home.php?alert=" . urlencode("You have been signed out."));
     }

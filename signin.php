@@ -12,8 +12,8 @@
 		<?php include("models/header.php"); ?>
 
 		<div class="container">
-			<? if (isset($_GET["alert"])) { ?>
-				<div class="alert alert-success" role="alert">You are now registered! Please sign in to continue.</div>
+			<? if (isset($_GET['alert'])) { ?>
+				<div class="alert alert-danger" role="alert"><?php echo urldecode($_GET['alert']); ?></div>
 			<? } ?>
 
 			<form id="login-form" method="post" action="signin.php">
@@ -38,5 +38,7 @@
 				<a href="register.php" class="btn btn-primary">Register</a>
 			</form>
 		</div>
+
+		<?php include("models/footer.php"); ?>
 	</body>
 </html>

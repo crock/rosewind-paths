@@ -11,7 +11,7 @@
 		<?php include_once("controllers/tracking.php") ?>
 		<?php include("models/header.php"); ?>
 
-		<div class="container-fluid">
+		<div class="container">
 
 			<div id="feat-slider" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->
@@ -24,7 +24,7 @@
 
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
-				<?php foreach (get_products("ORDER BY RAND() LIMIT " . FEATURE_NUM) as $product) { ?>
+				<?php foreach (get_products("WHERE status > '1' ORDER BY RAND() LIMIT " . FEATURE_NUM) as $product) { ?>
 					<div class="item">
 						<a href="product.php?view=<?php echo $product['product_id']; ?>">
 							<img class="img-responsive" src="<?php echo $product['img']; ?>" alt="<?php echo $product['product_name']; ?>">
@@ -42,13 +42,11 @@
 				<a class="right carousel-control" href="#feat-slider" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 				<span class="sr-only">Next</span></a>
 			</div><!-- end #feat-slider -->
-		</div>
-		<div class="container">
 
 			<div class="row">
 				<h1 class="col-md-9">Find your comfort zone in the outdoors</h1>
 				<div class="col-md-3 form-group">
-					<label for="sel1">Find by category:</label>
+					<label for="sel1">Search by category:</label>
 					<select class="form-control cat-select" id="sel1">
 						<?php foreach ($all_categories as $category) { ?>
 							<option value="<?php echo $category['category_slug']; ?>"><?php echo $category['category_name']; ?></option>

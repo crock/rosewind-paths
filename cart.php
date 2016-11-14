@@ -20,11 +20,11 @@
 					<table class="table table-hover">
 				    	<thead>
 							<tr>
-								<!--<th class="col-xs-5">Product</th>
+								<th class="col-xs-5">Product</th>
 		                        <th class="col-xs-1">Quantity</th>
 		                        <th class="col-xs-2 text-right">Price</th>
 		                        <th class="col-xs-2 text-right">Total</th>
-								<th class="col-xs-2"></th>-->
+								<th class="col-xs-2"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -72,7 +72,9 @@
 					<a href="catalog.php" class="btn btn-default btn-lg" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping</a>
 				</div>
 				<div class="col-xs-6 col-sm-4 col-lg-3 text-right">
+					<?php if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) { ?>
 					<a href="checkout.php" class="btn btn-success btn-lg" role="button" aria-disabled="true">Proceed to Checkout</a>
+					<?php } ?>
 				</div>
 			</div>
 		</div>

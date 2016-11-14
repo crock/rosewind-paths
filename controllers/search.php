@@ -13,7 +13,7 @@
     function get_product_results($page) {
         $query = "SELECT SQL_CALC_FOUND_ROWS * FROM products";
         $wheres = array();
-        $ands = array();
+        $ands = array("status > '0'");
 
         if (isset($_GET['q']) && $_GET['q']) {
             $wheres[] = "product_name LIKE '%{$_GET['q']}%' OR description LIKE '%{$_GET['q']}%' OR category LIKE '%{$_GET['q']}%'";
@@ -33,16 +33,14 @@
             $ands[] = "price <= '{$_GET['maxpr']}'";
         }
 
-        if (!empty($wheres) || !empty($ands)) {
-            $query .= " WHERE";
+        $query .= " WHERE";
 
-            if (!empty($wheres)) {
-                $query .= " " . implode(" OR ", $wheres);
-            }
+        if (!empty($wheres)) {
+            $query .= " " . implode(" OR ", $wheres);
+        }
 
-            if (!empty($ands)) {
-                $query .= " " . implode(" AND ", $ands);
-            }
+        if (!empty($ands)) {
+            $query .= " " . implode(" AND ", $ands);
         }
 
         if (isset($_GET['sort']) && $_GET['sort'] != 'default') {
