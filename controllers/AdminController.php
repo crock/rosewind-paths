@@ -49,7 +49,7 @@
 		$sku = $data['product_sku'];
 		$cost = $data['product_cost'];
 		$price = $data['product_price'];
-		$img = $data['product_img'];
+		$img = $data['product_image'];
 		
 		$status = safe_query("INSERT INTO products (supplier_id,product_name,description,category,sku,stock,cost,price,img) VALUES ('$suppid','$name','$desc','$cat','$sku','$stock','$cost','$price','$img')");
 
