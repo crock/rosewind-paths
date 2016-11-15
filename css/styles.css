@@ -148,10 +148,20 @@ ul{
 	list-style-type: none;
 }
 
+.policy_list{
+	font-size:18px;
+	margin-bottom: 8px;
+}
+
 .team{
 	width: 80%;
 }
 
+.address{
+	/*text-align: center;*/
+	font-size: 20px;
+	margin-bottom: 5px;
+}
 
 #intro_paragraph{
 	font-size: 18px;
