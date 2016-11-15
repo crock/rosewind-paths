@@ -432,7 +432,11 @@ ul{
 }
 
 .review_text{
-	font-size: 16px;
+	font-size: 18px;
+}
+
+.prev_review{
+	margin-bottom: 14px;
 }
 
 #review-area{

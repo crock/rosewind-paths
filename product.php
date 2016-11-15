@@ -9,7 +9,7 @@
     $product = single_product($_GET['view']);
 	//var_dump($product);
 	
-	$review = get_reviews($product['product_id'],10);
+	$reviews = get_reviews($product['product_id'],10);
 	//var_dump($review);
 	
 	$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -57,7 +57,10 @@
 								?>
 							  </div>
 							</div>
-							
+						
+						<?php
+							$product_id = $product['product_id'];
+						?>
 							
 						</div>
 						<div class="details col-md-6">
@@ -70,13 +73,55 @@
 								<div class="stars">
 									<!-- Retrive review value from tables via product_id and reflect rating -->
 									<?php
-										/*if ($review['rating'] == NULL){
-											echo "No one has posted a review yet.";
-										}
-										else{
-											//echo $review['rating'];
-										}
+										//echo $product['product_id'];
+										
+										$rates = "SELECT AVG(rating) FROM reviews WHERE product_id = $product_id";
+										$average = safe_query($rates);
+										$val = ROUND($average[0]['AVG(rating)']);
+										//echo "Average: " . $val;
+										//echo "Average: " . ROUND($average[0]['AVG(rating)']);
 										//echo $review['rating'];*/
+										
+										if ($val == 1){
+											echo '
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+										';}
+										else if ($val == 2){
+											echo '
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+										';}
+										else if ($val == 3){
+											echo '
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+										';}
+										else if ($val == 4){
+											echo '
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star"></span>
+										';}
+										else if ($val == 5){
+											echo '
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+								';}
 									?>
 									<!--
 									<span class="fa fa-star checked"></span>
@@ -104,18 +149,6 @@
 								?>
 								</span>
 							</h4>
-							<!--<p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
-							<h5 class="sizes">sizes:
-								<span class="size" data-toggle="tooltip" title="small">s</span>
-								<span class="size" data-toggle="tooltip" title="medium">m</span>
-								<span class="size" data-toggle="tooltip" title="large">l</span>
-								<span class="size" data-toggle="tooltip" title="xtra large">xl</span>
-							</h5>
-							<h5 class="colors">colors:
-								<span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
-								<span class="color green"></span>
-								<span class="color blue"></span>
-							</h5>-->
 							<div class="action">
 								<button class="add-to-cart btn btn-default" type="button">add to cart</button>
 								<!--<button class="review btn btn-default" type="button">leave a review</button>
@@ -129,10 +162,6 @@
 						<div class="text-right">
 							<a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>
 						</div>
-						
-						<?php
-							$product_id = $product['product_id'];
-						?>
 					
 						<div class="row" id="post-review-box" style="display:none;">
 							<div class="col-md-12">
@@ -161,17 +190,6 @@
 									
 									$sql2 = "UPDATE products SET review_count = review_count + 1 WHERE product_id = '{$product_id}'";
 									$result2 = safe_query($sql2);
-								
-									/*
-									if ($result){
-										return header("Location: product.php?alert=success&view=$product_id");
-									}
-									else{
-										return header("Location: product.php?alert=fail&view=$product_id");
-									}
-									*/
-									
-									
 								}									
 							?>
 							</div>
@@ -182,13 +200,7 @@
 						<!-- This will be where reviews for said product will be pulled and displayed, separated by horizontal rules -->
 						<!-- Create loop through review database with product_id and list reviews, review count, and allow adding new reviews -->
 						<?php
-							$query = "SELECT * FROM reviews";
-							$results=mysql_query($query);
-							$row_count=mysql_num_rows($results);
-							$row_reviews = mysql_fetch_array($results);
-						
-							while ($row_reviews = mysql_fetch_array($results)){
-								echo "<hr/>";
+							foreach ($reviews as $review) {
 								echo "<div class='prev_review'>";
 								echo "<p class='review_text'>";
 									echo $review['comment'];
@@ -232,18 +244,10 @@
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star checked"></span>
-									';}
+							';}
+							echo "</div>";
+							echo "<hr/>";}
 						?>
-						<div class="prev_review">
-							<p class="review_text"></p>
-							<div class="stars"> <!-- Star rating -->
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-						</div>
 					</div> <!-- End review area -->
 				</div>
 			</div>
