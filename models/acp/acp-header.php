@@ -32,11 +32,13 @@
           <input type="hidden" name="view" value="catalog" />
           <button type="submit" class="btn btn-primary btn-search">Go</button>
         </form>
+		<?php if ( $_SESSION['logged_in'] == true ) { ?>
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="admin.php?view=orders">Recent Orders</a></li>
 			<li><a href="admin.php?view=catalog">Catalog</a></li>
 			<li><a href="admin.php?view=customers">Customers</a></li>
 		</ul>
+		<?php } ?>
     </div>
   </div>
 </nav>
