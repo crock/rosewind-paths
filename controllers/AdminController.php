@@ -7,23 +7,6 @@
 	
 	// Global Variables
 	$orders = array();
-
-	if (empty($_SESSION)) {
-        create_admin_session();
-    }
-	
-	function create_admin_session($username = 'privi') {
-        global $LAST_INSERT_ID;
-
-        $session_create_date = date('Y-m-d H:i:s');
-
-        safe_query("INSERT INTO admin_session_log (username, date_created) VALUES('{$username}', '{$session_create_date}')");
-
-        $_SESSION['session_id'] = $LAST_INSERT_ID;
-        $_SESSION['username'] = $username;
-        $_SESSION['admin_id'] = 0;
-        $_SESSION['logged_in'] = false;
-    }
 	
 	function acp_login() {
 		

@@ -46,6 +46,7 @@
         $_SESSION['logged_in'] = false;
         $_SESSION['cart_id'] = 0;
         $_SESSION['cart'] = array();
+        $_SESSION['user_type'] = 'guest';
     }
 
     function sign_in($username, $password) {

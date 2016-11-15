@@ -12,7 +12,7 @@
 
 		<div class="container">
 			<?php		
-				if ( $_SESSION['logged_in'] == true ) {
+				if ( $_SESSION['logged_in'] == true && $_SESSION['user_type'] != 'guest' ) {
 					if (isset($_GET['view'])) {
 						switch($_GET['view']) {
 							case "orders":
