@@ -16,6 +16,8 @@
 	}
 	
 	function get_customers() {
+		$status = false;
+		
 		
 	}
 	
@@ -27,9 +29,9 @@
 		$status = false;
 		
 		if ($action == "delete") {
-			$status = safe_query("UPDATE products SET in_stock='0' WHERE product_id='$id'");
+			$status = safe_query("UPDATE products SET status = '0' WHERE product_id='$id'");
 		} else if ($action == "stock") {
-			$status = safe_query("UPDATE products SET in_stock='1' WHERE product_id='$id'");
+			$status = safe_query("UPDATE products SET status = '1' WHERE product_id='$id'");
 		} else {
 			$status = false;
 		}
