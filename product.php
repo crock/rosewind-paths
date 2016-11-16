@@ -52,8 +52,8 @@
 
 							<div class="preview-pic tab-content">
 							  <div class="tab-pane active" id="pic-1">
-								<?php									
-									echo '<img alt="product image" src="' . $product['img'] . '" />'			
+								<?php
+									echo '<img alt="' . $product['product_name'] . '" src="' . $product['img'] . '" />'
 								?>
 							  </div>
 							</div>

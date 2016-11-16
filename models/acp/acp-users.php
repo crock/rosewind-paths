@@ -1,5 +1,7 @@
 <h2>Users</h2>
-
+<? if ($_SESSION['user_level'] < 3) { ?>
+	<div class="alert alert-warning" role="alert">As a privileged user, you may view the users table but you cannot edit permissions.</div>
+<? } ?>
 <div class="panel panel-default">
 	<div class="panel-body">
 		<table class="table table-striped">
@@ -17,7 +19,7 @@
 					<tr>
 						<td><? echo $user["id"]; ?></td>
 						<td>
-							<select name="user_type" form="change_type">
+							<select class="form-control" name="user_type" form="change_type"<?php echo ($_SESSION['user_level'] < 3) ? ' disabled' : ''; ?>>
 								<option value="<? echo $user["user_type"]; ?>" selected="selected"><? echo $user["user_type"]; ?></option>
 								<?
 									$types = array("guest" => "guest","member" => "member","privi" => "privi","admin" => "admin");
@@ -39,7 +41,7 @@
 				<? } ?>
 			</tbody>
 		</table>
-		<form action="admin.php?view=catalog" method="post" id="change_type"></form>
+		<form action="admin.php?view=catalog" method="post" id="change_type"<?php echo ($_SESSION['user_level'] < 3) ? ' disabled' : ''; ?>></form>
 	</div>
 </div>
 <div class="col-xs-12 text-center">

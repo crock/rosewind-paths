@@ -15,12 +15,10 @@
 		<div class="container">
 			<h1>About Us</h1>
 			<br>
-			<div class="gallery">
-				<div class="row">
-					<img class="col-md-4 gallery_img" src="img/skiing-1650760_640.jpg" alt="about_gallery1" width="auto" height="213"/>
-					<img class="col-md-4 gallery_img" src="img/fall-1432252_640.jpg" alt="about_gallery2" width="auto" height="213"/>
-					<img class="col-md-4 gallery_img" src="img/gibraltar-1351696_640.jpg" alt="about_gallery3" width="auto" height="213"/>
-				</div>
+			<div class="row home-row">
+					<img class="col-sm-6 col-lg-4 gallery_img" src="img/skiing-1650760_640.jpg" alt="about_gallery1" width="300" height="213"/>
+					<img class="col-sm-6 col-lg-4 gallery_img" src="img/fall-1432252_640.jpg" alt="about_gallery2" width="300" height="213"/>
+					<img class="col-sm-6 col-lg-4 gallery_img" src="img/gibraltar-1351696_640.jpg" alt="about_gallery3" width="300" height="213"/>		
 			</div>
 			<h2>Who We Are</h2>
 				<p id="intro_paragraph">
@@ -48,6 +46,8 @@
 							</p>
 						</li>
 					</ul>
+				</div>
+				<div class="col-sm-6">
 					<ul class="profiles3">
 						<li><img class="profile_img" src="http://rs337.pbsrc.com/albums/n390/CBCUDDLES/Forest.jpg~c200" alt="member" width="200" height="200"></li>
 						<li>
@@ -57,8 +57,6 @@
 							</p>
 						</li>
 					</ul>
-				</div>
-				<div class="col-sm-6">
 					<ul class="profiles4">
 						<li><img class="profile_img" src="http://rs249.pbsrc.com/albums/gg203/jahdapac/forest.jpg~c200" alt="member" width="200" height="200"></li>
 						<li>
@@ -68,6 +66,10 @@
 							</p>
 						</li>
 					</ul>
+				</div>
+				</div>
+			<div class="row team">
+				<div class="col-sm-12">
 					<ul class="profiles5">
 						<li><img class="profile_img" src="https://i0.wp.com/bossfight.co/wp-content/uploads/2016/10/boss-fight-free-high-quality-stock-images-photos-photography-trees-forest.jpg?fit=1200%2C675&ssl=1&resize=200%2C200" alt="member" width="200" height="200"></li>
 						<li>

@@ -607,6 +607,19 @@ footer .social li:hover {
 	margin-top: 25px;
 }
 
+.tab-content .form-control {
+	margin: 15px 0;
+}
+
+.card-text{
+	font-size: 18px;
+}
+
+.panel-home img {
+	text-align: center;
+	margin: auto;
+}
+
 .card-text{
 	font-size: 18px;
 }
@@ -614,6 +627,7 @@ footer .social li:hover {
 .tab-content .form-control {
 	margin: 15px 0;
 }
+
 .gallery_img{
 	max-width: 100%;
 }
