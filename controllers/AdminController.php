@@ -6,13 +6,33 @@
 
 	// Global Variables
 	$orders = array();
-	$view = $_GET['view'];
+	
 
 	function get_recent_orders() {
 		$orders = get_orders("WHERE order_placed >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY AND date < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY");
 		return $orders;
 	}
 
+	function toggle_user($action, $type) {
+		$status = false;
+		$x = explode("-",$type);
+		$type = $x[0];
+		$id = $x[1];
+		
+		if ($action == "update") {
+			$status = safe_query("UPDATE users SET user_type = '$type' WHERE id = '$id'");
+		} else if ($action == "delete") {
+			$status = safe_query("DELETE FROM users WHERE id = '$id'");
+		} else {
+			$status = false;
+		}
+
+		if ($status) {
+			return header("Location: admin.php?alert=success&view=users");
+		} else {
+			return header("Location: admin.php?alert=fail&view=users");
+		}
+	}
 
 	function toggle_product($id, $action) {
 		$status = false;
@@ -58,7 +78,15 @@
 	if (isset($_POST['add-product-form'])) {
 		add_product($_POST);
 	}
-
-	if (isset($_GET['action'])) {
+	
+	if (isset($_GET['action']) && $admin_view == 'catalog') {
 		toggle_product($_GET['id'], $_GET['action']);
+	}
+	
+	if (isset($_POST['update'])) {
+		toggle_user($_POST['update'], $_POST['user_type']);
+	}
+	
+	if (isset($_POST['delete'])) {
+		toggle_user($_POST['delete'], $_POST['user_type']);
 	}
