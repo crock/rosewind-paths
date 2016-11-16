@@ -1,7 +1,7 @@
 <?php
 	define('PAGE_TITLE', 'Admin');
 	require('controllers/AdminController.php');
-	
+
 	$user_results = get_user_results('admin.php?view=customers');
 ?>
 
@@ -24,11 +24,11 @@
 							break;
 					}
 				}
-				
+
 			?>
-			
-			<?php		
-				if ( isset($_SESSION) && $_SESSION['logged_in'] == true ) {
+
+			<?php
+				if (isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1) {
 					if (isset($_GET['view'])) {
 						switch($_GET['view']) {
 							case "orders":
@@ -47,7 +47,7 @@
 				} else {
 					include("models/acp/acp-login.php");
 				}
-			?> 
+			?>
 		</div><!-- end .container -->
 	</body>
 </html>

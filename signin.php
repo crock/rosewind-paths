@@ -12,8 +12,8 @@
 		<?php include("models/header.php"); ?>
 
 		<div class="container">
-			<? if (isset($_GET['alert'])) { ?>
-				<div class="alert alert-danger" role="alert"><?php echo urldecode($_GET['alert']); ?></div>
+			<? if (isset($_GET['atype']) && isset($_GET['alert'])) { ?>
+				<div class="alert <?php echo ($_GET['atype'] == 'success') ? 'alert-success' : 'alert-danger'; ?>" role="alert"><?php echo urldecode($_GET['alert']); ?></div>
 			<? } ?>
 
 			<form id="login-form" method="post" action="signin.php">
@@ -26,10 +26,6 @@
 					<label for="password">Password</label>
 					<input class="form-control" type="password" id="password" name="password" placeholder="Password">
 				</div>
-
-				<? if (isset($_GET['error'])) { ?>
-					<span class="help-block"><strong>The username or password you entered is invalid.</strong></span>
-				<? } ?>
 
 				<input type="hidden" name="sign_in">
 				<button class="btn btn-success" type="submit">Sign In <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
