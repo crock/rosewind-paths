@@ -9,6 +9,38 @@
     } else if (isset($_SESSION['username']) && $_SESSION['username'] == 'guest') {
 		$customer = safe_query("SELECT * FROM users WHERE username = '{$_SESSION['username']}'");
 	}
+	
+	if(isset($_POST['checkout'])) {
+		$fname = $_POST['firstname'];
+		$lname = $_POST['lastname'];
+		$email = $_POST['email'];
+		$sa1 = $_POST['shippingaddress1'];
+		$sa2 = $_POST['shippingaddress2'];
+		$scountry = $_POST['shippingcountry'];
+		$sstate = $_POST['shippingstate'];
+		$szip = $_POST['shippingzip'];
+		$cardname = $_POST['cardname'];
+		$cardnumber = $_POST['cardnumber'];
+		$cvv = $_POST['cvv'];
+		$expmonth = $_POST['expmonth'];
+		$expyear = $_POST['expyear'];
+		$acceptterms = $_POST['acceptterms'];
+		$ba1 = $_POST['billingaddress1'];
+		$ba2 = $_POST['billingaddress2'];
+		$bcountry = $_POST['billingcountry'];
+		$bstate = $_POST['billingstate'];
+		$bzip = $_POST['billingzip'];
+		$useshipping = $_POST['useshipping'];
+		
+		$status = safe_query("INSERT INTO orders (first_name, last_name, email, shipping_address, billing_address, card_name, card_number, cvv, exp_month, exp_year) 
+		VALUES ('{$fname}','{$lname}', '{$email}', '{$shippingAddress}', '{$billingAddress}', '{$cardname}', '{$cardnumber}', '{$cvv}', '{$expmonth}', '{$expyear}', '{$acceptterms}', '{$useshipping}')");
+	
+		if($status) {
+			header("Location: home.php?atype=success&alert=" . urlencode("Your order has been placed successfully!"));
+		} else {
+			header("Location: home.php?atype=danger&alert=" . urlencode("Something went wrong. Please try your order again!"));
+		}
+	}
 ?>
 
 <!DOCTYPE html>
@@ -154,8 +186,8 @@
 					<a href="cart.php" class="btn btn-default btn-lg" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> Back to Cart </a>
 				</div>
 				<div class="col-xs-6 col-sm-4 col-lg-3 text-right">
-					<form method="post">
-						<input type="hidden" name="confirm" value="1">
+					<form method="post" action="checkout.php">
+						<input type="hidden" name="checkout" value="1">
 						<button type="submit" class="btn btn-success btn-lg" role="button"><span class="glyphicon glyphicon-ok"></span> Confirm Purchase</button>
 					</form>
 				</div>
