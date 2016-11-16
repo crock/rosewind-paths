@@ -165,99 +165,104 @@
 						</div>
 					</div>
 				</div>
-				<div class="review-box" id="reviews">
-					<div class="well well-sm">
-						<div class="text-right">
-							<a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>
-						</div>
-					
-						<div class="row" id="post-review-box" style="display:none;">
-							<div class="col-md-12">
-								<form action="product.php?view=<?php echo $product_id ?>" method="post">
-									<input id="ratings-hidden" name="rating" type="hidden"> 
-									<textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
-					
-									<div class="text-right">
-										<input type="hidden" id="star_number" value=""/>
-										<div class="stars starrr" data-rating="0"></div>
-										<a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
-										<span class="glyphicon glyphicon-remove"></span> Cancel</a>
-										<button class="btn btn-success btn-lg" id="submit" type="submit" name="submit">Save</button>
-									</div>
-								</form>
-								
-							<!-- Insert review into review database -->
-							<?php								
-								if (isset($_POST["rating"])){
-									$new_review = $_POST['comment'];
-									$star_value = $_POST['rating'];
-									$date_created = date('Y-m-d H:i:s');
-										
-									$sql = "INSERT INTO reviews (customer_id, product_id, comment, rating, date_created) VALUES ('{$customer[0]['id']}', '{$product_id}', '{$new_review}', '{$star_value}', '{$date_created}')";
-									$result = safe_query($sql);
+				
+				<!-- If logged in, rating box is visible. If not, it's not visible. -->
+				<?php
+				if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) { ?>
+					<div class="review-box" id="reviews">
+						<div class="well well-sm">
+							<div class="text-right">
+								<a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>
+							</div>
+						
+							<div class="row" id="post-review-box" style="display:none;">
+								<div class="col-md-12">
+									<form action="product.php?view=<?php echo $product_id ?>" method="post">
+										<input id="ratings-hidden" name="rating" type="hidden"> 
+										<textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
+						
+										<div class="text-right">
+											<input type="hidden" id="star_number" value=""/>
+											<div class="stars starrr" data-rating="0"></div>
+											<a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
+											<span class="glyphicon glyphicon-remove"></span> Cancel</a>
+											<button class="btn btn-success btn-lg" id="submit" type="submit" name="submit">Save</button>
+										</div>
+									</form>
 									
-									$sql2 = "UPDATE products SET review_count = review_count + 1 WHERE product_id = '{$product_id}'";
-									$result2 = safe_query($sql2);
-								}									
-							?>
+								<!-- Insert review into review database -->
+								<?php								
+									if (isset($_POST["rating"])){
+										$new_review = $_POST['comment'];
+										$star_value = $_POST['rating'];
+										$date_created = date('Y-m-d H:i:s');
+											
+										$sql = "INSERT INTO reviews (customer_id, product_id, comment, rating, date_created) VALUES ('{$customer[0]['id']}', '{$product_id}', '{$new_review}', '{$star_value}', '{$date_created}')";
+										$result = safe_query($sql);
+										
+										$sql2 = "UPDATE products SET review_count = review_count + 1 WHERE product_id = '{$product_id}'";
+										$result2 = safe_query($sql2);
+									}									
+								?>
+								</div>
 							</div>
 						</div>
+						<hr/>
+						<div class="row" id="review-area">
+							<!-- This will be where reviews for said product will be pulled and displayed, separated by horizontal rules -->
+							<!-- Create loop through review database with product_id and list reviews, review count, and allow adding new reviews -->
+							<?php
+								foreach ($reviews as $review) {
+									echo "<div class='prev_review'>";
+									echo "<p class='review_text'>";
+										echo $review['comment'];
+									echo "</p>";
+										if ($review['rating'] == 1){
+											echo '
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+										';}
+										else if ($review['rating'] == 2){
+											echo '
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+										';}
+										else if ($review['rating'] == 3){
+											echo '
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+										';}
+										else if ($review['rating'] == 4){
+											echo '
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star"></span>
+										';}
+										else if ($review['rating'] == 5){
+											echo '
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+								';}
+								echo "</div>";
+								echo "<hr/>";}
+							?>
+						</div> <!-- End review area -->
 					</div>
-					<hr/>
-					<div class="row" id="review-area">
-						<!-- This will be where reviews for said product will be pulled and displayed, separated by horizontal rules -->
-						<!-- Create loop through review database with product_id and list reviews, review count, and allow adding new reviews -->
-						<?php
-							foreach ($reviews as $review) {
-								echo "<div class='prev_review'>";
-								echo "<p class='review_text'>";
-									echo $review['comment'];
-								echo "</p>";
-									if ($review['rating'] == 1){
-										echo '
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-									';}
-									else if ($review['rating'] == 2){
-										echo '
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-									';}
-									else if ($review['rating'] == 3){
-										echo '
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-									';}
-									else if ($review['rating'] == 4){
-										echo '
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-									';}
-									else if ($review['rating'] == 5){
-										echo '
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-							';}
-							echo "</div>";
-							echo "<hr/>";}
-						?>
-					</div> <!-- End review area -->
-				</div>
+				<?php } ?>
 			</div>
 		</div>
 

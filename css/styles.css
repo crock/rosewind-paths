@@ -467,6 +467,27 @@ ul{
 	font-size: 20px;
 }
 
+/* Client Page CSS */
+#profile_intro{
+	font-size: 18px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+
+.street1, .street2, .city, .state, .zip{
+	font-size: 18px;
+}
+
+.prev_orders{
+	font-size: 18px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+
+/* Footer */
+
 .footer {
 	height: auto;
 	padding-bottom: 30px;
@@ -496,7 +517,7 @@ ul{
 	margin-left: 0;
 	padding-left: 0;
 	margin-top: 15px;
-	//color: #7F8C8D;
+	color: #7F8C8D;
 }
 .footer ul li a {
 	padding: 0 0 5px 0;
