@@ -8,20 +8,6 @@
 	$orders = array();
 	$view = $_GET['view'];
 	
-	function acp_login($data) {
-		$username = $data['username'];
-		$password = sha1($data['password']);
-		
-		$user = safe_query("SELECT * FROM users WHERE username = '$username'");
-		
-		if ($user[0]['user_type'] === 'privi' || $user[0]['user_type'] === 'admin' && $user[0]['password'] == $password) {
-			$_SESSION['user_type'] = $user[0]['user_type'];
-			return header("Location: admin.php?alert=success&view=catalog");
-		} else {
-			return header("Location: admin.php?alert=fail");
-		}
-	}
-	
 	function get_recent_orders() {
 		$orders = get_orders("WHERE order_placed >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY AND date < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY");
 		return $orders;	
@@ -75,10 +61,4 @@
 	
 	if (isset($_GET['action'])) {
 		toggle_product($_GET['id'], $_GET['action']);
-	}
-	
-	if (isset($_POST['acp-login'])) {
-		acp_login($_POST);
-	}
-	
-	
+	}	
