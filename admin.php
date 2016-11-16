@@ -1,5 +1,8 @@
 <?php
 	define('PAGE_TITLE', 'Admin');
+
+	$admin_view = $_GET['view'];
+	
 	require('controllers/AdminController.php');
 
 	if (!isset($_SESSION['user_level'])) {
@@ -23,43 +26,25 @@
 		<?php include("models/header.php"); ?>
 
 		<div class="container">
-			<?
-
-				if (isset($_GET['alert'])) {
-					switch($_GET['alert']) {
-						case "success":
-							echo "<div class='alert alert-success' role='alert'>Login Successful!</div>";
-							break;
-						case "fail":
-							echo "<div class='alert alert-danger' role='alert'>Error logging in, please try again!</div>";
-							break;
-					}
-				}
-
-			?>
-
 			<?php
-				if (isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1) {
-					if (isset($_GET['view'])) {
-						switch($_GET['view']) {
-
-							case "orders":
-						        include("models/acp/acp-orders.php");
-						        break;
-						    case "catalog":
-						        include("models/acp/acp-catalog.php");
-						        break;
-						    case "users":
-						        include("models/acp/acp-users.php");
-						        break;
-						}
-					} else {
-						echo "No view matching query";
+				if (isset($admin_view)) {
+					switch($admin_view) {
+						case 'orders':
+					        include("models/acp/acp-orders.php");
+					        break;
+					    case 'catalog':
+					        include("models/acp/acp-catalog.php");
+					        break;
+					    case 'users':
+					        include("models/acp/acp-users.php");
+					        break;
+						default:
+							include("models/acp/acp-catalog.php");
 					}
-				} else {
-					include("models/acp/acp-login.php");
 				}
 			?>
 		</div><!-- end .container -->
+
+		<?php include("models/footer.php"); ?>
 	</body>
 </html>

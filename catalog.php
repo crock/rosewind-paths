@@ -60,7 +60,11 @@
 			        	<div class="thumbnail">
 							<div class="product-img">
 				                <img src="<?php echo $product['img']; ?>" alt="<?php echo $product['product_name']; ?>">
+								<?php if (!isset($_SESSION['cart_contents'][$product['product_id']])) { ?>
 								<button type="submit" class="btn btn-success" name="add" value="<?php echo $product['product_id']; ?>" form="addtocart">Add to cart</button>
+								<?php } else { ?>
+								<button type="submit" class="btn btn-warning">In Cart</button>
+								<?php } ?>
 							</div>
 							<div class="product-info">
 				                <div class="caption">
@@ -126,7 +130,7 @@
 										';}
 									?>
 									</p>
-									<a href="product.php?view=<?php echo $product_id?>"><p class="pull-right"><?php echo $product['review_count']; ?> reviews</p></a>
+									<a href="product.php?view=<?php echo $product_id?>#reviews"><p class="pull-right"><?php echo $product['review_count']; ?> reviews</p></a>
 				                </div>
 							</div>
 			        	</div>
