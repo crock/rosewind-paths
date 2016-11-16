@@ -128,7 +128,7 @@
 				<td><? echo $product["cost"]; ?></td>
 				<td><? echo $product["price"]; ?></td>
 				<td>
-					<a href="admin.php?view=catalog&action=order&id=<? echo $product["product_id"]; ?>" class="btn btn-primary">Order</a>
+					<a href="admin.php?view=catalog&action=feature&id=<? echo $product["product_id"]; ?>" class="btn btn-warning">Feature</a>
 					<a href="admin.php?view=catalog&action=delete&id=<? echo $product["product_id"]; ?>" class="btn btn-danger">Delete</a>
 					<a href="admin.php?view=catalog&action=stock&id=<? echo $product["product_id"]; ?>" class="btn btn-success">Stock</a>
 				</td>

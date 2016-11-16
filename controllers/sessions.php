@@ -33,12 +33,12 @@
         unset($_GET['remove']);
     }
 
-    function create_session($username = 'guest') {
+    function create_session($username = 'guest', $user_type = 'guest') {
         global $LAST_INSERT_ID;
 
         $session_create_date = date('Y-m-d H:i:s');
 
-        safe_query("INSERT INTO session_log (username, date_created) VALUES('{$username}', '{$session_create_date}')");
+        safe_query("INSERT INTO session_log (user_type, username, date_created) VALUES('{$user_type}', '{$username}', '{$session_create_date}')");
 
         $_SESSION['session_id'] = $LAST_INSERT_ID;
         $_SESSION['username'] = 'guest';
@@ -46,15 +46,16 @@
         $_SESSION['logged_in'] = false;
         $_SESSION['cart_id'] = 0;
         $_SESSION['cart'] = array();
+        $_SESSION['user_type'] = 'guest';
     }
 
     function sign_in($username, $password) {
         $password = sha1($password);
 
-        $user_data = safe_query("SELECT * FROM customer_info JOIN carts ON customer_info.cart_id = carts.cart_id WHERE username = '{$username}' AND password = '{$password}'");
+        $user_data = safe_query("SELECT * FROM users JOIN carts ON users.cart_id = carts.cart_id WHERE username = '{$username}' AND password = '{$password}'");
         $user_data = $user_data[0];
 
-
+		
         if (empty($user_data)) {
             header("Location: signin.php?alert=" . urlencode("Invalid username or password."));
         } else {
@@ -63,7 +64,7 @@
             $_SESSION['username'] = $username;
             $_SESSION['logged_in'] = true;
             $_SESSION['cart_id'] = $user_data['cart_id'];
-            $_SESSION['customer_id'] = $user_data['customer_info_id'];
+            $_SESSION['customer_id'] = $user_data['id'];
 
             if (empty($_SESSION['cart'])) {
                 $_SESSION['cart'] = array();
@@ -78,8 +79,9 @@
     function register_user($username, $email, $password, $confirm_password) {
         $password = sha1($password);
         $register_errors = array();
+        $date_created = date('Y-m-d H:i:s');
 
-        $user_data = safe_query("SELECT * FROM customer_info WHERE username = '{$username}' OR email = '{$email}'");
+        $user_data = safe_query("SELECT * FROM users WHERE username = '{$username}' OR email = '{$email}'");
 
         if (!empty($user_data)) {
             $register_errors['user'] = "That username or password is taken.";
@@ -99,7 +101,7 @@
 
         if (!empty($register_errors)) {
             header("Location: register.php" . http_build_query($register_errors));
-        } else if (!safe_query("INSERT INTO customer_info (username, email, password) VALUES ('{$username}', '{$email}', '{$password}');")) {
+        } else if (!safe_query("INSERT INTO users (username, email, password, date_created) VALUES ('{$username}', '{$email}', '{$password}', '{$date_created}');")) {
             header("Location: register.php?alert=" . urlencode("An unknown error occured."));
         } else {
             header("Location: signin.php?alert=" . urlencode("You are now registered! Please sign in to your new profile."));
@@ -119,7 +121,7 @@
         $_SESSION['logged_in'] = false;
         $_SESSION['cart_id'] = 0;
         $_SESSION['cart'] = array();
-        $_SESSION['customer_info_id'];
+        $_SESSION['id'];
 
         header("Location: home.php?alert=" . urlencode("You have been signed out."));
     }
@@ -145,7 +147,7 @@
             safe_query("UPDATE session_log SET cart_id = '{$cart_id}' WHERE session_log_id = '{$_SESSION['session_id']}'");
 
             if ($_SESSION['logged_in']) {
-                safe_query("UPDATE customer_info SET cart_id = '{$cart_id}' WHERE username = '{$_SESSION['username']}'");
+                safe_query("UPDATE users SET cart_id = '{$cart_id}' WHERE username = '{$_SESSION['username']}'");
             }
         } else {
             safe_query("UPDATE carts SET products = '" . json_encode($_SESSION['cart']) . "' WHERE cart_id = '{$cart_id}'");
