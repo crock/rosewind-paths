@@ -6,7 +6,8 @@
 	<title>Rosewind Paths %TITLE%</title>
 
 	<!-- Google Fonts and Bootstrap CSS from CDN -->
-	<link href="https://fonts.googleapis.com/css?family=Lato:400,700|Noto+Serif" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:400_Noto+Serif" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:700_Noto+Serif" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/styles.css">
 
