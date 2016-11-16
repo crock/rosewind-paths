@@ -1,4 +1,4 @@
-<nav id="navbar-upper" class="navbar navbar-default" role="navigation">
+<nav id="navbar-upper" class="navbar navbar-default">
     <div class="container">
         <div class="navbar-custom">
             <div class="row">
@@ -19,7 +19,7 @@
         </div>
     </div><!-- /.container-fluid -->
 </nav>
-<nav id="navbar-lower" class="navbar navbar-inverse" role="navigation">
+<nav id="navbar-lower" class="navbar navbar-inverse">
     <div class="container">
         <div class="row">
             <div class="col-sm-8 col-md-5">

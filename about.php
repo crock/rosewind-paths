@@ -16,9 +16,9 @@
 			<h1>About Us</h1>
 			<br>
 			<div class="row gallery">
-				<img class="col-sm-4 gallery_img" src="img/skiing-1650760_640.jpg" width="320" height="213"/>
-				<img class="col-sm-4 gallery_img" src="img/fall-1432252_640.jpg" width="320" height="213"/>
-				<img class="col-sm-4 gallery_img" src="img/gibraltar-1351696_640.jpg" width="320" height="213"/>
+				<img class="col-sm-4 gallery_img" src="img/skiing-1650760_640.jpg" alt="about_gallery1" width="320" height="213"/>
+				<img class="col-sm-4 gallery_img" src="img/fall-1432252_640.jpg" alt="about_gallery2" width="320" height="213"/>
+				<img class="col-sm-4 gallery_img" src="img/gibraltar-1351696_640.jpg" alt="about_gallery3" width="320" height="213"/>
 				</div>
 			<h2>Who We Are</h2>
 				<p id="intro_paragraph">

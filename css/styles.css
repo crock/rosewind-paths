@@ -610,3 +610,7 @@ footer .social li:hover {
 .tab-content .form-control {
 	margin: 15px 0;
 }
+
+.card-text{
+	font-size: 18px;
+}
