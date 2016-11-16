@@ -15,6 +15,9 @@
 
 		<div class="container">
 			<h2>Shopping Cart</h2>
+			<? if (empty($cart_products)) { ?>
+				<div class="alert alert-info" role="alert">You have nothing in your cart.</div>
+			<? } ?>
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<table class="table table-hover">
@@ -72,7 +75,7 @@
 					<a href="catalog.php" class="btn btn-default btn-lg" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping</a>
 				</div>
 				<div class="col-xs-6 col-sm-4 col-lg-3 text-right">
-					<?php if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) { ?>
+					<?php if (isset($_SESSION['cart_contents']) && !empty($_SESSION['cart_contents'])) { ?>
 					<a href="checkout.php" class="btn btn-success btn-lg" role="button" aria-disabled="true">Proceed to Checkout</a>
 					<?php } ?>
 				</div>

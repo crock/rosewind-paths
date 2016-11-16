@@ -20,7 +20,7 @@
 							$types = array("guest" => "guest","member" => "member","privi" => "privi","admin" => "admin");
 							$x = $user['user_type'];
 							unset($types[$x]);
-						?>	
+						?>
 					<? foreach($types as $key => $value) { ?>
 						<option value="<? echo $value; ?>"><? echo $key; ?></option>
 					<? } ?>
@@ -36,7 +36,7 @@
 		<? } ?>
 	</tbody>
 </table>
-<div class="col-md-12">
+<div class="col-xs-12 text-center">
 	<ul class="pagination">
 		<?php foreach ($user_results['pagination'] as $page_tag) { ?>
 			<?php echo $page_tag; ?>

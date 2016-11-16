@@ -1,5 +1,5 @@
-<?php 
-	$search_results = get_product_results('admin.php'); 
+<?php
+	$search_results = get_product_results('admin.php');
 ?>
 
 <?
@@ -13,7 +13,7 @@
 				break;
 		}
 	}
-	
+
 ?>
 
 <!-- Button trigger modal -->
@@ -30,18 +30,18 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					<h4 class="modal-title" id="myModalLabel">Add Product</h4>
 				</div>
-				
+
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="product_name">Product Name</label>
 						<input type="text" class="form-control" name="product_name" />
 					</div>
-					
+
 					<div class="form-group">
 						<label for="product_desc">Product Description</label>
 						<textarea class="form-control" name="product_desc" rows="3"></textarea>
 					</div>
-					
+
 					<div class="form-group">
 						<label for="product_category">Product Category</label>
 						<select class="form-control" name="product_category">
@@ -50,44 +50,44 @@
 						<?php } ?>
 						</select>
 					</div>
-					
+
 					<div class="row">
 						<div class="form-group col-sm-4">
 							<label for="product_cost">Product Cost</label>
 							<input type="number" class="form-control" name="product_cost" />
 						</div>
-						
+
 						<div class="form-group col-sm-4">
 							<label for="product_price">Product Price</label>
 							<input type="number" class="form-control" name="product_price" />
 						</div>
-						
+
 						<div class="form-group col-sm-4">
 							<label for="product_stock">Product Stock</label>
 							<input type="number" class="form-control" name="product_stock" />
 						</div>
 					</div>
-					
+
 					<div class="row">
 						<div class="form-group col-sm-6">
 							<label for="product_sku">Product SKU</label>
 							<input type="text" class="form-control" name="product_sku" />
 						</div>
-						
+
 						<div class="form-group col-sm-6">
 							<label for="supplier_id">Supplier ID</label>
 							<input type="number" class="form-control" name="supplier_id" />
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<label for="product_image">Product Image</label>
 						<input type="url" class="form-control" name="product_image" />
 					</div>
-					
+
 					<input type="hidden" name="add-product-form" />
-				</div>	
-				
+				</div>
+
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					<button type="submit" class="btn btn-success">Save</button>
@@ -136,8 +136,7 @@
 		<? } ?>
 	</tbody>
 </table>
-
-<div class="col-md-12">
+<div class="col-xs-12 text-center">
 	<ul class="pagination">
 		<?php foreach ($search_results['pagination'] as $page_tag) { ?>
 			<?php echo $page_tag; ?>

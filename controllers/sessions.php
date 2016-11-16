@@ -70,7 +70,7 @@
             if (!is_array($_SESSION['cart_contents'])) {
                 $_SESSION['cart_contents'] = array();
             }
-            
+
             safe_query("UPDATE session_log SET cart_id = '{$user_data['cart_id']}',user_type = '{$user_data['user_type']}',username = '{$username}' WHERE session_log_id = '{$_SESSION['session_id']}'");
 
             if ($_SESSION['user_level'] > 1) {
@@ -180,10 +180,10 @@
     }
 
     function remove_from_cart($product_id) {
-        if ($_SESSION['cart_id'] != 0 && isset($_SESSION['cart'][$product_id])) {
-            unset($_SESSION['cart'][$product_id]);
+        if ($_SESSION['cart_id'] != 0 && isset($_SESSION['cart_contents'][$product_id])) {
+            unset($_SESSION['cart_contents'][$product_id]);
 
-            safe_query("UPDATE carts SET products = '" . json_encode($_SESSION['cart']) . "' WHERE cart_id = '{$_SESSION['cart']}'");
+            safe_query("UPDATE carts SET products = '" . json_encode($_SESSION['cart_contents']) . "' WHERE cart_id = '{$_SESSION['cart_id']}'");
         }
     }
 
