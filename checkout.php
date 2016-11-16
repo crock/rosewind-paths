@@ -5,7 +5,7 @@
 	$cart_products = retrieve_cart();
 
     if (empty($cart_products)) {
-        header("Location: home.php");
+        header("Location: cart.php");
     }
 ?>
 
@@ -43,19 +43,20 @@
                         <input id="address1" name="address1" type="text" class="form-control">
                         <label class="control-label" for="address2">Street Address 2</label>
                         <input id="address2" name="address2" type="text" class="form-control">
+						<label class="control-label" for="country">* Locality</label>
                         <div class="row">
                             <div class="col-md-5">
-                                <select name="country">
+                                <select id="country" class="form-control" name="country">
                                     <option>United States</option>
                                 </select>
                             </div>
                             <div class="col-md-2">
-                                <select name="state">
+                                <select id="state" class="form-control" name="state">
                                     <option>FL</option>
                                 </select>
                             </div>
                             <div class="col-md-5">
-                                <input type="text" name="zip">
+                                <input id="zip" class="form-control" type="text" name="zip">
                             </div>
                         </div>
                     </div>
@@ -67,12 +68,13 @@
                         <input id="cardname" name="cardname" type="text" class="form-control">
                         <label class="control-label" for="cardnumber">* Card Number</label>
                         <input id="cardnumber" name="cardnumber" type="text" class="form-control">
+						<label class="control-label" for="cvv">CVV</label>
                         <div class="row">
-                            <div class="col-md-3 offset-md-3">
+                            <div class="col-md-3">
                                 <input id="cvv" name="cvv" type="text" placeholder="" class="form-control" required="">
                             </div>
-                            <div class="col-md-3">
-                                <select name="expmonth">
+                            <div class="col-md-4">
+                                <select id="expmonth" class="form-control" name="expmonth">
                                     <option value="01">01 - January</option>
                                     <option value="02">02 - February</option>
                                     <option value="03">03 - March</option>
@@ -86,9 +88,9 @@
                                     <option value="11">11 - November</option>
                                     <option value="12">12 - December</option>
                                 </select>
-                            </div>
-                            <div class="col-md-3">
-                                <select name="expyear">
+							</div>
+							<div class="col-md-3">
+								<select id="expyear" class="form-control" name="expyear">
                                     <option value="16">2016</option>
                                     <option value="17">2017</option>
                                     <option value="18">2018</option>
@@ -107,34 +109,35 @@
                                 </select>
                             </div>
                         </div>
+						<label for="acceptterms">I accept the terms and conditions</label>
+	                    <input id="acceptterms" type="checkbox" name="acceptterms">
                     </div>
                     <div class="form-group col-md-6">
                         <h3>Billing Address</h3>
-                        <label for="useshipping">Same as shipping address</label>
-                        <input id="useshipping" type="checkbox" name="useshipping">
-                        <br>
-                        <label class="control-label" for="address1">* Street Address 1</label>
+						<label class="control-label" for="address1">* Street Address 1</label>
                         <input id="address1" name="address1" type="text" class="form-control">
                         <label class="control-label" for="address2">Street Address 2</label>
                         <input id="address2" name="address2" type="text" class="form-control">
+						<label class="control-label" for="country">* Locality</label>
                         <div class="row">
                             <div class="col-md-5">
-                                <select name="country">
+                                <select id="country" class="form-control" name="country">
                                     <option>United States</option>
                                 </select>
                             </div>
                             <div class="col-md-2">
-                                <select name="state">
+                                <select id="state" class="form-control" name="state">
                                     <option>FL</option>
                                 </select>
                             </div>
                             <div class="col-md-5">
-                                <input type="text" name="zip">
+                                <input id="zip" class="form-control" type="text" name="zip">
                             </div>
                         </div>
+						<label for="useshipping">Same as shipping address</label>
+                        <input id="useshipping" type="checkbox" name="useshipping">
                     </div>
-                    <label for="acceptterms">I accept the terms and conditions</label>
-                    <input id="acceptterms" type="checkbox" name="acceptterms">
+
 				</div>
             </div>
         </div>
