@@ -13,6 +13,24 @@
 		return $orders;	
 	}
 
+	function toggle_user($id, $action, $type) {
+		$status = false;
+		
+		if ($action == "update") {
+			$status = safe_query("UPDATE users SET user_type = '$type' WHERE id = '$id'");
+		} else if ($action == "delete") {
+			$status = safe_query("DELETE FROM users WHERE id = '$id'");
+		} else {
+			$status = false;
+		}
+
+		if ($status) {
+			return header("Location: admin.php?alert=success&view=users");
+		} else {
+			return header("Location: admin.php?alert=fail&view=users");
+		}
+	}
+
 	
 	function toggle_product($id, $action) {
 		$status = false;
