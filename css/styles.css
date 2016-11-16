@@ -120,18 +120,9 @@ a {
 }
 
 footer {
-	margin-top: 40px;
+	margin-top: 120px;
 	background-color: #333;
 	color: #f6f6f6;
-}
-
-/* Form Markup */
-#login-form{
-	/* background-color: gray;*/
-	padding: 3%;
-	width: 80%;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 label{
@@ -310,7 +301,7 @@ ul{
   margin-right: 10px; }
   .size:first-of-type {
     margin-left: 40px; }
-	
+
 .color {
   display: inline-block;
   vertical-align: middle;
@@ -329,7 +320,7 @@ ul{
 .add-to-cart{
 	font-weight: bold;
 }
-	
+
 .like {
   background: #ff9f1a;
   padding: 1.2em 1.5em;
@@ -350,7 +341,7 @@ ul{
     font-family: fontawesome;
     content: "\f00d";
     color: #fff; }
-	
+
 .tooltip-inner {
   padding: 1.3em; }
 
@@ -609,6 +600,7 @@ footer .social li:hover {
 
 #add-product-btn {
 	margin-top: 25px;
+	margin-right: 30px;
 }
 
 .alert {
@@ -617,4 +609,8 @@ footer .social li:hover {
 
 .card-text{
 	font-size: 18px;
+}
+
+.tab-content .form-control {
+	margin: 15px 0;
 }

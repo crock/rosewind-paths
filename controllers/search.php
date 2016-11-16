@@ -4,12 +4,12 @@
     $RESULT_END = RESULT_NUM;
     $RESULT_COUNT = 0;
     $SORT_MODES = array(
-        'default'       => 'Default',
-        'price-desc'    => 'Price (high to low)',
-        'price-asc'     => 'Price (low to high)',
-        'avg-rating'    => 'Average rating'
+        'default'           => 'Default',
+        'price-desc'        => 'Price (high to low)',
+        'price-asc'         => 'Price (low to high)',
+        'avg_rating-desc'   => 'Average rating'
     );
-    
+
     function get_user_results($page) {
         $query = "SELECT SQL_CALC_FOUND_ROWS * FROM users";
 
@@ -22,7 +22,7 @@
 
         $results = array(
             'users' => safe_query($query, true),
-            'pagination' => result_pagination($page),
+            'pagination' => result_pagination($page)
         );
 
         if ($results['users'] === false) {
@@ -59,6 +59,8 @@
 
         if (!empty($wheres)) {
             $query .= " " . implode(" OR ", $wheres);
+
+            $query .= " AND";
         }
 
         if (!empty($ands)) {
@@ -108,10 +110,6 @@
 
                 $RESULT_START = ($current_page - 1) * RESULT_NUM + 1;
             }
-            
-            if (isset($_GET['view'])) {
-	            unset($_GET['view']);
-	        }
 
             $RESULT_END = min($RESULT_START + RESULT_NUM - 1, $RESULT_COUNT);
             $page_url = basename($page) . "?" . http_build_query($_GET);
@@ -127,6 +125,8 @@
             if ($current_page < $result_pages) {
                 $pagination[] = '<li title="Next page"><a href="' . $page_url . '&page=' . ($current_page + 1) . '">></a></li>';
             }
+        } else {
+            $RESULT_END = min($RESULT_END, $RESULT_COUNT);
         }
 
         return $pagination;

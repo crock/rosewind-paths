@@ -12,6 +12,9 @@
 		<?php include("models/header.php"); ?>
 
 		<div class="container">
+			<? if (isset($_GET['atype']) && isset($_GET['alert'])) { ?>
+				<div class="alert <?php echo ($_GET['atype'] == 'success') ? 'alert-success' : 'alert-danger'; ?>" role="alert"><?php echo urldecode($_GET['alert']); ?></div>
+			<?php } ?>
 
 			<div id="feat-slider" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->
@@ -26,7 +29,7 @@
 				<div class="carousel-inner" role="listbox">
 				<?php foreach (get_products("WHERE status > '1' ORDER BY RAND() LIMIT " . FEATURE_NUM) as $product) { ?>
 					<div class="item">
-						<a href="product.php?view=<?php echo $product['product_id']; ?>">
+						<a href="product.php?product=<?php echo $product['product_id']; ?>">
 							<img class="img-responsive" src="<?php echo $product['img']; ?>" alt="<?php echo $product['product_name']; ?>">
 							<div class="carousel-caption">
 								<h3><?php echo $product['product_name']; ?><span class="label label-success">$<?php echo $product['price']; ?></span></h3>
