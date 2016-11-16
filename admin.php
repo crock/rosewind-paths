@@ -38,7 +38,7 @@
 						        include("models/acp/acp-catalog.php");
 						        break;
 						    case "users":
-						        include("models/acp/acp-customers.php");
+						        include("models/acp/acp-users.php");
 						        break;
 						}
 					} else {
