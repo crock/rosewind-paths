@@ -12,7 +12,7 @@
 		<?php include("models/header.php"); ?>
 
 		<div class="container">
-			<? if (isset($_GET['atype']) && isset($_GET['alert'])) { ?>
+			<?php if (isset($_GET['atype']) && isset($_GET['alert'])) { ?>
 				<div class="alert <?php echo ($_GET['atype'] == 'success') ? 'alert-success' : 'alert-danger'; ?>" role="alert"><?php echo urldecode($_GET['alert']); ?></div>
 			<?php } ?>
 
@@ -52,7 +52,7 @@
 					<label for="sel1">Search by category:</label>
 					<select class="form-control cat-select" id="sel1">
 						<?php foreach ($all_categories as $category) { ?>
-							<option value="<?php echo $category['category_slug']; ?>"><?php echo $category['category_name']; ?></option>
+							<option label="" value="<?php echo $category['category_slug']; ?>"><?php echo $category['category_name']; ?></option>
 						<?php } ?>
 					</select>
 				</div>
