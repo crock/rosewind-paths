@@ -167,11 +167,11 @@ ul{
 .gallery{
 	margin-left: auto;
 	margin-right: auto;
-	width: 100%;
 }
 
 .gallery_img{
 	margin-bottom: 10px;
+	max-width: 100%;
 }
 
 .contact{
