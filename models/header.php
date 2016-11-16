@@ -31,12 +31,22 @@
                             <div class="input-group-btn">
                                 <?php if (sizeof($parent_categories) > 1) { ?>
                                 <div class="btn btn-default">
-                                    <select class="form-control" name="type" style="width:10em">
+                                    <?php if (PAGE_TITLE != 'Admin' || (PAGE_TITLE == 'Admin' && isset($_GET['view']))) { ?>
+                                    <?php if (PAGE_TITLE != 'Admin' || $_GET['view'] == 'catalog') { ?>
+                                    <select class="form-control" name="type" style="width: 10em;">
                                         <option value="all">All categories</option>
                                         <?php foreach ($parent_categories as $category) { ?>
                                         <option value="<?php echo $category['category_slug']; ?>"><?php echo $category['category_name']; ?></option>
                                         <?php } ?>
                                     </select>
+                                    <?php } else if ($_GET['view'] == 'customers') { ?>
+                                    <select class="form-control" name="type" style="width: 10em;">
+                                        <option value="member">Members</option>
+                                        <option value="privi">Privileged Users</option>
+                                        <option value="admin">Administrators</option>
+                                    </select>
+                                    <?php } ?>
+                                    <?php } ?>
                                 </div>
                                 <?php } ?>
                                 <button type="submit" class="btn btn-default btn-search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
@@ -46,6 +56,7 @@
                 </div>
                 <div class="col-sm-4 col-md-6">
                     <ul class="nav navbar-nav navbar-right">
+                        <?php if (PAGE_TITLE != 'Admin') { ?>
                         <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) { ?>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome, <?php echo $_SESSION['username']; ?> <span class="caret"></span></a>
@@ -60,6 +71,11 @@
             			<li><a href="signin.php">Sign In</a></li>
                         <?php } ?>
                         <li<?php echo (PAGE_TITLE == 'Cart') ? ' class="active"' : ''; ?>><a href="cart.php">Cart <?php echo (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) ? '<span class="badge progress-bar-danger">' . array_sum($_SESSION['cart']) . '</span>' : ''; ?></a></li>
+                        <?php } else { ?>
+                        <li><a href="admin.php?view=orders">Recent Orders</a></li>
+            			<li><a href="admin.php?view=catalog">Catalog</a></li>
+            			<li><a href="admin.php?view=customers">Customers</a></li>
+                        <?php } ?>
             		</ul>
                 </div>
             </div>

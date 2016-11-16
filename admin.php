@@ -8,10 +8,10 @@
 	<?php echo rwp_head('Admin'); ?>
 
 	<body>
-		<?php include("models/acp/acp-header.php"); ?>
+		<?php include("models/header.php"); ?>
 
 		<div class="container">
-			<?		
+			<?
 				if (isset($_GET['view'])) {
 					switch($_GET['view']) {
 						case "orders":

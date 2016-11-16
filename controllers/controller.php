@@ -28,7 +28,9 @@
     }
 
     function single_product($product_id) {
-        return get_products("WHERE product_id = '{$product_id}'")[0];
+        $products = get_products("WHERE product_id = '{$product_id}'");
+
+        return $products[0];
     }
 
     function get_orders($customer_id) {

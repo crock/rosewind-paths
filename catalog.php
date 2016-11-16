@@ -32,14 +32,14 @@
 								<label for="pricefrom" class="control-label">Min Price</label>
 								<div class="input-group">
 									<div class="input-group-addon">$</div>
-									<input type="text" class="form-control" name="minpr"<?php if ($_GET['minpr'] && $_GET['minpr']) { echo ' value="' . $_GET['minpr'] . '"'; } ?>>
+									<input type="text" class="form-control" name="minpr"<?php if (isset($_GET['minpr']) && $_GET['minpr']) { echo ' value="' . $_GET['minpr'] . '"'; } ?>>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="priceto" class="control-label">Max Price</label>
 								<div class="input-group">
 									<div class="input-group-addon">$</div>
-									<input type="text" class="form-control" name="maxpr"<?php if ($_GET['maxpr'] && $_GET['maxpr']) { echo ' value="' . $_GET['maxpr'] . '"'; } ?>>
+									<input type="text" class="form-control" name="maxpr"<?php if (isset($_GET['maxpr']) && $_GET['maxpr']) { echo ' value="' . $_GET['maxpr'] . '"'; } ?>>
 								</div>
 							</div>
 							<button type="submit" class="btn btn-danger">Apply filters</button>
@@ -69,14 +69,14 @@
 									<p><?php echo $product['description']; ?></p>
 				                </div>
 				                <div class="ratings">
-									
+
 										<!-- Rating System -->
 										<?php
 										$product_id = $product['product_id'];
 										$rates = "SELECT AVG(rating) FROM reviews WHERE product_id = $product_id";
 										$average = safe_query($rates);
 										$val = ROUND($average[0]['AVG(rating)']);
-										
+
 										if ($val == 1){
 											echo '
 												<span class="fa fa-star checked"></span>
@@ -123,7 +123,7 @@
 												<span class="fa fa-star"></span>
 												<span class="fa fa-star"></span>
 												<span class="fa fa-star"></span>
-												<span class="fa fa-star"></span>											
+												<span class="fa fa-star"></span>
 										';}
 									?>
 									</p>
