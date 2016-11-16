@@ -69,14 +69,65 @@
 									<p><?php echo $product['description']; ?></p>
 				                </div>
 				                <div class="ratings">
-									<?php if ($product['review_count'] > 0) { ?>
-									<p class="pull-left">
-										<?php for ($i = 0; $i < 5; $i++) { ?>
-										<span class="glyphicon glyphicon-star<?php echo (($product['avg_rating'] < $i) ? '-empty' : ''); ?>"></span>
-										<?php } ?>
+									
+										<!-- Rating System -->
+										<?php
+										$product_id = $product['product_id'];
+										$rates = "SELECT AVG(rating) FROM reviews WHERE product_id = $product_id";
+										$average = safe_query($rates);
+										$val = ROUND($average[0]['AVG(rating)']);
+										
+										if ($val == 1){
+											echo '
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+										';}
+										else if ($val == 2){
+											echo '
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+										';}
+										else if ($val == 3){
+											echo '
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+										';}
+										else if ($val == 4){
+											echo '
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star"></span>
+										';}
+										else if ($val == 5){
+											echo '
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+										';}
+										else{
+											echo '
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>											
+										';}
+									?>
 									</p>
-									<?php } ?>
-									<a class="pull-right" href="product.php?view=<?php echo $product['product_id']; ?>#reviews"><?php echo $product['review_count']; ?> reviews</a>
+									<p class="pull-right"> <?php echo $product['review_count']; ?> reviews</p>
 				                </div>
 							</div>
 			        	</div>

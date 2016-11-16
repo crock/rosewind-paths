@@ -51,5 +51,8 @@ $(function(){
 
   $('.starrr').on('starrr:change', function(e, value){
     ratingsField.val(value);
+	
+	var stars = document.getElementById("star_number");
+	var star_values = stars.setAttribute("value", 'value');
   });
 });
