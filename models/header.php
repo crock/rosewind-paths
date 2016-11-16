@@ -56,7 +56,6 @@
             </div>
             <div class="col-sm-4 col-md-6">
                 <ul class="nav navbar-nav navbar-right">
-                    <?php if (PAGE_TITLE != 'Admin') { ?>
                     <?php if (isset($_SESSION['user_level']) && $_SESSION['user_level'] > 0) { ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome, <?php echo $_SESSION['username']; ?> <span class="caret"></span></a>
@@ -74,6 +73,7 @@
                     <?php } else { ?>
         			<li><a href="signin.php">Sign In</a></li>
                     <?php } ?>
+                    <?php if (PAGE_TITLE != 'Admin') { ?>
                     <li<?php echo (PAGE_TITLE == 'Cart') ? ' class="active"' : ''; ?>><a href="cart.php">Cart <?php echo (isset($_SESSION['cart_contents']) && is_array($_SESSION['cart_contents']) && !empty($_SESSION['cart_contents'])) ? '<span class="badge progress-bar-danger">' . array_sum($_SESSION['cart_contents']) . '</span>' : ''; ?></a></li>
                     <?php } else { ?>
                     <li><a href="admin.php?view=orders">Recent Orders</a></li>
