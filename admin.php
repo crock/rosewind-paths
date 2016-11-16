@@ -46,8 +46,6 @@
 					} else {
 						echo "No view matching query";
 					}
-				} else {
-					include("models/acp/acp-login.php");
 				}
 			?>
 		</div><!-- end .container -->
