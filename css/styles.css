@@ -170,6 +170,10 @@ ul{
 	width: 100%;
 }
 
+.gallery_img{
+	margin-bottom: 10px;
+}
+
 .contact{
 	width: 100%;
 }
@@ -291,7 +295,6 @@ ul{
           flex-grow: 1; }
 
 .product-title, .price, .sizes, .colors {
-  text-transform: UPPERCASE;
   font-weight: bold; }
 
 .checked, .price span {
@@ -318,7 +321,16 @@ ul{
   .color:first-of-type {
     margin-left: 20px; }
 
-.add-to-cart, .like {
+#price_num{
+	font-size: 30px;
+	margin-top: 5px;
+}
+
+.add-to-cart{
+	font-weight: bold;
+}
+	
+.like {
   background: #ff9f1a;
   padding: 1.2em 1.5em;
   border: none;
@@ -327,7 +339,7 @@ ul{
   color: #fff;
   -webkit-transition: background .3s ease;
           transition: background .3s ease; }
-  .add-to-cart:hover, .like:hover {
+ .like:hover {
     background: #b36800;
     color: #fff; }
 
@@ -504,7 +516,7 @@ ul{
 }
 .footer h3 {
 	border-bottom: 1px solid #BAC1C8;
-	color: #54697E;
+	color: #687d94;
 	font-size: 18px;
 	font-weight: 600;
 	line-height: 27px;
@@ -517,7 +529,7 @@ ul{
 	margin-left: 0;
 	padding-left: 0;
 	margin-top: 15px;
-	color: #7F8C8D;
+	color: #687d94;
 }
 .footer ul li a {
 	padding: 0 0 5px 0;
@@ -544,7 +556,10 @@ ul{
 	cursor: pointer;
 }
 .social li:hover {
-	background: #2c3e50;
+	background: #aecbe9;
+}
+footer .social li:hover {
+	background: #54697e;
 }
 .social li a i {
 	font-size: 2em;
