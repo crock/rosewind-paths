@@ -33,7 +33,7 @@
 						<li>
 							<h3>Kara Gwin</h3>
 							<p class="profile_text">
-								Back-End Development
+								Kara is a student at UCF and one of the back-end developers.
 							</p>
 						</li>
 					</ul>
@@ -42,7 +42,7 @@
 						<li>
 							<h3>Tiffany Brown</h3>
 							<p class="profile_text">
-								Content
+								Tiffany is a student at UCF and the content developer.
 							</p>
 						</li>
 					</ul>
@@ -53,7 +53,7 @@
 						<li>
 							<h3>Nani Jones</h3>
 							<p class="profile_text">
-								Front-End Development
+								Nani is a student at UCF and one of the front-end developers.
 							</p>
 						</li>
 					</ul>
@@ -62,7 +62,7 @@
 						<li>
 							<h3>Sean McMenamin</h3>
 							<p class="profile_text">
-								Front-End Development
+								Sean is a student at UCF and one of the front-end developers.
 							</p>
 						</li>
 					</ul>
@@ -75,7 +75,7 @@
 						<li>
 							<h3>Alexander Crocker</h3>
 							<p class="profile_text">
-								Back-End Development
+								Alex is a student at UCF and one of the back-end developers.
 							</p>
 						</li>
 					</ul>
