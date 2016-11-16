@@ -61,7 +61,7 @@
                             <?php if ($_SESSION['user_level'] > 1) { ?>
                             <li role="separator" class="divider"></li>
                             <?php if (PAGE_TITLE == 'Admin') { ?>
-                            <li><a href="home.php"></a></li>
+                            <li><a href="home.php">Customer View</a></li>
                             <?php } else { ?>
                             <li><a href="admin.php?view=catalog">Administration view</a></li>
                             <?php } ?>

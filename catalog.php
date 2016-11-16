@@ -130,7 +130,7 @@
 										';}
 									?>
 									</p>
-									<a href="product.php?view=<?php echo $product_id?>#reviews"><p class="pull-right"><?php echo $product['review_count']; ?> reviews</p></a>
+									<a href="product.php?product=<?php echo $product_id?>#reviews"><p class="pull-right"><?php echo $product['review_count']; ?> reviews</p></a>
 				                </div>
 							</div>
 			        	</div>
