@@ -54,43 +54,33 @@
 					</select>
 				</div>
 			</div>
-
-			<div class="row">
-				<div class="col-md-6 card">
-					<div class="card-block">
-						<h4 class="card-title">Packing Lists</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero quisquam consequatur ea magnam incidunt vel, omnis, ipsa atque illo aliquam quis, at in praesentium excepturi enim maxime voluptatem nisi reiciendis ipsum doloremque distinctio. Reprehenderit id, repellat cumque nihil veritatis vel! Laborum, totam unde, sint minima inventore repellat pariatur perferendis dolores!</p>
-						<a href="#" class="btn btn-primary list_button">More Lists</a>
-					</div>
-					<?php if ($lists = get_products("WHERE category = 'food' LIMIT 3")) { ?>
-					<div class="row">
-						<div class="col-md-4">
-							<a href="catalog.php?type=list&item=<?php echo $lists[0]['list_id']; ?>">
-								<img class="img-anim-up img-thumb" src="<?php echo $lists[0]['img']; ?>" alt="<?php echo $lists[0]['name']; ?>">
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="catalog.php?type=list&item=<?php echo $lists[1]['list_id']; ?>">
-								<img class="img-anim-up img-thumb" src="<?php echo $lists[1]['img']; ?>" alt="<?php echo $lists[1]['name']; ?>">
-							</a>
-						</div>
-					</div>
-					<?php } ?>
+			<br/>		
+			<div class="row home-row">
+				<div class="col-md-4 card-block home-card">
+					<!-- Placeholder for destinations -->
+					<img class="gallery_img" src="img/gibraltar-1351696_640.jpg" alt="home_gallery1" width="auto" height="213"/>
+					<h4 class="card-title">Discover Affordable Destinations</h4>
+					<p class="card-text">Would you believe that there might be an area around you that's perfect for outdoor travel and trekking that you might not know about? We'll be happy to let you know where they are and how to get there.</p>
 				</div>
-				<div class="col-md-6 card">
-					<?php if ($lists) { ?>
-					<a href="catalog.php?type=list&item=<?php echo $lists[2]['list_id']; ?>">
-						<img class="img-full" src="<?php echo $lists[2]['img']; ?>" alt="<?php echo $lists[2]['name']; ?>">
-					</a>
-					<?php } ?>
+				<div class="col-md-4 card-block home-card">
+					<!-- Placeholder for destinations -->
+					<img class="gallery_img" src="img/fall-1432252_640.jpg" alt="home_gallery2" width="auto" height="213"/>
+					<h4 class="card-title">From Casual to Challenging</h4>
+					<p class="card-text">We have different branches of excursions, from enjoying a stroll through a local park or backpacking through the mountains on a long excursion. You'll be able to see adventures of all levels near you, and choose what's best for your lifestyle.</p>
+				</div>
+				<div class="col-md-4 card-block home-card">
+					<!-- Placeholder for destinations -->
+					<img class="gallery_img" src="img/new-zealand-1805932_640.jpg" alt="home_gallery2" width="auto" height="213"/>
+					<h4 class="card-title">Never Go Unprepared</h4>
+					<p class="card-text">Want to travel to the ends of the earth but not sure just what to take? We'll make sure you get there with everything you need for the activities and adventure that you'll have on your travels. From food to full equipment, our catalog has an array of several products and provisions.</p>
 				</div>
 			</div>
-
+			<br/>
 			<div class="row">
 				<div class="col-md-2">
 				</div>
 				<div class="col-md-10">
-					<img class="img-anim-left img-full" src="" alt="img_left">
+					<!-- <img class="img-anim-left img-full" src="" alt="img_left">-->
 				</div>
 			</div>
 		</div><!-- end .container -->

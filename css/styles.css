@@ -614,3 +614,7 @@ footer .social li:hover {
 .alert {
 	margin-top: 25px;
 }
+
+.card-text{
+	font-size: 18px;
+}
