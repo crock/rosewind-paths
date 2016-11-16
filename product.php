@@ -2,20 +2,20 @@
     define('PAGE_TITLE', 'Product');
     require('controllers/controller.php');
 
-    if (!isset($_GET['view'])) {
+    if (!isset($_GET['product'])) {
         header("Location: home.php");
     }
 
-    $product = single_product($_GET['view']);
+    $product = single_product($_GET['product']);
 	//var_dump($product);
-	
+
 	$reviews = get_reviews($product['product_id'],10);
 	//var_dump($review);
-	
+
 	$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-	
+
 	$username = $_SESSION['username'];
-	
+
 	$customer = safe_query("SELECT id FROM users WHERE username = '{$username}'");
 	//var_dump("SELECT id FROM users WHERE username = '{$username}'");
 	//var_dump($customer[0]['id']);
@@ -28,8 +28,8 @@
 	<body>
         <?php include_once("controllers/tracking.php") ?>
 		<?php include("models/header.php"); ?>
-		
-		
+
+
 		<?php
 			if (isset($_GET['alert'])) {
 				switch($_GET['alert']) {
@@ -39,29 +39,29 @@
 					case "fail":
 						echo "<div class='alert alert-danger role='alert'>Error</div>";
 						break;
-						
+
 				}
 			}
 		?>
-		
+
 		<div class="container">
 			<div class="card2">
 				<div class="container-fluid">
 					<div class="wrapper row">
 						<div class="preview col-md-6">
-							
+
 							<div class="preview-pic tab-content">
 							  <div class="tab-pane active" id="pic-1">
-								<?php									
+								<?php
 									echo '<img src="' . $product['img'] . '" ;/>'
 								?>
 							  </div>
 							</div>
-						
+
 						<?php
 							$product_id = $product['product_id'];
 						?>
-							
+
 						</div>
 						<div class="details col-md-6">
 							<h3 class="product-title">
@@ -74,14 +74,14 @@
 									<!-- Retrive review value from tables via product_id and reflect rating -->
 									<?php
 										//echo $product['product_id'];
-										
+
 										$rates = "SELECT AVG(rating) FROM reviews WHERE product_id = $product_id";
 										$average = safe_query($rates);
 										$val = ROUND($average[0]['AVG(rating)']);
 										//echo "Average: " . $val;
 										//echo "Average: " . ROUND($average[0]['AVG(rating)']);
 										//echo $review['rating'];*/
-										
+
 										if ($val == 1){
 											echo '
 												<span class="fa fa-star checked"></span>
@@ -128,7 +128,7 @@
 												<span class="fa fa-star"></span>
 												<span class="fa fa-star"></span>
 												<span class="fa fa-star"></span>
-												<span class="fa fa-star"></span>											
+												<span class="fa fa-star"></span>
 										';}
 									?>
 									<!--
@@ -170,13 +170,13 @@
 						<div class="text-right">
 							<a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>
 						</div>
-					
+
 						<div class="row" id="post-review-box" style="display:none;">
 							<div class="col-md-12">
 								<form action="product.php?view=<?php echo $product_id ?>" method="post">
-									<input id="ratings-hidden" name="rating" type="hidden"> 
+									<input id="ratings-hidden" name="rating" type="hidden">
 									<textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
-					
+
 									<div class="text-right">
 										<input type="hidden" id="star_number" value=""/>
 										<div class="stars starrr" data-rating="0"></div>
@@ -185,20 +185,20 @@
 										<button class="btn btn-success btn-lg" id="submit" type="submit" name="submit">Save</button>
 									</div>
 								</form>
-								
+
 							<!-- Insert review into review database -->
-							<?php								
+							<?php
 								if (isset($_POST["rating"])){
 									$new_review = $_POST['comment'];
 									$star_value = $_POST['rating'];
 									$date_created = date('Y-m-d H:i:s');
-										
+
 									$sql = "INSERT INTO reviews (customer_id, product_id, comment, rating, date_created) VALUES ('{$customer[0]['id']}', '{$product_id}', '{$new_review}', '{$star_value}', '{$date_created}')";
 									$result = safe_query($sql);
-									
+
 									$sql2 = "UPDATE products SET review_count = review_count + 1 WHERE product_id = '{$product_id}'";
 									$result2 = safe_query($sql2);
-								}									
+								}
 							?>
 							</div>
 						</div>

@@ -120,7 +120,7 @@ a {
 }
 
 footer {
-	margin-top: 40px;
+	margin-top: 120px;
 	background-color: #333;
 	color: #f6f6f6;
 }
@@ -307,7 +307,7 @@ ul{
   margin-right: 10px; }
   .size:first-of-type {
     margin-left: 40px; }
-	
+
 .color {
   display: inline-block;
   vertical-align: middle;
@@ -338,7 +338,7 @@ ul{
     font-family: fontawesome;
     content: "\f00d";
     color: #fff; }
-	
+
 .tooltip-inner {
   padding: 1.3em; }
 
@@ -577,4 +577,8 @@ ul{
 
 .alert {
 	margin-top: 25px;
+}
+
+.tab-content .form-control {
+	margin: 15px 0;
 }

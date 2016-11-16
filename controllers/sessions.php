@@ -114,7 +114,7 @@
 
         if (!empty($register_errors)) {
             header("Location: register.php?atype=danger&alert=" . urlencode("There were some errors registering your account. Please try again.") . "&" . http_build_query($register_errors));
-        } else if (!safe_query("INSERT INTO users (username, email, password, date_created) VALUES ('{$username}', '{$email}', '{$password}', '{$date_created}');")) {
+        } else if (!safe_query("INSERT INTO users (user_type, username, email, password, date_created) VALUES ('member', '{$username}', '{$email}', '{$password}', '{$date_created}');")) {
             header("Location: register.php?atype=danger&alert=" . urlencode("A database error occured. Please try again."));
         } else {
             header("Location: signin.php?atype=success&alert=" . urlencode("You are now registered! Please sign in to your new profile."));
