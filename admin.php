@@ -15,7 +15,7 @@
 		header("Location: admin.php?view=catalog");
 	}
 
-	$user_results = get_user_results('admin.php?view=customers');
+	$user_results = get_user_results('admin.php?view=users');
 ?>
 
 <!DOCTYPE html>
