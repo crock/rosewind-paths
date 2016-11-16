@@ -7,6 +7,7 @@
 	// Global Variables
 	$orders = array();
 	
+	var_dump($_POST);
 
 	function get_recent_orders() {
 		$orders = get_orders("WHERE order_placed >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY AND date < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY");
@@ -18,6 +19,9 @@
 		$x = explode("-",$type);
 		$type = $x[0];
 		$id = $x[1];
+		var_dump($type);
+		var_dump($id);
+		die();
 		
 		if ($action == "update") {
 			$status = safe_query("UPDATE users SET user_type = '$type' WHERE id = '$id'");

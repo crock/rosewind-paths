@@ -29,8 +29,8 @@
 				<td><? echo $user["username"]; ?></td>
 				<td><? echo $user["email"]; ?></td>
 				<td>
-					<a form="change_type" type="submit" name="update" class="btn btn-primary">Update</a>
-					<a form="change_type" type="submit" name="delete" class="btn btn-danger">Delete</a>
+					<a form="change_type" type="submit" name="update[]" class="btn btn-primary">Update</a>
+					<a form="change_type" type="submit" name="delete[]" class="btn btn-danger">Delete</a>
 				</td>
 			</tr>
 		<? } ?>
