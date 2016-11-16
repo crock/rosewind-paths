@@ -159,7 +159,19 @@ ul{
 }
 
 .team{
-	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+
+.gallery{
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+
+.contact{
+	width: 100%;
 }
 
 .address{
@@ -197,13 +209,6 @@ ul{
 	width: 30%;
 
 	padding: 2%;
-
-	/*
-	border-color: gray;
-	border-width: 3px;
-	border-style: solid;
-	border-radius: 15px;
-	*/
 }
 
 .card-title{
