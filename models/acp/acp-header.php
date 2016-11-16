@@ -28,7 +28,7 @@
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="admin.php?view=orders">Recent Orders</a></li>
 			<li><a href="admin.php?view=catalog">Catalog</a></li>
-			<li><a href="admin.php?view=customers">Customers</a></li>
+			<li><a href="admin.php?view=users">Users</a></li>
 		</ul>
 		<?php } ?>
     </div>

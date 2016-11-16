@@ -33,12 +33,12 @@
         unset($_GET['remove']);
     }
 
-    function create_session($username = 'guest') {
+    function create_session($username = 'guest', $user_type = 'guest') {
         global $LAST_INSERT_ID;
 
         $session_create_date = date('Y-m-d H:i:s');
 
-        safe_query("INSERT INTO session_log (username, date_created) VALUES('{$username}', '{$session_create_date}')");
+        safe_query("INSERT INTO session_log (user_type, username, date_created) VALUES('{$user_type}', '{$username}', '{$session_create_date}')");
 
         $_SESSION['session_id'] = $LAST_INSERT_ID;
         $_SESSION['username'] = 'guest';

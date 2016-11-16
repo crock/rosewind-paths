@@ -1,7 +1,3 @@
-<? if (isset($_GET['alert'])) { ?>
-	<div class="alert alert-danger" role="alert"><?php echo urldecode($_GET['alert']); ?></div>
-<? } ?>
-
 <form id="acp-login-form" method="post" action="admin.php">
 	<div class="form-group">
 		<label for="username">Username</label>

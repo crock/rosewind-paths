@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	
 	// Get required files
 	require('controller.php');
@@ -8,28 +7,25 @@
 	// Global Variables
 	$orders = array();
 	
-	function acp_login() {
+	function acp_login($data) {
+		$username = $data['username'];
+		$password = sha1($data['password']);
 		
+		$user = safe_query("SELECT * FROM users WHERE username = '$username'");
+		
+		if ($user[0]['user_type'] === 'privi' || $user[0]['user_type'] === 'admin' && $user[0]['password'] == $password) {
+			$_SESSION['logged_in'] = true;
+			return header("Location: admin.php?alert=success&view=catalog");
+		} else {
+			return header("Location: admin.php?alert=fail");
+		}
 	}
-    	
+	
 	function get_recent_orders() {
 		$orders = get_orders("WHERE order_placed >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY AND date < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY");
 		
 	}
-	
-	function get_catalog() {
-		
-	}
-	
-	function get_customers() {
-		$status = false;
-		
-		
-	}
-	
-	function order_product($id) {
-		
-	} 
+
 	
 	function toggle_product($id, $action) {
 		$status = false;
@@ -38,6 +34,8 @@
 			$status = safe_query("UPDATE products SET status = '0' WHERE product_id='$id'");
 		} else if ($action == "stock") {
 			$status = safe_query("UPDATE products SET status = '1' WHERE product_id='$id'");
+		} else if ($action == "feature") {
+			$status = safe_query("UPDATE products SET status = '2' WHERE product_id='$id'");
 		} else {
 			$status = false;
 		}
@@ -74,12 +72,12 @@
 		add_product($_POST);
 	}
 	
-	if (isset($_GET['action']) && $_GET['action'] == "order") {
-		order_product($_GET['id']);
-	}
-	
 	if (isset($_GET['action'])) {
 		toggle_product($_GET['id'], $_GET['action']);
+	}
+	
+	if (isset($_POST['acp-login'])) {
+		acp_login($_POST);
 	}
 	
 	
