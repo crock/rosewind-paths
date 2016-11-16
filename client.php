@@ -1,8 +1,12 @@
 <?php
 	define('PAGE_TITLE', 'Client');
 	require('controllers/controller.php');
-	
-	$customer = safe_query("SELECT id FROM users WHERE username = '{$username}'");
+
+	if (!isset($_SESSION['username']) || $_SESSION['username'] == 'guest') {
+		header("Location: signin.php?atype=danger&alert=" . urlencode("Please sign in to access this page."));
+	}
+
+	$customer = safe_query("SELECT * FROM users WHERE username = '{$_SESSION['username']}'");
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +18,7 @@
 		<?php include("models/header.php"); ?>
 
 		<div class="container">
-			
+
 			<?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) { ?>
 				<h1> <?php echo $_SESSION['username']; ?> </h1>
 			<?php } else { ?>

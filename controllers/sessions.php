@@ -37,7 +37,6 @@
         if (!isset($_SESSION['user_level']) || $_SESSION['user_level'] > 0) {
             create_session();
         }
-        var_dump($username);
 
         $password = sha1($password);
 

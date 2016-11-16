@@ -125,15 +125,6 @@ footer {
 	color: #f6f6f6;
 }
 
-/* Form Markup */
-#login-form{
-	/* background-color: gray;*/
-	padding: 3%;
-	width: 80%;
-	margin-left: auto;
-	margin-right: auto;
-}
-
 label{
 	font-size: 1.2em;
 }
@@ -329,7 +320,7 @@ ul{
 .add-to-cart{
 	font-weight: bold;
 }
-	
+
 .like {
   background: #ff9f1a;
   padding: 1.2em 1.5em;

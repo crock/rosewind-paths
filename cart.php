@@ -56,13 +56,13 @@
 					</table>
 					<div class="row">
 						<div class="col-xs-6 col-sm-7 col-md-8 text-right">
-							<h4>Subtotal:</h3>
-							<h4>Shipping + Tax:</h3>
+							<h4>Subtotal:</h4>
+							<h4>Shipping + Tax:</h4>
 							<h3>Total:</h3>
 						</div>
 						<div class="col-xs-4 col-sm-3 col-md-2 text-right">
-							<h4>$<?php echo $SUBTOTAL; ?></h3>
-							<h4>$<?php echo $TOTAL_TAX; ?></h3>
+							<h4>$<?php echo $SUBTOTAL; ?></h4>
+							<h4>$<?php echo $TOTAL_TAX; ?></h4>
 							<h3><b>$<?php echo $TOTAL_PRICE; ?></b></h3>
 						</div>
 						<div class="col-xs-2 col-md-2">
@@ -72,11 +72,11 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-6 col-sm-8 col-lg-9 text-right">
-					<a href="catalog.php" class="btn btn-default btn-lg" role="button" aria-disabled="true"><span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping</a>
+					<a href="catalog.php" class="btn btn-default btn-lg" role="button"><span class="glyphicon glyphicon-th-list"></span> Back to Catalog </a>
 				</div>
 				<div class="col-xs-6 col-sm-4 col-lg-3 text-right">
 					<?php if (isset($_SESSION['cart_contents']) && !empty($_SESSION['cart_contents'])) { ?>
-					<a href="checkout.php" class="btn btn-success btn-lg" role="button" aria-disabled="true">Proceed to Checkout</a>
+					<a href="checkout.php" class="btn btn-success btn-lg" role="button"><span class="glyphicon glyphicon-ok"></span> Proceed to Checkout</a>
 					<?php } ?>
 				</div>
 			</div>

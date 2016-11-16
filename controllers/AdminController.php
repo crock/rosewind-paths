@@ -6,8 +6,6 @@
 
 	// Global Variables
 	$orders = array();
-	
-	var_dump($_POST);
 
 	function get_recent_orders() {
 		$orders = get_orders("WHERE order_placed >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY AND date < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY");
@@ -22,7 +20,7 @@
 		var_dump($type);
 		var_dump($id);
 		die();
-		
+
 		if ($action == "update") {
 			$status = safe_query("UPDATE users SET user_type = '$type' WHERE id = '$id'");
 		} else if ($action == "delete") {
@@ -82,15 +80,15 @@
 	if (isset($_POST['add-product-form'])) {
 		add_product($_POST);
 	}
-	
+
 	if (isset($_GET['action']) && $admin_view == 'catalog') {
 		toggle_product($_GET['id'], $_GET['action']);
 	}
-	
+
 	if (isset($_POST['update'])) {
 		toggle_user($_POST['update'], $_POST['user_type']);
 	}
-	
+
 	if (isset($_POST['delete'])) {
 		toggle_user($_POST['delete'], $_POST['user_type']);
 	}

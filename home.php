@@ -12,6 +12,9 @@
 		<?php include("models/header.php"); ?>
 
 		<div class="container">
+			<? if (isset($_GET['atype']) && isset($_GET['alert'])) { ?>
+				<div class="alert <?php echo ($_GET['atype'] == 'success') ? 'alert-success' : 'alert-danger'; ?>" role="alert"><?php echo urldecode($_GET['alert']); ?></div>
+			<?php } ?>
 
 			<div id="feat-slider" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->

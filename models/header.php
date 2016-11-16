@@ -25,7 +25,7 @@
             <div class="col-sm-8 col-md-5">
                 <form class="form-search" role="search" action="catalog.php">
                     <div class="input-group input-group-lg input-group-full">
-                        <input type="text" name="q" class="form-control" aria-label="Search">
+                        <input type="text" name="q" class="form-control" aria-label="Search"<?php echo (isset($_GET['q'])) ? ' value="' . $_GET['q'] . '"' : ''; ?>>
                         <div class="input-group-btn">
                             <div class="btn btn-default">
                                 <?php if (PAGE_TITLE != 'Admin' || (PAGE_TITLE == 'Admin' && isset($_GET['view']))) { ?>
@@ -50,7 +50,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-sm-4 col-md-6">
+            <div class="col-sm-4 col-md-7">
                 <ul class="nav navbar-nav navbar-right">
                     <?php if (isset($_SESSION['user_level']) && $_SESSION['user_level'] > 0) { ?>
                     <li class="dropdown">
