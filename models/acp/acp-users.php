@@ -14,7 +14,7 @@
 			<tr>
 				<td><? echo $user["id"]; ?></td>
 				<td>
-					<select name="user_type">
+					<select name="user_type" form="change_type">
 						<option value="<? echo $user["user_type"]; ?>" selected="selected"><? echo $user["user_type"]; ?></option>
 						<?
 							$types = array("guest" => "guest","member" => "member","privi" => "privi","admin" => "admin");
@@ -22,18 +22,19 @@
 							unset($types[$x]);
 						?>	
 					<? foreach($types as $key => $value) { ?>
-						<option value="<? echo $value; ?>"><? echo $key; ?></option>
+						<option value="<? echo $value . '-' . $user["id"]; ?>"><? echo $key; ?></option>
 					<? } ?>
 					</select>
 				</td>
 				<td><? echo $user["username"]; ?></td>
 				<td><? echo $user["email"]; ?></td>
 				<td>
-					<a href="admin.php?view=customers&action=update&id=<? echo $user["id"]; ?>" class="btn btn-primary">Update</a>
-					<a href="admin.php?view=customers&action=delete&id=<? echo $user["id"]; ?>" class="btn btn-danger">Delete</a>
+					<a form="change_type" type="submit" name="update" class="btn btn-primary">Update</a>
+					<a form="change_type" type="submit" name="delete" class="btn btn-danger">Delete</a>
 				</td>
 			</tr>
 		<? } ?>
+		<form action="admin.php?view=catalog" method="post" id="change_type"></form>
 	</tbody>
 </table>
 <div class="col-md-12">

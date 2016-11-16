@@ -30,8 +30,8 @@
 
 			<?php
 				if (isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1) {
-					if (isset($_GET['view'])) {
-						switch($_GET['view']) {
+					if (isset($admin_view)) {
+						switch($admin_view) {
 
 							case "orders":
 						        include("models/acp/acp-orders.php");
