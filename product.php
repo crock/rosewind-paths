@@ -177,8 +177,9 @@
 
 							<div class="row" id="post-review-box" style="display:none;">
 								<div class="col-md-12">
-									<form action="product.php?view=<?php echo $product_id ?>" method="post">
+									<form action="product.php">
 										<input id="ratings-hidden" name="rating" type="hidden">
+										<input type="hidden" name="product" value="<?php echo $product_id; ?>">
 										<textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
 
 										<div class="text-right">
@@ -192,16 +193,16 @@
 
 								<!-- Insert review into review database -->
 								<?php
-									if (isset($_POST["rating"])){
-										$new_review = $_POST['comment'];
-										$star_value = $_POST['rating'];
+									if (isset($_GET["rating"])){
+										$new_review = $_GET['comment'];
+										$star_value = $_GET['rating'];
 										$date_created = date('Y-m-d H:i:s');
 
 										$sql = "INSERT INTO reviews (customer_id, product_id, comment, rating, date_created) VALUES ('{$customer[0]['id']}', '{$product_id}', '{$new_review}', '{$star_value}', '{$date_created}')";
-										$result = safe_query($sql);
+										safe_query($sql);
 
 										$sql2 = "UPDATE products SET review_count = review_count + 1 WHERE product_id = '{$product_id}'";
-										$result2 = safe_query($sql2);
+										safe_query($sql2);
 									}
 								?>
 								</div>

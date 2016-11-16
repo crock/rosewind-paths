@@ -614,3 +614,6 @@ footer .social li:hover {
 .tab-content .form-control {
 	margin: 15px 0;
 }
+.gallery_img{
+	max-width: 100%;
+}
