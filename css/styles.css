@@ -614,3 +614,8 @@ footer .social li:hover {
 .card-text{
 	font-size: 18px;
 }
+
+.panel-home img {
+	text-align: center;
+	margin: auto;
+}
