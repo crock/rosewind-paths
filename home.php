@@ -52,7 +52,7 @@
 					<label for="sel1">Search by category:</label>
 					<select class="form-control cat-select" id="sel1">
 						<?php foreach ($all_categories as $category) { ?>
-							<option value="<?php echo $category['category_slug']; ?>"><?php echo $category['category_name']; ?></option>
+							<option label="" value="<?php echo $category['category_slug']; ?>"><?php echo $category['category_name']; ?></option>
 						<?php } ?>
 					</select>
 				</div>

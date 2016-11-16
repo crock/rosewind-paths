@@ -624,6 +624,10 @@ footer .social li:hover {
 	font-size: 18px;
 }
 
+.price{
+	font-size: 24px;
+}
+
 .tab-content .form-control {
 	margin: 15px 0;
 }

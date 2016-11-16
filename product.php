@@ -150,13 +150,10 @@
 									echo $product['description'];
 								?>
 							</p>
-							<h4 class="price">Current Price:
-								<div>
+							<h4 class="price">Current Price:</h4>
 								<?php
-									echo "<br/><p id='price_num'> $" . $product['price'] . "</p>" ;
+									echo "<p id='price_num'> $" . $product['price'] . "</p><br/>" ;
 								?>
-								</div>
-							</h4>
 							<div class="action">
 								<button class="add-to-cart btn btn-success" type="button">Add to Cart</button>
 								<!--<button class="review btn btn-default" type="button">leave a review</button>
