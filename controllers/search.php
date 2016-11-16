@@ -21,8 +21,8 @@
         }
 
         $results = array(
-            'users' => safe_query($query, true),
             'pagination' => result_pagination($page),
+            'users' => safe_query($query, true)
         );
 
         if ($results['users'] === false) {
@@ -110,10 +110,6 @@
 
                 $RESULT_START = ($current_page - 1) * RESULT_NUM + 1;
             }
-
-            if (isset($_GET['view'])) {
-	            unset($_GET['view']);
-	        }
 
             $RESULT_END = min($RESULT_START + RESULT_NUM - 1, $RESULT_COUNT);
             $page_url = basename($page) . "?" . http_build_query($_GET);

@@ -2,7 +2,7 @@
 	define('PAGE_TITLE', 'Admin');
 
 	$admin_view = $_GET['view'];
-	
+
 	require('controllers/AdminController.php');
 
 	if (!isset($_SESSION['user_level'])) {
