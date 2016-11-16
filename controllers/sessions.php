@@ -4,7 +4,7 @@
     $TOTAL_PRICE = 0;
 
     session_start();
-    
+
     if (empty($_SESSION)) {
         create_session();
     }
@@ -42,6 +42,7 @@
         $password = sha1($password);
 
         $user_data = safe_query("SELECT * FROM users LEFT JOIN carts ON users.cart_id = carts.cart_id WHERE username = '{$username}' AND password = '{$password}'");
+        $user_data = $user_data[0];
 
         if (empty($user_data)) {
             header("Location: signin.php?atype=danger&alert=" . urlencode("Invalid username or password."));
@@ -69,10 +70,10 @@
             if (!is_array($_SESSION['cart_contents'])) {
                 $_SESSION['cart_contents'] = array();
             }
-
+            
             safe_query("UPDATE session_log SET cart_id = '{$user_data['cart_id']}',user_type = '{$user_data['user_type']}',username = '{$username}' WHERE session_log_id = '{$_SESSION['session_id']}'");
 
-            if ($user_level < 2) {
+            if ($_SESSION['user_level'] > 1) {
                 header("Location: admin.php?view=catalog");
             } else {
                 header("Location: home.php");
