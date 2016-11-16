@@ -121,7 +121,15 @@
 												<span class="fa fa-star checked"></span>
 												<span class="fa fa-star checked"></span>
 												<span class="fa fa-star checked"></span>
-								';}
+										';}
+										else{
+											echo '
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>											
+										';}
 									?>
 									<!--
 									<span class="fa fa-star checked"></span>

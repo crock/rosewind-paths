@@ -16,9 +16,9 @@
                     <ul>
                         <li><a href="about.php">About Us</a></li>
                         <li><a href="about.php#contact_us">Contact Us</a></li>
-                        <li><a href="about.php#privacy_policy">Privacy Policy</a></li>
-                        <li><a href="about.php#shipping_policy">Shipping & Refunds</a></li>
-                        <li><a href="about.php#security_statement">Security Statement</a></li>
+                        <li><a href="policy.php#privacy_policy">Privacy Policy</a></li>
+                        <li><a href="policy.php#shipping_policy">Shipping & Refunds</a></li>
+                        <li><a href="policy.php#security_statement">Security Statement</a></li>
                     </ul>
                 </div>
                 <div class="col-xs-12 col-md-6 col-md-offset-1 col-lg-6 col-lg-offset-1">

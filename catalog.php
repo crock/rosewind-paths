@@ -69,7 +69,6 @@
 									<p><?php echo $product['description']; ?></p>
 				                </div>
 				                <div class="ratings">
-									
 										<!-- Rating System -->
 										<?php
 										$product_id = $product['product_id'];
@@ -127,7 +126,7 @@
 										';}
 									?>
 									</p>
-									<p class="pull-right"> <?php echo $product['review_count']; ?> reviews</p>
+									<a href="product.php?view=<?php echo $product_id?>"><p class="pull-right"><?php echo $product['review_count']; ?> reviews</p></a>
 				                </div>
 							</div>
 			        	</div>
