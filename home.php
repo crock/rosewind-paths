@@ -37,9 +37,9 @@
 				</div>
 
 				<!-- Controls -->
-				<a class="left carousel-control" href="#feat-slider" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<a class="left carousel-control" href="#feat-slider"  data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 				<span class="sr-only">Previous</span></a>
-				<a class="right carousel-control" href="#feat-slider" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<a class="right carousel-control" href="#feat-slider" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 				<span class="sr-only">Next</span></a>
 			</div><!-- end #feat-slider -->
 
@@ -90,7 +90,7 @@
 				<div class="col-md-2">
 				</div>
 				<div class="col-md-10">
-					<img class="img-anim-left img-full" src="" alt="">
+					<img class="img-anim-left img-full" src="" alt="img_left">
 				</div>
 			</div>
 		</div><!-- end .container -->

@@ -53,7 +53,7 @@
 							<div class="preview-pic tab-content">
 							  <div class="tab-pane active" id="pic-1">
 								<?php									
-									echo '<img src="' . $product['img'] . '" ;/>'
+									echo '<img alt="product image" src="' . $product['img'] . '" />'
 								?>
 							  </div>
 							</div>
@@ -151,11 +151,11 @@
 								?>
 							</p>
 							<h4 class="price">Current Price:
-								<span>
+								<div>
 								<?php
 									echo "<br/><p id='price_num'> $" . $product['price'] . "</p>" ;
 								?>
-								</span>
+								</div>
 							</h4>
 							<div class="action">
 								<button class="add-to-cart btn btn-success" type="button">Add to Cart</button>
