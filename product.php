@@ -16,9 +16,9 @@
 	
 	$username = $_SESSION['username'];
 	
-	$customer = safe_query("SELECT customer_info_id FROM customer_info WHERE username = '{$username}'");
-	//var_dump("SELECT customer_info_id FROM customer_info WHERE username = '{$username}'");
-	//var_dump($customer[0]['customer_info_id']);
+	$customer = safe_query("SELECT id FROM users WHERE username = '{$username}'");
+	//var_dump("SELECT id FROM users WHERE username = '{$username}'");
+	//var_dump($customer[0]['id']);
 ?>
 
 <!DOCTYPE html>
@@ -185,7 +185,7 @@
 									$star_value = $_POST['rating'];
 									$date_created = date('Y-m-d H:i:s');
 										
-									$sql = "INSERT INTO reviews (customer_id, product_id, comment, rating, date_created) VALUES ('{$customer[0]['customer_info_id']}', '{$product_id}', '{$new_review}', '{$star_value}', '{$date_created}')";
+									$sql = "INSERT INTO reviews (customer_id, product_id, comment, rating, date_created) VALUES ('{$customer[0]['id']}', '{$product_id}', '{$new_review}', '{$star_value}', '{$date_created}')";
 									$result = safe_query($sql);
 									
 									$sql2 = "UPDATE products SET review_count = review_count + 1 WHERE product_id = '{$product_id}'";

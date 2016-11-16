@@ -34,7 +34,7 @@
     }
 
     function get_orders($customer_id) {
-        $query = "SELECT * FROM orders WHERE customer_info_id = '{$customer_id}'";
+        $query = "SELECT * FROM orders WHERE id = '{$customer_id}'";
 
         return safe_query($query);
     }
