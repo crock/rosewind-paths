@@ -14,6 +14,7 @@
 
 		<div class="container">
 			<?
+
 				if (isset($_GET['alert'])) {
 					switch($_GET['alert']) {
 						case "success":
@@ -31,6 +32,7 @@
 				if (isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1) {
 					if (isset($_GET['view'])) {
 						switch($_GET['view']) {
+
 							case "orders":
 						        include("models/acp/acp-orders.php");
 						        break;
