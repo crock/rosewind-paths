@@ -21,8 +21,8 @@
         }
 
         $results = array(
-            'pagination' => result_pagination($page),
-            'users' => safe_query($query, true)
+            'users' => safe_query($query, true),
+            'pagination' => result_pagination($page)
         );
 
         if ($results['users'] === false) {

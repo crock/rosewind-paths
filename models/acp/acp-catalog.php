@@ -16,11 +16,6 @@
 
 ?>
 
-<!-- Button trigger modal -->
-<button type="button" id="add-product-btn" class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#add-product">
-  <i class="fa fa-plus"></i> Add Product
-</button>
-
 <!-- Modal -->
 <form method="post" action="admin.php?view=catalog">
 	<div class="modal fade" id="add-product" tabindex="-1" role="dialog" aria-labelledby="addProduct">
@@ -96,46 +91,49 @@
 		</div>
 	</div>
 </form>
+<h2>Catalog</h2>
 
-<table class="table table-striped">
-	<caption>Catalog</caption>
-	<thead>
-		<tr>
-			<td>Product ID</td>
-			<td>Supplier ID</td>
-			<td>Product Name</td>
-			<td>Category</td>
-			<td>Review Count</td>
-			<td>Avg. Rating</td>
-			<td>SKU</td>
-			<td>Stock</td>
-			<td>Cost</td>
-			<td>Price</td>
-			<td>Actions</td>
-		</tr>
-	</thead>
-	<tbody>
-		<? foreach ($search_results['products'] as $product) { ?>
-			<tr>
-				<td><? echo $product["product_id"]; ?></td>
-				<td><? echo $product["supplier_id"]; ?></td>
-				<td><? echo $product["product_name"]; ?></td>
-				<td><? echo $product["category"]; ?></td>
-				<td><? echo $product["review_count"]; ?></td>
-				<td><? echo $product["avg_rating"]; ?></td>
-				<td><? echo $product["sku"]; ?></td>
-				<td><? echo $product["stock"]; ?></td>
-				<td><? echo $product["cost"]; ?></td>
-				<td><? echo $product["price"]; ?></td>
-				<td>
-					<a href="admin.php?view=catalog&action=feature&id=<? echo $product["product_id"]; ?>" class="btn btn-warning">Feature</a>
-					<a href="admin.php?view=catalog&action=delete&id=<? echo $product["product_id"]; ?>" class="btn btn-danger">Delete</a>
-					<a href="admin.php?view=catalog&action=stock&id=<? echo $product["product_id"]; ?>" class="btn btn-success">Stock</a>
-				</td>
-			</tr>
-		<? } ?>
-	</tbody>
-</table>
+<!-- Button trigger modal -->
+<button type="button" id="add-product-btn" class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#add-product">
+  <i class="fa fa-plus"></i> Add Product
+</button>
+
+<div class="panel panel-default">
+	<div class="panel-body">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td>Product Name</td>
+					<td>Supplier ID</td>
+					<td>Category</td>
+					<td>SKU</td>
+					<td>Stock</td>
+					<td>Cost</td>
+					<td>Price</td>
+					<td>Actions</td>
+				</tr>
+			</thead>
+			<tbody>
+				<? foreach ($search_results['products'] as $product) { ?>
+					<tr>
+						<td><? echo $product["product_name"]; ?></td>
+						<td><? echo $product["supplier_id"]; ?></td>
+						<td><? echo $product["category"]; ?></td>
+						<td><? echo $product["sku"]; ?></td>
+						<td><? echo $product["stock"]; ?></td>
+						<td><? echo $product["cost"]; ?></td>
+						<td><? echo $product["price"]; ?></td>
+						<td>
+							<a href="admin.php?view=catalog&action=feature&id=<? echo $product["product_id"]; ?>" class="btn btn-warning"><span class="glyphicon glyphicon-star"></span> Feature</a>
+							<a href="admin.php?view=catalog&action=stock&id=<? echo $product["product_id"]; ?>" class="btn btn-success"><span class="glyphicon glyphicon-tag"></span> Stock</a>
+							<a href="admin.php?view=catalog&action=delete&id=<? echo $product["product_id"]; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove</a>
+						</td>
+					</tr>
+				<? } ?>
+			</tbody>
+		</table>
+	</div>
+</div>
 <div class="col-xs-12 text-center">
 	<ul class="pagination">
 		<?php foreach ($search_results['pagination'] as $page_tag) { ?>

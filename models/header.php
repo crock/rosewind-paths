@@ -23,7 +23,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-8 col-md-5">
-                <form class="form-search" role="search" action="catalog.php">
+                <form class="form-search" role="search" action="<?php echo (PAGE_TITLE == 'Admin') ? 'admin.php' : 'catalog.php'; ?>">
                     <div class="input-group input-group-lg input-group-full">
                         <input type="text" name="q" class="form-control" aria-label="Search"<?php echo (isset($_GET['q'])) ? ' value="' . $_GET['q'] . '"' : ''; ?>>
                         <div class="input-group-btn">
@@ -76,9 +76,9 @@
                     <?php if (PAGE_TITLE != 'Admin') { ?>
                     <li<?php echo (PAGE_TITLE == 'Cart') ? ' class="active"' : ''; ?>><a href="cart.php">Cart <?php echo (isset($_SESSION['cart_contents']) && is_array($_SESSION['cart_contents']) && !empty($_SESSION['cart_contents'])) ? '<span class="badge progress-bar-danger">' . array_sum($_SESSION['cart_contents']) . '</span>' : ''; ?></a></li>
                     <?php } else { ?>
+                    <li><a href="admin.php?view=catalog">Catalog</a></li>
+            		<li><a href="admin.php?view=users">Users</a></li>
                     <li><a href="admin.php?view=orders">Recent Orders</a></li>
-        			<li><a href="admin.php?view=catalog">Catalog</a></li>
-        			<li><a href="admin.php?view=users">Users</a></li>
                     <?php } ?>
         		</ul>
             </div>
