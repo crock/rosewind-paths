@@ -14,6 +14,7 @@
 
 		<div class="container">
 			<?
+
 				if (isset($_GET['alert'])) {
 					switch($_GET['alert']) {
 						case "success":
@@ -28,9 +29,9 @@
 			?>
 			
 			<?php		
-				if ( isset($_SESSION) && $_SESSION['logged_in'] == true ) {
-					if (isset($_GET['view'])) {
-						switch($_GET['view']) {
+				if ( isset($_SESSION) && $_SESSION['logged_in'] == true && $_SESSION['user_type'] == 'admin') {
+					if (isset($view)) {
+						switch($view) {
 							case "orders":
 						        include("models/acp/acp-orders.php");
 						        break;

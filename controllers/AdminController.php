@@ -6,6 +6,7 @@
 	
 	// Global Variables
 	$orders = array();
+	$view = $_GET['view'];
 	
 	function acp_login($data) {
 		$username = $data['username'];
@@ -14,7 +15,7 @@
 		$user = safe_query("SELECT * FROM users WHERE username = '$username'");
 		
 		if ($user[0]['user_type'] === 'privi' || $user[0]['user_type'] === 'admin' && $user[0]['password'] == $password) {
-			$_SESSION['logged_in'] = true;
+			$_SESSION['user_type'] = $user[0]['user_type'];
 			return header("Location: admin.php?alert=success&view=catalog");
 		} else {
 			return header("Location: admin.php?alert=fail");
@@ -23,7 +24,7 @@
 	
 	function get_recent_orders() {
 		$orders = get_orders("WHERE order_placed >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY AND date < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY");
-		
+		return $orders;	
 	}
 
 	
