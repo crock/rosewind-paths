@@ -10,7 +10,7 @@
 	//var_dump($product);
 
 	$reviews = get_reviews($product['product_id'],10);
-	//var_dump($review);
+	//var_dump($reviews);
 
 	$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -155,7 +155,10 @@
 									echo "<p id='price_num'> $" . $product['price'] . "</p><br/>" ;
 								?>
 							<div class="action">
-								<button class="add-to-cart btn btn-success" type="button">Add to Cart</button>
+								<form action="catalog.php">
+									<input type="hidden" name="add" value="<?php echo $product['product_id']; ?>"></input>
+									<button class="add-to-cart btn btn-success" type="submit">Add to Cart</button>
+								</form>
 								<!--<button class="review btn btn-default" type="button">leave a review</button>
 								<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>-->
 							</div>
@@ -175,8 +178,8 @@
 							<div class="row" id="post-review-box" style="display:none;">
 								<div class="col-md-12">
 									<form action="product.php">
-										<input id="ratings-hidden" name="rating" type="hidden">
 										<input type="hidden" name="product" value="<?php echo $product_id; ?>">
+										<input id="ratings-hidden" name="rating" type="hidden">
 										<textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
 
 										<div class="text-right">
@@ -195,11 +198,15 @@
 										$star_value = $_GET['rating'];
 										$date_created = date('Y-m-d H:i:s');
 
-										$sql = "INSERT INTO reviews (customer_id, product_id, comment, rating, date_created) VALUES ('{$customer[0]['id']}', '{$product_id}', '{$new_review}', '{$star_value}', '{$date_created}')";
+										$sql = "INSERT INTO reviews (customer_id, product_id, comment, rating, date_created) VALUES ('15', '{$product_id}', '{$new_review}', '{$star_value}', '{$date_created}')";
 										safe_query($sql);
-
+									
+										
 										$sql2 = "UPDATE products SET review_count = review_count + 1 WHERE product_id = '{$product_id}'";
 										safe_query($sql2);
+										
+										//var_dump($sql);
+										//var_dump($sql2);
 									}
 								?>
 								</div>
@@ -214,6 +221,8 @@
 								foreach ($reviews as $review) {
 									echo "<div class='prev_review'>";
 									echo "<p class='review_text'>";
+										echo $review['date_created'];
+										echo "<br/>";
 										echo $review['comment'];
 									echo "</p>";
 										if ($review['rating'] == 1){
