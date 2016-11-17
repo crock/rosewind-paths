@@ -38,9 +38,7 @@
 		if ($status) {
 			$_SESSION['cart_contents'] = array();
 
-			if (isset($customer['id'])) {
-				safe_query("UPDATE users SET first_name = '{$first_name}', last_name = '{$last_name}', shipping_address = '{$shipping_address1}', billing_address = '{$billingaddress1}' WHERE customer_id = '{$customer['id']}'");
-			}
+			safe_query("UPDATE users SET first_name = '{$first_name}', last_name = '{$last_name}', shipping_address = '{$shipping_address1}', billing_address = '{$billingaddress1}' WHERE customer_id = '{$customer['id']}'");
 
 			header("Location: home.php?atype=success&alert=" . urlencode("Your order has been placed successfully!"));
 		} else {

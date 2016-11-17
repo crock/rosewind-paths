@@ -47,7 +47,24 @@
 						<div class="col-sm-7">
 							<h3>Recent Orders</h3>
 							<?php if (sizeof($orders) > 0) { ?>
-							<!-- Area for previous orders -->
+							<table class="table">
+								<thead>
+									<tr>
+										<td>Order Placed</td>
+										<td>Total Cost</td>
+										<td>Status</td>
+									</tr>
+								</thead>
+								<tbody>
+							<?php foreach ($orders as $order) { ?>
+									<tr>
+										<td><?php echo $order['order_placed']; ?></td>
+										<td>$<?php echo money($order['total']); ?></td>
+										<td>Placed</td>
+									</tr>
+							<?php } ?>
+								</tbody>
+							</table>
 							<?php } else { ?>
 								<h4>No recent orders.</h4>
 							<?php } ?>
