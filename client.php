@@ -7,6 +7,9 @@
 	}
 
 	$customer = safe_query("SELECT * FROM users WHERE username = '{$_SESSION['username']}'");
+	$customer = $customer[0];
+
+	$orders = safe_query("SELECT * FROM orders WHERE customer_info_id = '{$customer['id']}'");
 ?>
 
 <!DOCTYPE html>
@@ -18,48 +21,39 @@
 		<?php include("models/header.php"); ?>
 
 		<div class="container">
-			<?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) { ?>
-				<h1> <?php echo $_SESSION['username']; ?> </h1>
-			<?php } else { ?>
-				<h1>Client Name</h1>
-			<?php } ?>
-			<br/>
-			<div id="profile_intro">
-				You haven't written anything on your profile yet.
-			</div>
-			<br/>
-			<h2>Shipping Information</h2>
-			<!-- Shipping Address -->
-			<?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) { ?>
-				<?php echo $_SESSION['username']; ?> </p>
-				<div class="ship_address">
-					<p class="street1">Street Address 1</p>
-					<p class="street2">Street Address 2</p>
-					<p class="city">City</p>
-					<p class="state">State</p>
-					<p class="zip">Zip Code</p>
+			<h2>Welcome, <?php echo $customer['username']; ?>!</h2>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-5">
+							<h3>Shipping Information</h3>
+							<br>
+							<!-- Shipping Address -->
+							<div class="ship_address">
+								<h4>Shipping address: <?php echo $customer['shipping_address']; ?></h4>
+								<h4>Country: United States</h4>
+								<h4>State: Florida</h4>
+							</div>
+							<br>
+							<h3>Billing Information</h3>
+							<br>
+							<!-- Billing Address -->
+							<div class="bill_address">
+								<h4>Billing address: <?php echo $customer['billing_address']; ?></h4>
+								<h4>Country: United States</h4>
+								<h4>State: Florida</h4>
+							</div>
+						</div>
+						<div class="col-sm-7">
+							<h3>Recent Orders</h3>
+							<?php if (sizeof($orders) > 0) { ?>
+							<!-- Area for previous orders -->
+							<?php } else { ?>
+								<h4>No recent orders.</h4>
+							<?php } ?>
+						</div>
+					</div>
 				</div>
-			<?php } else { ?>
-				<div class="ship_address">
-					<p class="street1">Street Address 1</p>
-					<p class="street2">Street Address 2</p>
-					<p class="city">City</p>
-					<p class="state">State</p>
-					<p class="zip">Zip Code</p>
-				</div>
-			<?php } ?>
-			<br/>
-			<!-- Area for previous orders -->
-			<h2>Recent Orders</h2>
-			<div class="prev_orders">
-				<p>*--Placeholder for order history--*</p>
-			</div>
-			<hr />
-			<h2>Gallery</h2>
-			<div class="row gallery">
-				<img class="col-md-4 gallery_img" src="img/autumn-1804592_640.jpg" />
-				<img class="col-md-4 gallery_img" src="img/gibraltar-1351696_640.jpg" />
-				<img class="col-md-4 gallery_img" src="img/mountain-1806236_640.jpg" />
 			</div>
 		</div><!-- end .container -->
 		<?php include("models/footer.php"); ?>

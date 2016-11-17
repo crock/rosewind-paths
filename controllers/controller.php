@@ -75,7 +75,7 @@
         $query = stripslashes($connection->escape_string($query));
 
         if (!($results = $connection->query($query))) {
-            return false;
+            return admin_error("Query error: " . $connection->error);
         } else if ($results === true) {
             $LAST_INSERT_ID = $connection->insert_id;
 	        $connection->close();
@@ -99,7 +99,7 @@
     }
 
     function admin_error($error = "Unknown error") {
-        if (IS_ADMIN) {
+        if (DEBUG) {
             echo $error;
         }
 

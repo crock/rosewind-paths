@@ -10,28 +10,6 @@
         'avg_rating-desc'   => 'Average rating'
     );
 
-    function get_user_results($page) {
-        $query = "SELECT SQL_CALC_FOUND_ROWS * FROM users";
-
-        $query .= " LIMIT " . RESULT_NUM;
-
-        if (isset($_GET['page'])) {
-            $current_page = $_GET['page'];
-            $query .= " OFFSET " . (($_GET['page'] - 1) * RESULT_NUM);
-        }
-
-        $results = array(
-            'users' => safe_query($query, true),
-            'pagination' => result_pagination($page)
-        );
-
-        if ($results['users'] === false) {
-            $results['users'] = array();
-        }
-
-        return $results;
-    }
-
     function get_product_results($page) {
         $query = "SELECT SQL_CALC_FOUND_ROWS * FROM products";
         $wheres = array();
@@ -91,6 +69,50 @@
 
         if ($results['products'] === false) {
             $results['products'] = array();
+        }
+
+        return $results;
+    }
+
+    function get_user_results($page) {
+        $query = "SELECT SQL_CALC_FOUND_ROWS * FROM users";
+
+        if (isset($_GET['page'])) {
+            $current_page = $_GET['page'];
+            $query .= " OFFSET " . (($_GET['page'] - 1) * RESULT_NUM);
+        }
+
+        $query .= " LIMIT " . RESULT_NUM;
+
+        $results = array(
+            'users' => safe_query($query, true),
+            'pagination' => result_pagination($page)
+        );
+
+        if ($results['users'] === false) {
+            $results['users'] = array();
+        }
+
+        return $results;
+    }
+
+    function get_order_results($page) {
+        $query = "SELECT SQL_CALC_FOUND_ROWS * FROM orders";
+
+        if (isset($_GET['page'])) {
+            $current_page = $_GET['page'];
+            $query .= " OFFSET " . (($_GET['page'] - 1) * RESULT_NUM);
+        }
+
+        $query .= " LIMIT " . RESULT_NUM;
+
+        $results = array(
+            'orders' => safe_query($query, true),
+            'pagination' => result_pagination($page)
+        );
+
+        if ($results['orders'] === false) {
+            $results['orders'] = array();
         }
 
         return $results;

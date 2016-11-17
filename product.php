@@ -7,18 +7,15 @@
     }
 
     $product = single_product($_GET['product']);
-	//var_dump($product);
 
 	$reviews = get_reviews($product['product_id'],10);
-	//var_dump($review);
 
 	$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 	$username = $_SESSION['username'];
 
 	$customer = safe_query("SELECT id FROM users WHERE username = '{$username}'");
-	//var_dump("SELECT id FROM users WHERE username = '{$username}'");
-	//var_dump($customer[0]['id']);
+
 ?>
 
 <!DOCTYPE html>

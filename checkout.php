@@ -6,44 +6,42 @@
 
     if (empty($cart_products)) {
         header("Location: cart.php");
-    } else if (isset($_SESSION['username']) && $_SESSION['username'] == 'guest') {
+    } else if (isset($_SESSION['username']) && $_SESSION['username'] != 'guest') {
 		$customer = safe_query("SELECT * FROM users WHERE username = '{$_SESSION['username']}'");
+		$customer = $customer[0];
 	}
-	
-	if(isset($_POST['checkout'])) {
-		$fname = $_POST['firstname'];
-		$lname = $_POST['lastname'];
+
+	if (isset($_POST['checkout']) && isset($_SESSION['cart_contents']) && !empty($_SESSION['cart_contents'])) {
+		$customer_info_id = isset($customer['id']) ? $customer['id'] : 0;
+		$total = $TOTAL_PRICE;
+		$tax = $TOTAL_TAX;
+		$contents = json_encode($_SESSION['cart_contents']);
+		$order_status = 'placed';
+		$order_placed = date('Y-m-d H:i:s');
+		$first_name = $_POST['firstname'];
+		$last_name = $_POST['lastname'];
 		$email = $_POST['email'];
-		$sa1 = $_POST['shippingaddress1'];
-		$sa2 = $_POST['shippingaddress2'];
-		$scountry = $_POST['shippingcountry'];
-		$sstate = $_POST['shippingstate'];
-		$szip = $_POST['shippingzip'];
-		$cardname = $_POST['cardname'];
-		$cardnumber = $_POST['cardnumber'];
+		$card_name = $_POST['cardname'];
+		$card_number = $_POST['cardnumber'];
 		$cvv = $_POST['cvv'];
-		$expmonth = $_POST['expmonth'];
-		$expyear = $_POST['expyear'];
-		$acceptterms = $_POST['acceptterms'];
-		$ba1 = $_POST['billingaddress1'];
-		$ba2 = $_POST['billingaddress2'];
-		$bcountry = $_POST['billingcountry'];
-		$bstate = $_POST['billingstate'];
-		$bzip = $_POST['billingzip'];
-		$useshipping = $_POST['useshipping'];
-				
-		$order_placed = date('Y-m-d H:i:s');	
-				
-		$status = safe_query("INSERT INTO orders (first_name, last_name, email, card_name, 
-		card_number, cvv, exp_month, exp_year, accept_terms, 
-		use_shipping, shipping_address1, shipping_address2, shipping_country, 
-		shipping_state, shipping_zip, billing_address1, billing_address2, 
-		billing_country, billing_state, billing_zip, order_placed) 
-		VALUES ('{$fname}','{$lname}', '{$email}', '{$cardname}', '{$cardnumber}', '{$cvv}', '{$expmonth}', '{$expyear}', '{$acceptterms}', '{$useshipping}', '{$sa1}', '{$sa2}', '{$scountry}', '{$sstate}', '{$szip}', '{$ba1}', '{$ba2}', '{$bcountry}', '{$bstate}', '{$bzip}'), '{$order_placed}'");
-		
-		//$status = safe_query("INSERT INTO orders (first_name) VALUES ('{$fname}')");
-		
-		if($status) {
+		$exp_month = $_POST['expmonth'];
+		$exp_year = $_POST['expyear'];
+		$shipping_address1 = $_POST['shippingaddress1'];
+		$shipping_address2 = $_POST['shippingaddress2'];
+		$billing_address1 = $_POST['billingaddress1'];
+		$billing_address2 = $_POST['billingaddress2'];
+
+		$query = "INSERT INTO orders (customer_info_id, total, tax, contents, order_status, order_placed, first_name, last_name, email, card_name, card_number, cvv, exp_month, exp_year, shipping_address1, shipping_address2, billing_address1, billing_address2) VALUES ('{$customer_info_id}', '{$total}', '{$tax}', '{$contents}', '{$order_status}', '{$order_placed}', '{$first_name}', '{$last_name}', '{$email}', '{$card_name}', '{$card_number}', '{$cvv}', '{$exp_month}', '{$exp_year}', '{$shipping_address1}', '{$shipping_address2}', '{$billing_address1}', '{$billing_address2}')";
+
+		$status = safe_query($query);
+
+		if ($status) {
+			$_SESSION['cart_contents'] = array();
+
+			if (isset($customer['id'])) {
+				safe_query("UPDATE users SET first_name = '{$first_name}', last_name = '{$last_name}', shipping_address = '{$shipping_address1}', billing_address = '{$billingaddress1}' WHERE customer_id = '{$customer['id']}'");
+			}
+
 			header("Location: home.php?atype=success&alert=" . urlencode("Your order has been placed successfully!"));
 		} else {
 			header("Location: checkout.php?atype=danger&alert=" . urlencode("Something went wrong. Please try your order again!"));
@@ -61,14 +59,19 @@
 
         <div class="container">
             <h2>Checkout</h2>
+
+			<? if (isset($_GET['atype']) && isset($_GET['alert'])) { ?>
+				<div class="alert <?php echo ($_GET['atype'] == 'success') ? 'alert-success' : 'alert-danger'; ?>" role="alert"><?php echo urldecode($_GET['alert']); ?></div>
+			<? } ?>
+
             <ul class="nav nav-tabs">
 			    <li class="active"><a href="#shipping" data-toggle="tab">Shipping</a></li>
                 <li><a href="#billing" data-toggle="tab">Billing</a></li>
             </ul>
 
             <h2 class="bg-success">Order Total: $<?php echo $TOTAL_PRICE; ?></h2>
-			
-			<form method="post" action="checkout.php">
+
+			<form method="post">
 				<div class="tab-content clearfix">
 	                <div class="tab-pane active" id="shipping">
 						<div class="panel panel-default">
@@ -120,7 +123,7 @@
 									<label class="control-label" for="cvv">CVV</label>
 			                        <div class="row">
 			                            <div class="col-xs-4 col-sm-3">
-			                                <input id="cvv" name="cvv" type="text" placeholder="" class="form-control" required="">
+			                                <input id="cvv" name="cvv" type="text" placeholder="" class="form-control">
 			                            </div>
 			                            <div class="col-xs-5 col-sm-4">
 			                                <select id="expmonth" class="form-control" name="expmonth">

@@ -9,7 +9,7 @@
     define("DB_NAME", "dig4530c_007");
 
     // DEBUG FLAGS
-    define("IS_ADMIN", true);
+    define("DEBUG", true);
     define("NO_DB", false);
 
     // PAGE SETUP
