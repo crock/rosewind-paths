@@ -15,7 +15,7 @@
 			<h2>Sign In</h2>
 
 			<? if (isset($_GET['atype']) && isset($_GET['alert'])) { ?>
-				<div class="alert <?php echo ($_GET['atype'] == 'success') ? 'alert-success' : 'alert-danger'; ?>" role="alert"><?php echo urldecode($_GET['alert']); ?></div>
+				<div class="alert <?php echo (($_GET['atype'] == 'success') ? 'alert-success' : 'alert-danger'); ?>" role="alert"><?php echo urldecode($_GET['alert']); ?></div>
 			<? } ?>
 
 			<div class="row">
